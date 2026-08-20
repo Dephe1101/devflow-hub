@@ -1,0 +1,15 @@
+module.exports = {
+  semi: true,
+  singleQuote: true,
+  trailingComma: 'all',
+  printWidth: 100,
+  tabWidth: 2,
+  useTabs: false,
+  bracketSpacing: true,
+  arrowParens: 'always',
+  endOfLine: 'lf',
+  plugins: [require.resolve('@trivago/prettier-plugin-sort-imports')],
+  importOrder: ['^react', '^next', '<THIRD_PARTY_MODULES>', '^@repo/(.*)$', '^@/(.*)$', '^[./]'],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+};
