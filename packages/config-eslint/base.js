@@ -7,6 +7,9 @@ module.exports = {
   ],
   plugins: ['@typescript-eslint', 'import'],
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: true,
+  },
   rules: {
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
