@@ -14,5 +14,6 @@ export const API_ROUTES = {
     GLOBAL: 'resources',
     BASE: 'workspaces/:workspaceId/resources', // Fastify/NestJS param style
     REORDER: 'workspaces/:workspaceId/resources/reorder',
+    DETAIL: 'workspaces/:workspaceId/resources/:resourceId',
   },
 } as const;

@@ -26,7 +26,7 @@ import { api } from '@/lib/api';
 import { QUERY_KEYS } from '@/lib/query-keys';
 import { useUIStore } from '@/stores/ui.store';
 
-export default function AddResourceModal(): React.ReactElement | null {
+export function AddResourceModal(): React.ReactElement | null {
   const { isAddResourceOpen, selectedWorkspaceIdForResource, closeAddResource } = useUIStore();
   const [type, setType] = useState<'URL' | 'LOCAL_PATH' | 'APP_URI' | 'COMMAND'>('URL');
   const [value, setValue] = useState('');

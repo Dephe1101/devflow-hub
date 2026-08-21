@@ -8,8 +8,7 @@ import { Button, Card, CardContent, Skeleton } from '@repo/ui';
 
 import { FadeIn } from '@/components/animations/fade-in';
 import { StaggerContainer, StaggerItem } from '@/components/animations/stagger-container';
-import { WorkspaceCard } from '@/features/workspace/components/workspace-card';
-import { useWorkspaces } from '@/features/workspace/hooks/use-workspaces';
+import { WorkspaceCard, useWorkspaces } from '@/features/workspace';
 import { useUIStore } from '@/stores/ui.store';
 
 export default function DashboardPage(): React.ReactNode {

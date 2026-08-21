@@ -2,12 +2,28 @@ import Image from 'next/image';
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Folder, Globe, GripVertical, MonitorSmartphone, Terminal } from 'lucide-react';
+import {
+  Folder,
+  Globe,
+  GripVertical,
+  MonitorSmartphone,
+  Pencil,
+  Terminal,
+  Trash,
+} from 'lucide-react';
 
 import type { WorkspaceResource } from '@repo/types';
 import { Button } from '@repo/ui';
 
-export function SortableResourceItem({ item }: { item: WorkspaceResource }): React.ReactElement {
+export function SortableResourceItem({
+  item,
+  onEdit,
+  onDelete,
+}: {
+  item: WorkspaceResource;
+  onEdit: () => void;
+  onDelete: () => void;
+}): React.ReactElement {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: item.id });
 
   const style = {
@@ -66,6 +82,24 @@ export function SortableResourceItem({ item }: { item: WorkspaceResource }): Rea
           {item.resource.displayName ?? item.resource.value}
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{item.resource.value}</p>
+      </div>
+      <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onEdit}
+          className="w-8 h-8 text-muted-foreground hover:text-blue-500"
+        >
+          <Pencil className="w-4 h-4" />
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onDelete}
+          className="w-8 h-8 text-muted-foreground hover:text-destructive"
+        >
+          <Trash className="w-4 h-4" />
+        </Button>
       </div>
     </div>
   );

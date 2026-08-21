@@ -16,7 +16,7 @@ import { api } from '@/lib/api';
 import { QUERY_KEYS } from '@/lib/query-keys';
 import { useUIStore } from '@/stores/ui.store';
 
-export default function CreateWorkspaceModal(): React.ReactElement | null {
+export function CreateWorkspaceModal(): React.ReactElement | null {
   const { isCreateWorkspaceOpen, closeCreateWorkspace } = useUIStore();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');

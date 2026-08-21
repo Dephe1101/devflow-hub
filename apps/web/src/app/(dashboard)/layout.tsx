@@ -19,8 +19,9 @@ import {
 } from '@repo/ui';
 
 import { FadeIn } from '@/components/animations/fade-in';
-import AddResourceModal from '@/components/modals/add-resource-modal';
-import CreateWorkspaceModal from '@/components/modals/create-workspace-modal';
+import { AddResourceModal } from '@/features/workspace/components/modals/add-resource-modal';
+import { CreateWorkspaceModal } from '@/features/workspace/components/modals/create-workspace-modal';
+import { EditResourceModal } from '@/features/workspace/components/modals/edit-resource-modal';
 import { useAuthStore } from '@/stores/auth.store';
 
 export default function DashboardLayout({
@@ -171,6 +172,7 @@ export default function DashboardLayout({
 
       <CreateWorkspaceModal />
       <AddResourceModal />
+      <EditResourceModal />
     </div>
   );
 }

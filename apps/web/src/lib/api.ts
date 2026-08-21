@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import type { InternalAxiosRequestConfig } from 'axios';
+import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 import { API_ROUTES } from '@repo/constants';
 
@@ -40,7 +40,10 @@ const processQueue = (error: AxiosError | null, token: string | null = null): vo
 };
 
 api.interceptors.response.use(
-  (response) => response.data as unknown,
+  (response: AxiosResponse) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return response.data;
+  },
   async (error: AxiosError) => {
     const originalRequest = error.config;
     if (!originalRequest) {

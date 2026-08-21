@@ -48,4 +48,50 @@ export class ResourceRepository {
       ),
     );
   }
+
+  async findByUserAndValue(
+    userId: string,
+    type: string,
+    value: string,
+  ): Promise<Resource | null> {
+    return this.prisma.resource.findFirst({
+      where: { createdByUserId: userId, type, value },
+    });
+  }
+
+  async updateResource(
+    id: string,
+    data: Prisma.ResourceUpdateInput,
+  ): Promise<Resource> {
+    return this.prisma.resource.update({
+      where: { id },
+      data,
+    });
+  }
+
+  async deleteWorkspaceResource(
+    workspaceId: string,
+    resourceId: string,
+  ): Promise<void> {
+    await this.prisma.workspaceResource.delete({
+      where: {
+        workspaceId_resourceId: {
+          workspaceId,
+          resourceId,
+        },
+      },
+    });
+  }
+
+  async countWorkspaceResources(resourceId: string): Promise<number> {
+    return this.prisma.workspaceResource.count({
+      where: { resourceId },
+    });
+  }
+
+  async deleteResource(id: string): Promise<void> {
+    await this.prisma.resource.delete({
+      where: { id },
+    });
+  }
 }

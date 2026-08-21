@@ -7,6 +7,7 @@ import { WorkspaceService } from './workspace.service';
 @Module({
   providers: [WorkspaceService, WorkspaceRepository],
   controllers: [WorkspaceController],
+  exports: [WorkspaceRepository],
 })
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class WorkspaceModule {}

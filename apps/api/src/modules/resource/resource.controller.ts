@@ -3,6 +3,7 @@ import {
   Get,
   Post,
   Patch,
+  Delete,
   Body,
   Param,
   UseGuards,
@@ -15,8 +16,10 @@ import { API_ROUTES } from '@repo/constants';
 import {
   CreateResourceInput,
   ReorderResourceInput,
+  UpdateResourceInput,
   createResourceSchema,
   reorderResourceSchema,
+  updateResourceSchema,
 } from '@repo/validation';
 
 import { ZodValidationPipe } from '../../common/pipes/zod-validation.pipe';
@@ -66,5 +69,35 @@ export class ResourceController {
   ) {
     await this.resourceService.reorder(req.user.id, workspaceId, body);
     return { message: 'Resources reordered' };
+  }
+
+  @Patch(API_ROUTES.RESOURCES.DETAIL)
+  @UsePipes(new ZodValidationPipe(updateResourceSchema))
+  async updateResource(
+    @Req() req: NestRequest,
+    @Param('workspaceId', ParseUUIDPipe) workspaceId: string,
+    @Param('resourceId', ParseUUIDPipe) resourceId: string,
+    @Body() body: UpdateResourceInput,
+  ) {
+    return this.resourceService.updateResource(
+      req.user.id,
+      workspaceId,
+      resourceId,
+      body,
+    );
+  }
+
+  @Delete(API_ROUTES.RESOURCES.DETAIL)
+  async deleteResource(
+    @Req() req: NestRequest,
+    @Param('workspaceId', ParseUUIDPipe) workspaceId: string,
+    @Param('resourceId', ParseUUIDPipe) resourceId: string,
+  ) {
+    await this.resourceService.deleteFromWorkspace(
+      req.user.id,
+      workspaceId,
+      resourceId,
+    );
+    return { message: 'Resource deleted' };
   }
 }

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { RESOURCE_TYPE } from '@repo/constants';
 import type { WorkspaceResource } from '@repo/types';
@@ -24,6 +24,14 @@ export function useWorkspaceLaunch(): UseWorkspaceLaunchReturn {
   const [blockedUrls, setBlockedUrls] = useState<string[]>([]);
 
   const lockTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (lockTimerRef.current) {
+        clearInterval(lockTimerRef.current);
+      }
+    };
+  }, []);
 
   const launchWorkspace = async (resources: WorkspaceResource[]): Promise<LaunchResult> => {
     if (isLocked || isLaunching) {
