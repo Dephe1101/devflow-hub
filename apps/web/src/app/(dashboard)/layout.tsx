@@ -19,6 +19,7 @@ import {
 } from '@repo/ui';
 
 import { FadeIn } from '@/components/animations/fade-in';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { AddResourceModal } from '@/features/workspace/components/modals/add-resource-modal';
 import { CreateWorkspaceModal } from '@/features/workspace/components/modals/create-workspace-modal';
 import { EditResourceModal } from '@/features/workspace/components/modals/edit-resource-modal';
@@ -140,6 +141,9 @@ export default function DashboardLayout({
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            <div className="mt-4 flex justify-end">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </aside>

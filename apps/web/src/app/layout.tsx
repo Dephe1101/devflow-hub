@@ -1,23 +1,23 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 
 import Providers from '@/components/providers';
 
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const inter = Inter({
+  variable: '--font-sans',
+  subsets: ['latin', 'vietnamese'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: '--font-heading',
+  subsets: ['latin', 'vietnamese'],
 });
 
 export const metadata: Metadata = {
-  title: 'DevFlow Hub',
-  description: 'Developer Workspace Management Platform',
+  title: 'WorkFlow Hub - Tối ưu hóa luồng công việc',
+  description: 'Nền tảng quản lý và tối ưu hóa luồng công việc số cho cá nhân và đội nhóm.',
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
 }): React.ReactElement {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${inter.variable} ${plusJakartaSans.variable} antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

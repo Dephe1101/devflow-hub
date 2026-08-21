@@ -4,20 +4,22 @@ import { Rocket } from 'lucide-react';
 
 import { Button } from '@repo/ui';
 
+import { ThemeToggle } from '@/components/theme-toggle';
+
 export default function MarketingLayout({
   children,
 }: {
   children: React.ReactNode;
 }): React.ReactElement {
   return (
-    <div className="min-h-screen flex flex-col bg-background selection:bg-primary/20">
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
+    <div className="flex flex-col min-h-screen bg-background text-foreground selection:bg-primary/30">
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
         <div className="container flex h-16 max-w-7xl mx-auto items-center justify-between px-4 sm:px-8">
           <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <Rocket className="h-5 w-5" />
             </div>
-            <span className="font-bold text-lg tracking-tight">DevFlow Hub</span>
+            <span className="font-bold text-lg tracking-tight">WorkFlow Hub</span>
           </Link>
 
           <nav className="hidden md:flex gap-6 items-center text-sm font-medium text-muted-foreground">
@@ -33,6 +35,7 @@ export default function MarketingLayout({
           </nav>
 
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <Link href="/login">
               <Button variant="ghost" className="hidden sm:flex">
                 Đăng nhập
@@ -47,16 +50,15 @@ export default function MarketingLayout({
         </div>
       </header>
 
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 w-full relative">{children}</main>
 
-      <footer className="border-t border-border/40 py-12 bg-card/30">
+      <footer className="relative z-50 border-t border-border/40 py-12 bg-background/80 backdrop-blur-md">
         <div className="container max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
-            <Rocket className="h-5 w-5 text-muted-foreground" />
             <span className="font-semibold text-muted-foreground">DevFlow Hub</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            Được tạo ra với ❤️ dành cho các lập trình viên quý trọng thời gian.
+            Được tạo ra với ❤️ dành cho các lập trình viên.
           </p>
           <div className="flex gap-4">
             <Link
