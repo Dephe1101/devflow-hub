@@ -24,7 +24,7 @@ export class AuthService {
   async register(data: RegisterInput) {
     const existingUser = await this.usersService.findByEmail(data.email);
     if (existingUser) {
-      throw new ConflictException('Email already in use');
+      throw new ConflictException('Email này đã được sử dụng');
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 12);
@@ -40,7 +40,7 @@ export class AuthService {
   async login(data: LoginInput) {
     const user = await this.usersService.findByEmail(data.email);
     if (!user?.passwordHash) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new UnauthorizedException('Email hoặc mật khẩu không chính xác');
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -48,7 +48,7 @@ export class AuthService {
       user.passwordHash,
     );
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new UnauthorizedException('Email hoặc mật khẩu không chính xác');
     }
 
     return this.generateTokens(user.id, user.email);
@@ -61,7 +61,7 @@ export class AuthService {
       .get(`${KEYS.REDIS.BLACKLIST_PREFIX}:${refreshTokenId}`);
     if (isBlacklisted) {
       throw new UnauthorizedException(
-        'Refresh token is blacklisted or revoked',
+        'Token làm mới đã bị thu hồi hoặc hết hiệu lực',
       );
     }
 

@@ -40,7 +40,7 @@ export class WorkspaceService {
     );
 
     if (!workspace) {
-      throw new NotFoundException('Workspace not found');
+      throw new NotFoundException('Không tìm thấy workspace');
     }
 
     const updated = await this.workspaceRepo.update(workspaceId, {
@@ -61,7 +61,7 @@ export class WorkspaceService {
     );
 
     if (!workspace) {
-      throw new NotFoundException('Workspace not found');
+      throw new NotFoundException('Không tìm thấy workspace');
     }
 
     await this.workspaceRepo.delete(workspaceId);

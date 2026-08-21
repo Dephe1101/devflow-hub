@@ -19,11 +19,11 @@ export class ZodValidationPipe implements PipeTransform {
       if (error instanceof ZodError) {
         throw new BadRequestException({
           code: 'VALIDATION_ERROR',
-          message: 'Validation failed',
+          message: 'Dữ liệu không hợp lệ',
           details: error.errors,
         });
       }
-      throw new BadRequestException('Validation failed');
+      throw new BadRequestException('Dữ liệu không hợp lệ');
     }
   }
 }

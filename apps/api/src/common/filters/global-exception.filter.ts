@@ -6,7 +6,7 @@ import {
   HttpStatus,
   Logger,
 } from '@nestjs/common';
-import { FastifyReply } from 'fastify';
+import { FastifyReply, FastifyRequest } from 'fastify';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -61,6 +61,13 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         `[${String(status)}] ${message}`,
         exception instanceof Error ? exception.stack : undefined,
       );
+    }
+
+    const request = ctx.getRequest<FastifyRequest>();
+    const origin = request.headers.origin;
+    if (origin) {
+      response.header('Access-Control-Allow-Origin', origin);
+      response.header('Access-Control-Allow-Credentials', 'true');
     }
 
     response.status(status).send(body);

@@ -68,7 +68,7 @@ export class ResourceController {
     @Body() body: ReorderResourceInput,
   ) {
     await this.resourceService.reorder(req.user.id, workspaceId, body);
-    return { message: 'Resources reordered' };
+    return { message: 'Sắp xếp tài nguyên thành công' };
   }
 
   @Patch(API_ROUTES.RESOURCES.DETAIL)
@@ -98,6 +98,6 @@ export class ResourceController {
       workspaceId,
       resourceId,
     );
-    return { message: 'Resource deleted' };
+    return { message: 'Xóa tài nguyên thành công' };
   }
 }

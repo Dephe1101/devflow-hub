@@ -1,29 +1,40 @@
 'use client';
 
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import { Loader2, X } from 'lucide-react';
 
 import { API_ROUTES } from '@repo/constants';
-import { Button, Input, Label, Textarea } from '@repo/ui';
+import { Button, Input, Label, Textarea, toast } from '@repo/ui';
 import type { CreateWorkspaceInput } from '@repo/validation';
+import { createWorkspaceSchema } from '@repo/validation';
 
 import { FadeIn } from '@/components/animations/fade-in';
 import { SlideUp } from '@/components/animations/slide-up';
 import { api } from '@/lib/api';
+import { extractErrorMessage } from '@/lib/api-helpers';
 import { QUERY_KEYS } from '@/lib/query-keys';
 import { useUIStore } from '@/stores/ui.store';
 
 export function CreateWorkspaceModal(): React.ReactElement | null {
   const { isCreateWorkspaceOpen, closeCreateWorkspace } = useUIStore();
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [color, setColor] = useState('#3B82F6');
-  const [error, setError] = useState('');
-
   const queryClient = useQueryClient();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<CreateWorkspaceInput>({
+    resolver: zodResolver(createWorkspaceSchema),
+    defaultValues: {
+      name: '',
+      description: '',
+      color: '#3B82F6',
+    },
+  });
 
   const mutation = useMutation({
     mutationFn: async (data: CreateWorkspaceInput) => {
@@ -32,29 +43,22 @@ export function CreateWorkspaceModal(): React.ReactElement | null {
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.workspaces.all });
+      toast.success('Tạo workspace thành công');
       closeModal();
     },
     onError: (err: unknown) => {
-      if (axios.isAxiosError<{ message?: string }>(err)) {
-        setError(err.response?.data.message ?? 'Failed to create workspace');
-      } else {
-        setError('Failed to create workspace');
-      }
+      const errorMessage = extractErrorMessage(err, 'Tạo workspace thất bại');
+      toast.error(errorMessage);
     },
   });
 
   const closeModal = (): void => {
-    setName('');
-    setDescription('');
-    setColor('#3B82F6');
-    setError('');
+    reset();
     closeCreateWorkspace();
   };
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    setError('');
-    mutation.mutate({ name, description, color });
+  const onSubmit = (data: CreateWorkspaceInput): void => {
+    mutation.mutate(data);
   };
 
   if (!isCreateWorkspaceOpen) {
@@ -71,16 +75,17 @@ export function CreateWorkspaceModal(): React.ReactElement | null {
           <div className="flex justify-between items-center px-6 py-4 border-b border-border/50">
             <div>
               <h2 className="text-lg font-semibold tracking-tight text-foreground">
-                New Workspace
+                Workspace Mới
               </h2>
               <p className="text-sm text-muted-foreground mt-1">
-                Create a new workspace to organize your resources.
+                Tạo một workspace mới để tổ chức các tài nguyên của bạn.
               </p>
             </div>
             <Button
               variant="ghost"
               size="icon"
               onClick={closeModal}
+              disabled={mutation.isPending}
               className="text-muted-foreground hover:text-foreground transition-colors self-start mt-1 rounded-sm opacity-70 hover:opacity-100 w-6 h-6"
             >
               <X className="w-4 h-4" />
@@ -89,63 +94,63 @@ export function CreateWorkspaceModal(): React.ReactElement | null {
 
           <form
             onSubmit={(e) => {
-              handleSubmit(e);
+              void handleSubmit(onSubmit)(e);
             }}
             className="p-6 space-y-4"
           >
-            {error && (
-              <div className="p-3 bg-destructive/10 text-destructive border border-destructive/20 rounded-lg text-sm">
-                {error}
-              </div>
-            )}
-
             <div className="space-y-2">
-              <Label>Name</Label>
+              <Label>Tên Workspace</Label>
               <Input
                 type="text"
-                required
-                placeholder="e.g. Frontend Project"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
+                placeholder="VD: Dự án Frontend"
+                {...register('name')}
+                disabled={mutation.isPending}
               />
+              {errors.name && (
+                <p className="text-sm text-destructive mt-1">{errors.name.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
-              <Label>Description</Label>
+              <Label>Mô tả</Label>
               <Textarea
                 rows={3}
-                value={description}
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                  setDescription(e.target.value);
-                }}
+                {...register('description')}
+                disabled={mutation.isPending}
                 className="flex w-full bg-background/50 border-input/60 transition-all duration-200 hover:border-primary/50 focus:ring-2 focus:ring-primary/20 resize-none shadow-sm backdrop-blur-sm"
               />
+              {errors.description && (
+                <p className="text-sm text-destructive mt-1">{errors.description.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
-              <Label>Theme Color</Label>
+              <Label>Màu chủ đạo</Label>
               <div className="mt-2 flex items-center gap-3">
                 <Input
                   type="color"
-                  value={color}
-                  onChange={(e) => {
-                    setColor(e.target.value);
-                  }}
+                  {...register('color')}
+                  disabled={mutation.isPending}
                   className="h-8 w-12 rounded cursor-pointer border-0 p-1 bg-transparent hover:bg-transparent shadow-none focus-visible:ring-0"
                 />
-                <span className="text-sm text-muted-foreground font-mono">{color}</span>
               </div>
+              {errors.color && (
+                <p className="text-sm text-destructive mt-1">{errors.color.message}</p>
+              )}
             </div>
 
             <div className="pt-4 flex justify-end gap-3">
-              <Button type="button" variant="outline" onClick={closeModal}>
-                Cancel
+              <Button
+                type="button"
+                variant="outline"
+                onClick={closeModal}
+                disabled={mutation.isPending}
+              >
+                Hủy
               </Button>
               <Button type="submit" disabled={mutation.isPending}>
                 {mutation.isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                Create
+                Tạo mới
               </Button>
             </div>
           </form>

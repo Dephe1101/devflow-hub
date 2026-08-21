@@ -80,7 +80,9 @@ export class AuthController {
   ) {
     const refreshToken = req.cookies[KEYS.COOKIE.REFRESH_TOKEN];
     if (!refreshToken) {
-      throw new UnauthorizedException('No refresh token provided');
+      throw new UnauthorizedException(
+        'Không tìm thấy token làm mới (Refresh Token)',
+      );
     }
 
     try {
@@ -102,7 +104,9 @@ export class AuthController {
 
       return { accessToken };
     } catch {
-      throw new UnauthorizedException('Invalid or expired refresh token');
+      throw new UnauthorizedException(
+        'Token làm mới không hợp lệ hoặc đã hết hạn',
+      );
     }
   }
 
@@ -124,7 +128,7 @@ export class AuthController {
     }
 
     res.clearCookie(KEYS.COOKIE.REFRESH_TOKEN, { path: '/' });
-    return { message: 'Logged out successfully' };
+    return { message: 'Đăng xuất thành công' };
   }
 
   @Get(API_ROUTES.AUTH.ME)

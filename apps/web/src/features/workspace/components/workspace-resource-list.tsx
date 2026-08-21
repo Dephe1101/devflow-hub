@@ -29,10 +29,12 @@ import {
   DialogHeader,
   DialogTitle,
   Skeleton,
+  toast,
 } from '@repo/ui';
 
 import { useDeleteResource } from '@/features/workspace/hooks/use-workspace-resources';
 import { api } from '@/lib/api';
+import { extractErrorMessage } from '@/lib/api-helpers';
 import { QUERY_KEYS } from '@/lib/query-keys';
 import { useUIStore } from '@/stores/ui.store';
 
@@ -108,7 +110,13 @@ export function WorkspaceResourceList({
     if (resourceToDelete) {
       deleteMutation.mutate(resourceToDelete.resourceId, {
         onSuccess: () => {
+          toast.success('Xóa tài nguyên thành công');
           setResourceToDelete(null);
+        },
+        onError: (err) => {
+          const errorMessage = extractErrorMessage(err, 'Xóa tài nguyên thất bại');
+          console.error('Delete error:', err);
+          toast.error(errorMessage);
         },
       });
     }
@@ -116,7 +124,7 @@ export function WorkspaceResourceList({
 
   return (
     <div className="bg-card/50 backdrop-blur-sm rounded-xl border border-border/50 p-6 min-h-[400px] shadow-sm">
-      <h2 className="text-lg font-semibold tracking-tight mb-6">Workspace Resources</h2>
+      <h2 className="text-lg font-semibold tracking-tight mb-6">Tài nguyên Workspace</h2>
 
       {isLoading ? (
         <div className="space-y-3">
@@ -129,8 +137,10 @@ export function WorkspaceResourceList({
           <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-4">
             <Plus className="w-6 h-6 text-muted-foreground" />
           </div>
-          <h3 className="text-sm font-medium mb-1">No resources yet</h3>
-          <p className="text-sm text-muted-foreground">Add your first resource to this workspace</p>
+          <h3 className="text-sm font-medium mb-1">Chưa có tài nguyên nào</h3>
+          <p className="text-sm text-muted-foreground">
+            Thêm tài nguyên đầu tiên của bạn vào workspace này
+          </p>
         </div>
       ) : (
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
@@ -166,9 +176,9 @@ export function WorkspaceResourceList({
       >
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Remove Resource</DialogTitle>
+            <DialogTitle>Xóa tài nguyên</DialogTitle>
             <DialogDescription>
-              Are you sure you want to remove this resource from the workspace?
+              Bạn có chắc chắn muốn xóa tài nguyên này khỏi workspace?
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -178,14 +188,14 @@ export function WorkspaceResourceList({
                 setResourceToDelete(null);
               }}
             >
-              Cancel
+              Hủy
             </Button>
             <Button
               variant="destructive"
               onClick={confirmDelete}
               disabled={deleteMutation.isPending}
             >
-              {deleteMutation.isPending ? 'Removing...' : 'Remove'}
+              {deleteMutation.isPending ? 'Đang xóa...' : 'Xóa'}
             </Button>
           </DialogFooter>
         </DialogContent>

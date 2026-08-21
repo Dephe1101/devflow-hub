@@ -18,6 +18,7 @@ import {
   CardTitle,
   Input,
   Label,
+  toast,
 } from '@repo/ui';
 
 import { SlideUp } from '@/components/animations/slide-up';
@@ -40,11 +41,12 @@ export default function RegisterPage(): React.ReactNode {
       await register({ name, email, password });
       router.push('/dashboard');
     } catch (err: unknown) {
+      let errorMessage = 'Đăng ký thất bại';
       if (axios.isAxiosError<{ message?: string }>(err)) {
-        setError(err.response?.data.message ?? 'Registration failed');
-      } else {
-        setError('Registration failed');
+        errorMessage = err.response?.data.message ?? errorMessage;
       }
+      setError(errorMessage);
+      toast.error(errorMessage);
     }
   };
 
@@ -55,9 +57,9 @@ export default function RegisterPage(): React.ReactNode {
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-2">
             <UserPlus className="h-8 w-8 text-primary" />
           </div>
-          <CardTitle className="text-3xl font-bold tracking-tight">Create an account</CardTitle>
+          <CardTitle className="text-3xl font-bold tracking-tight">Tạo tài khoản</CardTitle>
           <CardDescription className="text-muted-foreground text-sm">
-            Join DevFlow Hub and organize your workspace
+            Tham gia DevFlow Hub và quản lý workspace của bạn
           </CardDescription>
         </CardHeader>
 
@@ -74,7 +76,7 @@ export default function RegisterPage(): React.ReactNode {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
+              <Label htmlFor="name">Họ và Tên</Label>
               <Input
                 id="name"
                 type="text"
@@ -89,7 +91,7 @@ export default function RegisterPage(): React.ReactNode {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email Address</Label>
+              <Label htmlFor="email">Địa chỉ Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -104,7 +106,7 @@ export default function RegisterPage(): React.ReactNode {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Mật khẩu</Label>
               <Input
                 id="password"
                 type="password"
@@ -128,17 +130,17 @@ export default function RegisterPage(): React.ReactNode {
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Creating account...
+                  Đang tạo tài khoản...
                 </>
               ) : (
-                'Create account'
+                'Đăng ký'
               )}
             </Button>
 
             <p className="text-center text-sm text-muted-foreground">
-              Already have an account?{' '}
+              Đã có tài khoản?{' '}
               <Link href="/login" className="font-semibold text-primary hover:underline">
-                Sign in
+                Đăng nhập
               </Link>
             </p>
           </CardFooter>

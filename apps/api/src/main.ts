@@ -29,6 +29,8 @@ async function bootstrap() {
   app.enableCors({
     origin: corsOrigin.split(','),
     credentials: true,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Accept', 'Authorization'],
   });
 
   app.useGlobalFilters(new GlobalExceptionFilter());

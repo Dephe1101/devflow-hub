@@ -58,6 +58,6 @@ export class WorkspaceController {
     @Param('id', ParseUUIDPipe) id: string,
   ) {
     await this.workspaceService.remove(req.user.id, id);
-    return { message: 'Workspace deleted' };
+    return { message: 'Xóa workspace thành công' };
   }
 }

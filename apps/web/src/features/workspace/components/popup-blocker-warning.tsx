@@ -26,11 +26,11 @@ export function PopupBlockerWarning({
               <AlertTriangle className="h-5 w-5 text-yellow-600 dark:text-yellow-500 shrink-0 mt-0.5" />
               <div>
                 <CardTitle className="text-sm font-semibold text-yellow-800 dark:text-yellow-500">
-                  Popup Blocker Detected
+                  Phát hiện chặn Popup
                 </CardTitle>
                 <CardDescription className="text-yellow-700 dark:text-yellow-400/80 mt-1">
-                  Your browser prevented {blockedUrls.length} tabs from opening automatically.
-                  Please allow popups for DevFlow Hub.
+                  Trình duyệt của bạn đã chặn {blockedUrls.length} tab mở tự động. Vui lòng cho phép
+                  DevFlow Hub mở popups trên trình duyệt này.
                 </CardDescription>
               </div>
             </div>

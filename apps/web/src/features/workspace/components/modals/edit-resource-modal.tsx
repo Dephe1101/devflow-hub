@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
-import type { AxiosError } from 'axios';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2, X } from 'lucide-react';
 
 import {
@@ -15,83 +16,78 @@ import {
   SelectTrigger,
   SelectValue,
   Textarea,
+  toast,
 } from '@repo/ui';
+import type { UpdateResourceInput } from '@repo/validation';
+import { updateResourceSchema } from '@repo/validation';
 
 import { FadeIn } from '@/components/animations/fade-in';
 import { SlideUp } from '@/components/animations/slide-up';
 import { useUpdateResource } from '@/features/workspace/hooks/use-workspace-resources';
+import { extractErrorMessage } from '@/lib/api-helpers';
 import { useUIStore } from '@/stores/ui.store';
 
 export function EditResourceModal(): React.ReactElement | null {
   const { isEditResourceOpen, selectedResourceForEdit, closeEditResource } = useUIStore();
-  const [type, setType] = useState<'URL' | 'LOCAL_PATH' | 'APP_URI' | 'COMMAND'>('URL');
-  const [value, setValue] = useState('');
-  const [displayName, setDisplayName] = useState('');
-  const [notes, setNotes] = useState('');
-  const [error, setError] = useState('');
-
   const updateMutation = useUpdateResource(selectedResourceForEdit?.workspaceId ?? '');
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm<UpdateResourceInput>({
+    resolver: zodResolver(updateResourceSchema),
+    defaultValues: {
+      type: 'URL',
+      value: '',
+      displayName: '',
+      notes: '',
+    },
+  });
 
   useEffect(() => {
     if (selectedResourceForEdit) {
-      setType(
-        selectedResourceForEdit.resource.type as 'URL' | 'LOCAL_PATH' | 'APP_URI' | 'COMMAND',
-      );
-      setValue(selectedResourceForEdit.resource.value);
-      setDisplayName(selectedResourceForEdit.resource.displayName ?? '');
-      setNotes(selectedResourceForEdit.resource.notes ?? '');
-      setError('');
+      reset({
+        type: selectedResourceForEdit.resource.type as 'URL' | 'LOCAL_PATH' | 'APP_URI' | 'COMMAND',
+        value: selectedResourceForEdit.resource.value,
+        displayName: selectedResourceForEdit.resource.displayName ?? '',
+        notes: selectedResourceForEdit.resource.notes ?? '',
+      });
     }
-  }, [selectedResourceForEdit]);
+  }, [selectedResourceForEdit, reset]);
 
   const closeModal = (): void => {
-    setError('');
+    reset();
     closeEditResource();
   };
 
-  const handleTypeChange = (val: string): void => {
-    setType(val as 'URL' | 'LOCAL_PATH' | 'APP_URI' | 'COMMAND');
-  };
-
-  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setValue(e.target.value);
-  };
-
-  const handleDisplayNameChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setDisplayName(e.target.value);
-  };
-
-  const handleNotesChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    setNotes(e.target.value);
-  };
-
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>): void => {
-    e.preventDefault();
+  const onSubmit = (data: UpdateResourceInput): void => {
     if (!selectedResourceForEdit) {
       return;
     }
-    setError('');
+
+    // clean up empty string fields
+    const payload = {
+      ...data,
+      displayName: data.displayName !== '' ? data.displayName : undefined,
+      notes: data.notes !== '' ? data.notes : undefined,
+    };
+
     updateMutation.mutate(
       {
         resourceId: selectedResourceForEdit.resourceId,
-        data: {
-          type,
-          value,
-          displayName: displayName || undefined,
-          notes: notes || undefined,
-        },
+        data: payload,
       },
       {
         onSuccess: () => {
+          toast.success('Cập nhật tài nguyên thành công');
           closeModal();
         },
-        onError: (err: Error | AxiosError<{ message: string }>) => {
-          const axiosError = err as AxiosError<{ message: string }>;
-          if (axiosError.response?.data.message) {
-            setError(axiosError.response.data.message);
-          } else {
-            setError('Failed to update resource');
-          }
+        onError: (err: unknown) => {
+          const errorMessage = extractErrorMessage(err, 'Cập nhật tài nguyên thất bại');
+          toast.error(errorMessage);
         },
       },
     );
@@ -111,82 +107,98 @@ export function EditResourceModal(): React.ReactElement | null {
           <div className="flex justify-between items-center px-6 py-4 border-b border-border/50">
             <div>
               <h2 className="text-lg font-semibold tracking-tight text-foreground">
-                Edit Resource
+                Sửa Tài nguyên
               </h2>
               <p className="text-sm text-muted-foreground mt-1">
-                Update information for this resource.
+                Cập nhật thông tin cho tài nguyên này.
               </p>
             </div>
             <Button
               variant="ghost"
               size="icon"
               onClick={closeModal}
+              disabled={updateMutation.isPending}
               className="text-muted-foreground hover:text-foreground transition-colors self-start mt-1 rounded-sm opacity-70 hover:opacity-100 w-6 h-6"
             >
               <X className="w-4 h-4" />
             </Button>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-6 space-y-4">
-            {error && (
-              <div className="p-3 bg-destructive/10 text-destructive border border-destructive/20 rounded-lg text-sm">
-                {error}
-              </div>
-            )}
-
+          <form
+            onSubmit={(e) => {
+              void handleSubmit(onSubmit)(e);
+            }}
+            className="p-6 space-y-4"
+          >
             <div className="space-y-2">
-              <Label>Type</Label>
-              <Select value={type} onValueChange={handleTypeChange}>
-                <SelectTrigger className="w-full h-10 bg-background/50 backdrop-blur-sm border-input/60 transition-all duration-200 hover:border-primary/50 focus:ring-2 focus:ring-primary/20">
-                  <SelectValue placeholder="Select resource type" />
-                </SelectTrigger>
-                <SelectContent className="bg-card/95 backdrop-blur-md border-border/50">
-                  <SelectItem value="URL">Web URL</SelectItem>
-                  <SelectItem value="LOCAL_PATH">Local Path (Phase 2)</SelectItem>
-                  <SelectItem value="APP_URI">App URI (Phase 2)</SelectItem>
-                  <SelectItem value="COMMAND">Command (Phase 2)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label>Resource URL/Value</Label>
-              <Input
-                type="text"
-                required
-                placeholder={type === 'URL' ? 'https://github.com' : '...'}
-                value={value}
-                onChange={handleValueChange}
+              <Label>Loại</Label>
+              <Controller
+                name="type"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    value={field.value ?? ''}
+                    onValueChange={field.onChange}
+                    disabled={updateMutation.isPending}
+                  >
+                    <SelectTrigger className="w-full h-10 bg-background/50 backdrop-blur-sm border-input/60 transition-all duration-200 hover:border-primary/50 focus:ring-2 focus:ring-primary/20">
+                      <SelectValue placeholder="Chọn loại tài nguyên" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-card/95 backdrop-blur-md border-border/50">
+                      <SelectItem value="URL">Web URL</SelectItem>
+                      <SelectItem value="LOCAL_PATH">Local Path (Phase 2)</SelectItem>
+                      <SelectItem value="APP_URI">App URI (Phase 2)</SelectItem>
+                      <SelectItem value="COMMAND">Command (Phase 2)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
               />
+              {errors.type && (
+                <p className="text-sm text-destructive mt-1">{errors.type.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
-              <Label>Display Name (Optional)</Label>
-              <Input
-                type="text"
-                placeholder="e.g. GitHub Repo"
-                value={displayName}
-                onChange={handleDisplayNameChange}
-              />
+              <Label>URL/Giá trị</Label>
+              <Input type="text" {...register('value')} disabled={updateMutation.isPending} />
+              {errors.value && (
+                <p className="text-sm text-destructive mt-1">{errors.value.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
-              <Label>Notes (Optional)</Label>
+              <Label>Tên hiển thị (Tùy chọn)</Label>
+              <Input type="text" {...register('displayName')} disabled={updateMutation.isPending} />
+              {errors.displayName && (
+                <p className="text-sm text-destructive mt-1">{errors.displayName.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label>Ghi chú (Tùy chọn)</Label>
               <Textarea
                 rows={2}
-                value={notes}
-                onChange={handleNotesChange}
+                {...register('notes')}
+                disabled={updateMutation.isPending}
                 className="flex w-full bg-background/50 border-input/60 transition-all duration-200 hover:border-primary/50 focus:ring-2 focus:ring-primary/20 resize-none shadow-sm backdrop-blur-sm"
               />
+              {errors.notes && (
+                <p className="text-sm text-destructive mt-1">{errors.notes.message}</p>
+              )}
             </div>
 
             <div className="pt-4 flex justify-end gap-3">
-              <Button type="button" variant="outline" onClick={closeModal}>
-                Cancel
+              <Button
+                type="button"
+                variant="outline"
+                onClick={closeModal}
+                disabled={updateMutation.isPending}
+              >
+                Hủy
               </Button>
               <Button type="submit" disabled={updateMutation.isPending}>
                 {updateMutation.isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                Save Changes
+                Lưu Thay Đổi
               </Button>
             </div>
           </form>

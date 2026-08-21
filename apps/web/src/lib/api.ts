@@ -45,12 +45,15 @@ api.interceptors.response.use(
     return response.data;
   },
   async (error: AxiosError) => {
-    const originalRequest = error.config;
+    const originalRequest = error.config as
+      (InternalAxiosRequestConfig & { _retry?: boolean }) | undefined;
     if (!originalRequest) {
       return Promise.reject(error);
     }
 
     if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
       !originalRequest.url?.includes(`/${API_ROUTES.AUTH.REFRESH}`) &&
       !originalRequest.url?.includes(`/${API_ROUTES.AUTH.LOGIN}`)
     ) {
@@ -67,8 +70,7 @@ api.interceptors.response.use(
           );
       }
 
-      const { logout, setAccessToken } = useAuthStore.getState();
-      (originalRequest as unknown as { _retry: boolean })._retry = true;
+      originalRequest._retry = true;
       isRefreshing = true;
 
       try {
@@ -79,7 +81,7 @@ api.interceptors.response.use(
         );
 
         const newAccessToken = response.data.data?.accessToken ?? null;
-        setAccessToken(newAccessToken);
+        useAuthStore.getState().setAccessToken(newAccessToken);
 
         if (newAccessToken) {
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
@@ -93,7 +95,8 @@ api.interceptors.response.use(
           refreshError instanceof AxiosError ? refreshError : new AxiosError(String(refreshError)),
           null,
         );
-        await logout();
+        isRefreshing = false; // Prevent deadlock before calling logout
+        void useAuthStore.getState().logout();
         return await Promise.reject(
           refreshError instanceof Error ? refreshError : new Error(String(refreshError)),
         );

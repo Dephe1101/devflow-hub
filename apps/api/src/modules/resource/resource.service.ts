@@ -36,7 +36,7 @@ export class ResourceService {
       userId,
     );
     if (!workspace) {
-      throw new NotFoundException('Workspace not found');
+      throw new NotFoundException('Không tìm thấy workspace');
     }
 
     const pivots = await this.resourceRepo.findWorkspaceResources(workspaceId);
@@ -67,7 +67,7 @@ export class ResourceService {
       userId,
     );
     if (!workspace) {
-      throw new NotFoundException('Workspace not found');
+      throw new NotFoundException('Không tìm thấy workspace');
     }
 
     let resource = await this.resourceRepo.findByUserAndValue(
@@ -115,7 +115,7 @@ export class ResourceService {
       userId,
     );
     if (!workspace) {
-      throw new NotFoundException('Workspace not found');
+      throw new NotFoundException('Không tìm thấy workspace');
     }
 
     const faviconUrl = this.getFaviconUrl(data.type ?? '', data.value);
@@ -141,7 +141,7 @@ export class ResourceService {
       userId,
     );
     if (!workspace) {
-      throw new NotFoundException('Workspace not found');
+      throw new NotFoundException('Không tìm thấy workspace');
     }
 
     await this.resourceRepo.deleteWorkspaceResource(workspaceId, resourceId);
@@ -163,7 +163,7 @@ export class ResourceService {
       userId,
     );
     if (!workspace) {
-      throw new NotFoundException('Workspace not found');
+      throw new NotFoundException('Không tìm thấy workspace');
     }
 
     const updates = data.resourceIds.map((id, index) => ({

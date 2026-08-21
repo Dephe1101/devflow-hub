@@ -40,7 +40,7 @@ export default function WorkspaceDetailPage(props: {
           href="/dashboard"
           className="flex items-center gap-1.5 px-3 py-1.5 -ml-3 rounded-md hover:bg-secondary/50"
         >
-          <ArrowLeft className="w-4 h-4" /> Back to Dashboard
+          <ArrowLeft className="w-4 h-4" /> Quay lại Dashboard
         </Link>
       </div>
 
