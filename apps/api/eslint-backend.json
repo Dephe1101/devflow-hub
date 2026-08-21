@@ -1,0 +1,1499 @@
+[
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\app.module.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-extraneous-class",
+        "severity": 2,
+        "message": "Unexpected empty class.",
+        "line": 26,
+        "column": 14,
+        "nodeType": "Identifier",
+        "messageId": "empty",
+        "endLine": 26,
+        "endColumn": 23
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Module } from '@nestjs/common';\nimport { ThrottlerModule } from '@nestjs/throttler';\n\nimport { DatabaseModule } from './core/database/database.module';\nimport { RedisModule } from './core/redis/redis.module';\nimport { AuthModule } from './modules/auth/auth.module';\nimport { HealthModule } from './modules/health/health.module';\nimport { ResourceModule } from './modules/resource/resource.module';\nimport { UsersModule } from './modules/users/users.module';\nimport { WorkspaceModule } from './modules/workspace/workspace.module';\n\n@Module({\n  imports: [\n    HealthModule,\n    UsersModule,\n    AuthModule,\n    DatabaseModule,\n    RedisModule,\n    ThrottlerModule.forRoot([{ ttl: 60000, limit: 100 }]),\n    WorkspaceModule,\n    ResourceModule, // Global rate limit config\n  ],\n  controllers: [],\n  providers: [],\n})\nexport class AppModule {}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\common\\dtos\\response.dto.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\common\\filters\\global-exception.filter.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 18,
+        "column": 18,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 18,
+        "endColumn": 21,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [671, 674], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [671, 674], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unnecessary-condition",
+        "severity": 2,
+        "message": "Unnecessary conditional, the types have no overlap.",
+        "line": 24,
+        "column": 46,
+        "nodeType": "BinaryExpression",
+        "messageId": "noOverlapBooleanExpression",
+        "endLine": 24,
+        "endColumn": 59
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 25,
+        "column": 9,
+        "nodeType": "AssignmentExpression",
+        "messageId": "anyAssignment",
+        "endLine": 25,
+        "endColumn": 51
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 25,
+        "column": 28,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 25,
+        "endColumn": 31,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [930, 933], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [930, 933], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .message on an `any` value.",
+        "line": 25,
+        "column": 33,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 25,
+        "endColumn": 40
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 25,
+        "column": 41,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 25,
+        "endColumn": 43,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [943, 945], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 26,
+        "column": 9,
+        "nodeType": "AssignmentExpression",
+        "messageId": "anyAssignment",
+        "endLine": 26,
+        "endColumn": 75
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 26,
+        "column": 30,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 26,
+        "endColumn": 33,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [984, 987], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [984, 987], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .code on an `any` value.",
+        "line": 26,
+        "column": 35,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 26,
+        "endColumn": 39
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 26,
+        "column": 40,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 26,
+        "endColumn": 42,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": {
+              "range": [975, 1016],
+              "text": "((resp as any).code ?? (resp as any).error)"
+            },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 26,
+        "column": 52,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 26,
+        "endColumn": 55,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [1006, 1009], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [1006, 1009], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .error on an `any` value.",
+        "line": 26,
+        "column": 57,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 26,
+        "endColumn": 62
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 26,
+        "column": 63,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 26,
+        "endColumn": 65,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [1017, 1019], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 27,
+        "column": 9,
+        "nodeType": "AssignmentExpression",
+        "messageId": "anyAssignment",
+        "endLine": 27,
+        "endColumn": 40
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 27,
+        "column": 28,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 27,
+        "endColumn": 31,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [1058, 1061], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [1058, 1061], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .details on an `any` value.",
+        "line": 27,
+        "column": 33,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 27,
+        "endColumn": 40
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 38,
+        "column": 9,
+        "nodeType": "Property",
+        "messageId": "anyAssignment",
+        "endLine": 38,
+        "endColumn": 16
+      },
+      {
+        "ruleId": "@typescript-eslint/restrict-template-expressions",
+        "severity": 2,
+        "message": "Invalid type \"number\" of template literal expression.",
+        "line": 44,
+        "column": 29,
+        "nodeType": "Identifier",
+        "messageId": "invalidType",
+        "endLine": 44,
+        "endColumn": 35
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 18,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus, Logger } from '@nestjs/common';\nimport { FastifyReply } from 'fastify';\n\n@Catch()\nexport class GlobalExceptionFilter implements ExceptionFilter {\n  private readonly logger = new Logger(GlobalExceptionFilter.name);\n\n  catch(exception: unknown, host: ArgumentsHost): void {\n    const ctx = host.switchToHttp();\n    const response = ctx.getResponse<FastifyReply>();\n\n    const status = exception instanceof HttpException\n      ? exception.getStatus()\n      : HttpStatus.INTERNAL_SERVER_ERROR;\n\n    let errorCode = 'INTERNAL_SERVER_ERROR';\n    let message = 'Internal server error';\n    let details: any = undefined;\n\n    if (exception instanceof HttpException) {\n      const resp = exception.getResponse();\n      if (typeof resp === 'string') {\n        message = resp;\n      } else if (typeof resp === 'object' && resp !== null) {\n        message = (resp as any).message || message;\n        errorCode = (resp as any).code || (resp as any).error || errorCode;\n        details = (resp as any).details;\n      }\n    } else {\n      message = exception instanceof Error ? exception.message : String(exception);\n    }\n\n    const body = {\n      error: {\n        code: errorCode,\n        message,\n        statusCode: status,\n        details,\n        timestamp: new Date().toISOString(),\n      },\n    };\n\n    if (status >= 500) {\n      this.logger.error(`[${status}] ${message}`, exception instanceof Error ? exception.stack : undefined);\n    }\n\n    response.status(status).send(body);\n  }\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\common\\interceptors\\transform.interceptor.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of type `Observable<any>` from function with return type `Observable<Response<T>>`.",
+        "line": 24,
+        "column": 5,
+        "nodeType": "ReturnStatement",
+        "messageId": "unsafeReturnAssignment",
+        "endLine": 43,
+        "endColumn": 7
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `{}`.",
+        "line": 27,
+        "column": 100,
+        "nodeType": "Identifier",
+        "messageId": "unsafeArgument",
+        "endLine": 27,
+        "endColumn": 104
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 28,
+        "column": 11,
+        "nodeType": "ReturnStatement",
+        "messageId": "unsafeReturn",
+        "endLine": 31,
+        "endColumn": 13
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 30,
+        "column": 13,
+        "nodeType": "Property",
+        "messageId": "anyAssignment",
+        "endLine": 30,
+        "endColumn": 66
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .timestamp on an `any` value.",
+        "line": 30,
+        "column": 29,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 30,
+        "endColumn": 38
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 30,
+        "column": 39,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 30,
+        "endColumn": 41,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [802, 804], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 35,
+        "column": 15,
+        "nodeType": "VariableDeclarator",
+        "messageId": "anyAssignment",
+        "endLine": 35,
+        "endColumn": 131
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `{}`.",
+        "line": 35,
+        "column": 94,
+        "nodeType": "Identifier",
+        "messageId": "unsafeArgument",
+        "endLine": 35,
+        "endColumn": 98
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .data on an `any` value.",
+        "line": 35,
+        "column": 120,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 35,
+        "endColumn": 124
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 39,
+        "column": 11,
+        "nodeType": "Property",
+        "messageId": "anyAssignment",
+        "endLine": 39,
+        "endColumn": 27
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 10,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import {\n  Injectable,\n  NestInterceptor,\n  ExecutionContext,\n  CallHandler,\n} from '@nestjs/common';\nimport { Observable } from 'rxjs';\nimport { map } from 'rxjs/operators';\n\nexport interface Response<T> {\n  success: boolean;\n  data: T;\n  timestamp: string;\n}\n\n@Injectable()\nexport class TransformInterceptor<T>\n  implements NestInterceptor<T, Response<T>>\n{\n  intercept(\n    context: ExecutionContext,\n    next: CallHandler,\n  ): Observable<Response<T>> {\n    return next.handle().pipe(\n      map((data) => {\n        // If data is already in the normalized Response structure, add timestamp and return\n        if (data && typeof data === 'object' && 'success' in data && 'data' in data && Object.keys(data).length <= 3) {\n          return {\n            ...data,\n            timestamp: data.timestamp || new Date().toISOString(),\n          };\n        }\n\n        // Unwrap { data: ... } if controllers still return it\n        const actualData = data && typeof data === 'object' && 'data' in data && Object.keys(data).length === 1 ? data.data : data;\n\n        return {\n          success: true,\n          data: actualData,\n          timestamp: new Date().toISOString(),\n        };\n      }),\n    );\n  }\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\common\\pipes\\zod-validation.pipe.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 17,
+        "column": 13,
+        "nodeType": "VariableDeclarator",
+        "messageId": "anyAssignment",
+        "endLine": 17,
+        "endColumn": 51
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 18,
+        "column": 7,
+        "nodeType": "ReturnStatement",
+        "messageId": "unsafeReturn",
+        "endLine": 18,
+        "endColumn": 26
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 2,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { BadRequestException } from '@nestjs/common';\nimport { ZodError } from 'zod';\n\nimport type { PipeTransform, ArgumentMetadata} from '@nestjs/common';\nimport type { ZodSchema} from 'zod';\n\n\nexport class ZodValidationPipe implements PipeTransform {\n  constructor(private schema: ZodSchema) {}\n\n  transform(value: unknown, metadata: ArgumentMetadata) {\n    if (metadata.type !== 'body') {\n      return value;\n    }\n\n    try {\n      const parsedValue = this.schema.parse(value);\n      return parsedValue;\n    } catch (error) {\n      if (error instanceof ZodError) {\n        throw new BadRequestException({\n          code: 'VALIDATION_ERROR',\n          message: 'Validation failed',\n          details: error.errors,\n        });\n      }\n      throw new BadRequestException('Validation failed');\n    }\n  }\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\common\\types\\request.type.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\core\\database\\database.module.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-extraneous-class",
+        "severity": 2,
+        "message": "Unexpected empty class.",
+        "line": 10,
+        "column": 14,
+        "nodeType": "Identifier",
+        "messageId": "empty",
+        "endLine": 10,
+        "endColumn": 28
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Global, Module } from '@nestjs/common';\n\nimport { PrismaService } from './prisma.service';\n\n@Global()\n@Module({\n  providers: [PrismaService],\n  exports: [PrismaService],\n})\nexport class DatabaseModule {}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\core\\database\\prisma.service.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\core\\redis\\redis.module.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-extraneous-class",
+        "severity": 2,
+        "message": "Unexpected empty class.",
+        "line": 10,
+        "column": 14,
+        "nodeType": "Identifier",
+        "messageId": "empty",
+        "endLine": 10,
+        "endColumn": 25
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Global, Module } from '@nestjs/common';\n\nimport { RedisService } from './redis.service';\n\n@Global()\n@Module({\n  providers: [RedisService],\n  exports: [RedisService],\n})\nexport class RedisModule {}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\core\\redis\\redis.service.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 10,
+        "column": 51,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 10,
+        "endColumn": 53,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [352, 354], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Injectable, OnModuleInit, OnModuleDestroy, Logger } from '@nestjs/common';\nimport Redis from 'ioredis';\n\n@Injectable()\nexport class RedisService implements OnModuleInit, OnModuleDestroy {\n  private readonly logger = new Logger(RedisService.name);\n  private client!: Redis;\n\n  onModuleInit() {\n    this.client = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');\n    this.client.on('connect', () => { this.logger.log('Redis connected successfully'); });\n    this.client.on('error', (err) => { this.logger.error('Redis connection error', err); });\n  }\n\n  onModuleDestroy() {\n    this.client.disconnect();\n  }\n\n  getClient(): Redis {\n    return this.client;\n  }\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\main.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `FastifyPluginCallback<{ secret: string; }> | FastifyPluginAsync<{ secret: string; }> | Promise<{ default: FastifyPluginCallback<{ secret: string; }>; }> | Promise<...>`.",
+        "line": 27,
+        "column": 22,
+        "nodeType": "TSAsExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 27,
+        "endColumn": 42
+      },
+      {
+        "ruleId": "@typescript-eslint/no-floating-promises",
+        "severity": 2,
+        "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
+        "line": 44,
+        "column": 1,
+        "nodeType": "ExpressionStatement",
+        "messageId": "floatingVoid",
+        "endLine": 44,
+        "endColumn": 13,
+        "suggestions": [
+          {
+            "messageId": "floatingFixVoid",
+            "fix": { "range": [1231, 1231], "text": "void " },
+            "desc": "Add void operator to ignore."
+          },
+          {
+            "messageId": "floatingFixAwait",
+            "fix": { "range": [1231, 1231], "text": "await " },
+            "desc": "Add await operator."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 27,
+        "column": 39,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 27,
+        "endColumn": 42,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [833, 836], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [833, 836], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 2,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import fastifyCookie from '@fastify/cookie';\nimport { NestFactory } from '@nestjs/core';\nimport {\n  FastifyAdapter\n} from '@nestjs/platform-fastify';\n\nimport { AppModule } from './app.module';\nimport { GlobalExceptionFilter } from './common/filters/global-exception.filter';\nimport { TransformInterceptor } from './common/interceptors/transform.interceptor';\n\nimport type {\n  NestFastifyApplication} from '@nestjs/platform-fastify';\n\n\nasync function bootstrap() {\n  const app = await NestFactory.create<NestFastifyApplication>(\n    AppModule,\n    new FastifyAdapter(),\n  );\n\n  const cookieSecret = process.env.COOKIE_SECRET;\n  if (!cookieSecret) {\n    throw new Error('FATAL: COOKIE_SECRET environment variable is missing');\n  }\n\n  // eslint-disable-next-line @typescript-eslint/no-explicit-any\n  await app.register(fastifyCookie as any, {\n    secret: cookieSecret,\n  });\n\n  const corsOrigin = process.env.CORS_ORIGIN ?? 'http://localhost:3000';\n  app.enableCors({\n    origin: corsOrigin.split(','),\n    credentials: true,\n  });\n\n  app.useGlobalFilters(new GlobalExceptionFilter());\n  app.useGlobalInterceptors(new TransformInterceptor());\n\n  app.setGlobalPrefix('api');\n\n  await app.listen(process.env.PORT ?? 4000, '0.0.0.0');\n}\nbootstrap();\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\auth\\auth.controller.spec.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\auth\\auth.controller.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 61,
+        "column": 13,
+        "nodeType": "VariableDeclarator",
+        "messageId": "anyAssignment",
+        "endLine": 61,
+        "endColumn": 59
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `string`.",
+        "line": 63,
+        "column": 9,
+        "nodeType": "MemberExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 63,
+        "endColumn": 20
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .jti on an `any` value.",
+        "line": 63,
+        "column": 17,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 63,
+        "endColumn": 20
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `string`.",
+        "line": 64,
+        "column": 9,
+        "nodeType": "MemberExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 64,
+        "endColumn": 20
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .sub on an `any` value.",
+        "line": 64,
+        "column": 17,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 64,
+        "endColumn": 20
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `string`.",
+        "line": 65,
+        "column": 9,
+        "nodeType": "MemberExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 65,
+        "endColumn": 22
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .email on an `any` value.",
+        "line": 65,
+        "column": 17,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 65,
+        "endColumn": 22
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'err' is defined but never used.",
+        "line": 77,
+        "column": 14,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 77,
+        "endColumn": 17
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 87,
+        "column": 15,
+        "nodeType": "VariableDeclarator",
+        "messageId": "anyAssignment",
+        "endLine": 87,
+        "endColumn": 89
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `string`.",
+        "line": 88,
+        "column": 39,
+        "nodeType": "MemberExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 88,
+        "endColumn": 50
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .jti on an `any` value.",
+        "line": 88,
+        "column": 47,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 88,
+        "endColumn": 50
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'err' is defined but never used.",
+        "line": 89,
+        "column": 16,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 89,
+        "endColumn": 19
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 12,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Controller, Post, Get, Body, Req, Res, UseGuards, UnauthorizedException, UsePipes } from '@nestjs/common';\nimport { JwtService } from '@nestjs/jwt';\nimport { ThrottlerGuard } from '@nestjs/throttler';\nimport { RegisterInput, LoginInput, registerSchema, loginSchema } from '@repo/validation';\nimport { FastifyRequest, FastifyReply } from 'fastify';\n\nimport { ZodValidationPipe } from '../../common/pipes/zod-validation.pipe';\nimport { NestRequest } from '../../common/types/request.type';\n\nimport { AuthService } from './auth.service';\nimport { JwtAuthGuard } from './guards/jwt-auth.guard';\n\n@Controller('auth')\n@UseGuards(ThrottlerGuard)\nexport class AuthController {\n  constructor(\n    private authService: AuthService,\n    private jwtService: JwtService,\n  ) {}\n\n  @Post('register')\n  @UsePipes(new ZodValidationPipe(registerSchema))\n  async register(@Body() body: RegisterInput, @Res({ passthrough: true }) res: FastifyReply) {\n    const { accessToken, refreshToken } = await this.authService.register(body);\n    \n    res.setCookie('refresh_token', refreshToken, {\n      httpOnly: true,\n      secure: process.env.NODE_ENV === 'production',\n      sameSite: 'lax',\n      path: '/',\n      maxAge: 7 * 24 * 60 * 60, // 7 days\n    });\n\n    return { accessToken };\n  }\n\n  @Post('login')\n  @UsePipes(new ZodValidationPipe(loginSchema))\n  async login(@Body() body: LoginInput, @Res({ passthrough: true }) res: FastifyReply) {\n    const { accessToken, refreshToken } = await this.authService.login(body);\n    \n    res.setCookie('refresh_token', refreshToken, {\n      httpOnly: true,\n      secure: process.env.NODE_ENV === 'production',\n      sameSite: 'lax',\n      path: '/',\n      maxAge: 7 * 24 * 60 * 60,\n    });\n\n    return { accessToken };\n  }\n\n  @Post('refresh')\n  async refresh(@Req() req: FastifyRequest, @Res({ passthrough: true }) res: FastifyReply) {\n    const refreshToken = req.cookies.refresh_token;\n    if (!refreshToken) {\n      throw new UnauthorizedException('No refresh token provided');\n    }\n\n    try {\n      const decoded = this.jwtService.verify(refreshToken);\n      const { accessToken, refreshToken: newRefreshToken } = await this.authService.refresh(\n        decoded.jti,\n        decoded.sub,\n        decoded.email\n      );\n\n      res.setCookie('refresh_token', newRefreshToken, {\n        httpOnly: true,\n        secure: process.env.NODE_ENV === 'production',\n        sameSite: 'lax',\n        path: '/',\n        maxAge: 7 * 24 * 60 * 60,\n      });\n\n      return { accessToken };\n    } catch (err) {\n      throw new UnauthorizedException('Invalid or expired refresh token');\n    }\n  }\n\n  @Post('logout')\n  async logout(@Req() req: NestRequest, @Res({ passthrough: true }) res: FastifyReply) {\n    const refreshToken = req.cookies.refresh_token;\n    if (refreshToken) {\n      try {\n        const decoded = this.jwtService.verify(refreshToken, { ignoreExpiration: true });\n        await this.authService.logout(decoded.jti);\n      } catch (err) {\n        // Ignore verify errors on logout\n      }\n    }\n\n    res.clearCookie('refresh_token', { path: '/' });\n    return { message: 'Logged out successfully' };\n  }\n\n  @Get('me')\n  @UseGuards(JwtAuthGuard)\n  getMe(@Req() req: NestRequest) {\n    return req.user;\n  }\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\auth\\auth.module.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 16,
+        "column": 38,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 16,
+        "endColumn": 40,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [466, 468], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-extraneous-class",
+        "severity": 2,
+        "message": "Unexpected empty class.",
+        "line": 23,
+        "column": 14,
+        "nodeType": "Identifier",
+        "messageId": "empty",
+        "endLine": 23,
+        "endColumn": 24
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 2,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Module } from '@nestjs/common';\nimport { JwtModule } from '@nestjs/jwt';\nimport { PassportModule } from '@nestjs/passport';\n\nimport { UsersModule } from '../users/users.module';\n\nimport { AuthController } from './auth.controller';\nimport { AuthService } from './auth.service';\nimport { JwtStrategy } from './strategies/jwt.strategy';\n\n@Module({\n  imports: [\n    UsersModule,\n    PassportModule,\n    JwtModule.register({\n      secret: process.env.JWT_SECRET || 'devflow-secret-key-super-safe',\n      signOptions: { expiresIn: '15m' },\n    }),\n  ],\n  providers: [AuthService, JwtStrategy],\n  controllers: [AuthController],\n})\nexport class AuthModule {}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\auth\\auth.service.spec.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\auth\\auth.service.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/require-await",
+        "severity": 2,
+        "message": "Async method 'generateTokens' has no 'await' expression.",
+        "line": 64,
+        "column": 3,
+        "nodeType": "FunctionExpression",
+        "messageId": "missingAwait",
+        "endLine": 64,
+        "endColumn": 31,
+        "suggestions": [
+          {
+            "messageId": "removeAsync",
+            "fix": { "range": [2088, 2094], "text": "" },
+            "desc": "Remove 'async'."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { randomUUID } from 'crypto';\n\nimport { Injectable, UnauthorizedException, ConflictException } from '@nestjs/common';\nimport { JwtService } from '@nestjs/jwt';\nimport { LoginInput, RegisterInput } from '@repo/validation';\nimport * as bcrypt from 'bcrypt';\n\nimport { RedisService } from '../../core/redis/redis.service';\nimport { UsersService } from '../users/users.service';\n\n@Injectable()\nexport class AuthService {\n  constructor(\n    private usersService: UsersService,\n    private jwtService: JwtService,\n    private redisService: RedisService,\n  ) {}\n\n  async register(data: RegisterInput) {\n    const existingUser = await this.usersService.findByEmail(data.email);\n    if (existingUser) {\n      throw new ConflictException('Email already in use');\n    }\n\n    const hashedPassword = await bcrypt.hash(data.password, 12);\n    const user = await this.usersService.create({\n      email: data.email,\n      name: data.name,\n      passwordHash: hashedPassword,\n    });\n\n    return this.generateTokens(user.id, user.email);\n  }\n\n  async login(data: LoginInput) {\n    const user = await this.usersService.findByEmail(data.email);\n    if (!user?.passwordHash) {\n      throw new UnauthorizedException('Invalid credentials');\n    }\n\n    const isPasswordValid = await bcrypt.compare(data.password, user.passwordHash);\n    if (!isPasswordValid) {\n      throw new UnauthorizedException('Invalid credentials');\n    }\n\n    return this.generateTokens(user.id, user.email);\n  }\n\n  async refresh(refreshTokenId: string, userId: string, email: string) {\n    // Check if refresh token is blacklisted in Redis\n    const isBlacklisted = await this.redisService.getClient().get(`blacklist:${refreshTokenId}`);\n    if (isBlacklisted) {\n      throw new UnauthorizedException('Refresh token is blacklisted or revoked');\n    }\n\n    return this.generateTokens(userId, email);\n  }\n\n  async logout(refreshTokenId: string) {\n    // Blacklist the refresh token in Redis for 7 days (604800 seconds)\n    await this.redisService.getClient().setex(`blacklist:${refreshTokenId}`, 604800, 'revoked');\n  }\n\n  private async generateTokens(userId: string, email: string) {\n    const payload = { sub: userId, email };\n    const accessToken = this.jwtService.sign(payload);\n    \n    // Generate a unique ID for the refresh token to track it in Redis\n    const refreshTokenId = randomUUID();\n    const refreshToken = this.jwtService.sign({ sub: userId, email, jti: refreshTokenId }, { expiresIn: '7d' });\n\n    return {\n      accessToken,\n      refreshToken,\n      refreshTokenId,\n    };\n  }\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\auth\\guards\\jwt-auth.guard.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\auth\\strategies\\jwt.strategy.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 13,
+        "column": 43,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 13,
+        "endColumn": 45,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [511, 513], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Injectable, UnauthorizedException } from '@nestjs/common';\nimport { PassportStrategy } from '@nestjs/passport';\nimport { ExtractJwt, Strategy } from 'passport-jwt';\n\nimport { UsersService } from '../../users/users.service';\n\n@Injectable()\nexport class JwtStrategy extends PassportStrategy(Strategy) {\n  constructor(private usersService: UsersService) {\n    super({\n      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),\n      ignoreExpiration: false,\n      secretOrKey: process.env.JWT_SECRET || 'devflow-secret-key-super-safe',\n    });\n  }\n\n  async validate(payload: { sub: string; email: string }) {\n    const user = await this.usersService.findById(payload.sub);\n    if (!user) {\n      throw new UnauthorizedException();\n    }\n    return user;\n  }\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\health\\health.controller.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\health\\health.module.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-extraneous-class",
+        "severity": 2,
+        "message": "Unexpected empty class.",
+        "line": 10,
+        "column": 14,
+        "nodeType": "Identifier",
+        "messageId": "empty",
+        "endLine": 10,
+        "endColumn": 26
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Module } from '@nestjs/common';\n\nimport { HealthController } from './health.controller';\nimport { HealthService } from './health.service';\n\n@Module({\n  controllers: [HealthController],\n  providers: [HealthService],\n})\nexport class HealthModule {}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\health\\health.service.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\resource\\dto\\resource-response.dto.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\resource\\resource.controller.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'ResourceResponseDto' is defined but never used.",
+        "line": 9,
+        "column": 10,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 9,
+        "endColumn": 29,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "ResourceResponseDto" },
+            "fix": { "range": [489, 509], "text": "" },
+            "desc": "Remove unused variable \"ResourceResponseDto\"."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'WorkspaceResourceResponseDto' is defined but never used.",
+        "line": 9,
+        "column": 31,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 9,
+        "endColumn": 59,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedImportDeclaration",
+            "data": { "varName": "WorkspaceResourceResponseDto" },
+            "fix": { "range": [480, 577], "text": "" },
+            "desc": "Remove unused import declaration."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 2,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Controller, Get, Post, Patch, Body, Param, UseGuards, Req, UsePipes } from '@nestjs/common';\nimport { ThrottlerGuard } from '@nestjs/throttler';\nimport { CreateResourceInput, ReorderResourceInput, createResourceSchema, reorderResourceSchema } from '@repo/validation';\n\nimport { ZodValidationPipe } from '../../common/pipes/zod-validation.pipe';\nimport { NestRequest } from '../../common/types/request.type';\nimport { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';\n\nimport { ResourceResponseDto, WorkspaceResourceResponseDto } from './dto/resource-response.dto';\nimport { ResourceService } from './resource.service';\n\n@Controller()\n@UseGuards(ThrottlerGuard, JwtAuthGuard)\nexport class ResourceController {\n  constructor(private readonly resourceService: ResourceService) {}\n\n  @Get('resources')\n  async findAll(@Req() req: NestRequest) {\n    return this.resourceService.findAll(req.user.id);\n  }\n\n  @Get('workspaces/:workspaceId/resources')\n  async getWorkspaceResources(@Req() req: NestRequest, @Param('workspaceId') workspaceId: string) {\n    return this.resourceService.getWorkspaceResources(req.user.id, workspaceId);\n  }\n\n  @Post('workspaces/:workspaceId/resources')\n  @UsePipes(new ZodValidationPipe(createResourceSchema))\n  async createForWorkspace(\n    @Req() req: NestRequest, \n    @Param('workspaceId') workspaceId: string, \n    @Body() body: CreateResourceInput\n  ) {\n    return this.resourceService.createForWorkspace(req.user.id, workspaceId, body);\n  }\n\n  @Patch('workspaces/:workspaceId/resources/reorder')\n  @UsePipes(new ZodValidationPipe(reorderResourceSchema))\n  async reorder(\n    @Req() req: NestRequest, \n    @Param('workspaceId') workspaceId: string, \n    @Body() body: ReorderResourceInput\n  ) {\n    await this.resourceService.reorder(req.user.id, workspaceId, body);\n    return { success: true, message: 'Resources reordered' };\n  }\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\resource\\resource.module.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-extraneous-class",
+        "severity": 2,
+        "message": "Unexpected empty class.",
+        "line": 11,
+        "column": 14,
+        "nodeType": "Identifier",
+        "messageId": "empty",
+        "endLine": 11,
+        "endColumn": 28
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Module } from '@nestjs/common';\n\nimport { ResourceController } from './resource.controller';\nimport { ResourceRepository } from './resource.repository';\nimport { ResourceService } from './resource.service';\n\n@Module({\n  providers: [ResourceService, ResourceRepository],\n  controllers: [ResourceController]\n})\nexport class ResourceModule {}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\resource\\resource.repository.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\resource\\resource.service.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'NotFoundException' is defined but never used.",
+        "line": 1,
+        "column": 22,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 1,
+        "endColumn": 39,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "NotFoundException" },
+            "fix": { "range": [19, 38], "text": "" },
+            "desc": "Remove unused variable \"NotFoundException\"."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/unbound-method",
+        "severity": 2,
+        "message": "A method that is not declared with `this: void` may cause unintentional scoping of `this` when separated from its object.\nConsider using an arrow function or explicitly `.bind()`ing the method to avoid calling the method with an unintended `this` value. \nIf a function does not access `this`, it can be annotated with `this: void`.",
+        "line": 13,
+        "column": 26,
+        "nodeType": "MemberExpression",
+        "messageId": "unboundWithoutThisAnnotation",
+        "endLine": 13,
+        "endColumn": 56
+      },
+      {
+        "ruleId": "@typescript-eslint/unbound-method",
+        "severity": 2,
+        "message": "A method that is not declared with `this: void` may cause unintentional scoping of `this` when separated from its object.\nConsider using an arrow function or explicitly `.bind()`ing the method to avoid calling the method with an unintended `this` value. \nIf a function does not access `this`, it can be annotated with `this: void`.",
+        "line": 19,
+        "column": 23,
+        "nodeType": "MemberExpression",
+        "messageId": "unboundWithoutThisAnnotation",
+        "endLine": 19,
+        "endColumn": 62
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 3,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Injectable, NotFoundException } from '@nestjs/common';\nimport { CreateResourceInput, ReorderResourceInput } from '@repo/validation';\n\nimport { ResourceResponseDto, WorkspaceResourceResponseDto } from './dto/resource-response.dto';\nimport { ResourceRepository } from './resource.repository';\n\n@Injectable()\nexport class ResourceService {\n  constructor(private readonly resourceRepo: ResourceRepository) {}\n\n  async findAll(userId: string): Promise<ResourceResponseDto[]> {\n    const resources = await this.resourceRepo.findByUserId(userId);\n    return resources.map(ResourceResponseDto.fromEntity);\n  }\n\n  async getWorkspaceResources(userId: string, workspaceId: string): Promise<WorkspaceResourceResponseDto[]> {\n    // In a real app we might want to check if the workspace belongs to the user first\n    const pivots = await this.resourceRepo.findWorkspaceResources(workspaceId);\n    return pivots.map(WorkspaceResourceResponseDto.fromEntity);\n  }\n\n  async createForWorkspace(userId: string, workspaceId: string, data: CreateResourceInput): Promise<WorkspaceResourceResponseDto> {\n    const resource = await this.resourceRepo.create({\n      createdByUserId: userId,\n      type: data.type,\n      value: data.value,\n      displayName: data.displayName ?? null,\n      notes: data.notes ?? null,\n    });\n\n    const pivots = await this.resourceRepo.findWorkspaceResources(workspaceId);\n    const nextOrder = pivots.length > 0 ? Math.max(...pivots.map(p => p.sortOrder)) + 1 : 0;\n\n    const pivot = await this.resourceRepo.createWorkspaceResource({\n      workspaceId,\n      resourceId: resource.id,\n      sortOrder: nextOrder,\n    });\n\n    // We manually construct the response object here since create doesn't return the include\n    return WorkspaceResourceResponseDto.fromEntity({\n      ...pivot,\n      resource,\n    });\n  }\n\n  async reorder(userId: string, workspaceId: string, data: ReorderResourceInput): Promise<void> {\n    const updates = data.resourceIds.map((id, index) => ({\n      id,\n      sortOrder: index,\n    }));\n    await this.resourceRepo.reorderWorkspaceResources(workspaceId, updates);\n  }\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\resource\\resources.controller.spec.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of type `any[]` to a variable of type `Type<any>[]`.",
+        "line": 12,
+        "column": 7,
+        "nodeType": "Property",
+        "messageId": "unsafeAssignment",
+        "endLine": 12,
+        "endColumn": 41
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an error typed value.",
+        "line": 15,
+        "column": 5,
+        "nodeType": "AssignmentExpression",
+        "messageId": "anyAssignment",
+        "endLine": 15,
+        "endColumn": 70
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type error typed assigned to a parameter of type `string | symbol | Function | Type<ResourcesController>`.",
+        "line": 15,
+        "column": 50,
+        "nodeType": "Identifier",
+        "messageId": "unsafeArgument",
+        "endLine": 15,
+        "endColumn": 69
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 3,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Test } from '@nestjs/testing';\n\r\nimport { ResourcesController } from './resources.controller';\n\r\nimport type { TestingModule } from '@nestjs/testing';\n\r\ndescribe('ResourcesController', () => {\r\n  let controller: ResourcesController;\r\n\r\n  beforeEach(async () => {\r\n    const module: TestingModule = await Test.createTestingModule({\r\n      controllers: [ResourcesController],\r\n    }).compile();\r\n\r\n    controller = module.get<ResourcesController>(ResourcesController);\r\n  });\r\n\r\n  it('should be defined', () => {\r\n    expect(controller).toBeDefined();\r\n  });\r\n});\r\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\resource\\resources.service.spec.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of type `any[]` to a variable of type `Provider[]`.",
+        "line": 12,
+        "column": 7,
+        "nodeType": "Property",
+        "messageId": "unsafeAssignment",
+        "endLine": 12,
+        "endColumn": 36
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an error typed value.",
+        "line": 15,
+        "column": 5,
+        "nodeType": "AssignmentExpression",
+        "messageId": "anyAssignment",
+        "endLine": 15,
+        "endColumn": 61
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type error typed assigned to a parameter of type `string | symbol | Function | Type<ResourcesService>`.",
+        "line": 15,
+        "column": 44,
+        "nodeType": "Identifier",
+        "messageId": "unsafeArgument",
+        "endLine": 15,
+        "endColumn": 60
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 3,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Test } from '@nestjs/testing';\n\r\nimport { ResourcesService } from './resources.service';\n\r\nimport type { TestingModule } from '@nestjs/testing';\n\r\ndescribe('ResourcesService', () => {\r\n  let service: ResourcesService;\r\n\r\n  beforeEach(async () => {\r\n    const module: TestingModule = await Test.createTestingModule({\r\n      providers: [ResourcesService],\r\n    }).compile();\r\n\r\n    service = module.get<ResourcesService>(ResourcesService);\r\n  });\r\n\r\n  it('should be defined', () => {\r\n    expect(service).toBeDefined();\r\n  });\r\n});\r\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\users\\users.module.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-extraneous-class",
+        "severity": 2,
+        "message": "Unexpected empty class.",
+        "line": 10,
+        "column": 14,
+        "nodeType": "Identifier",
+        "messageId": "empty",
+        "endLine": 10,
+        "endColumn": 25
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Module } from '@nestjs/common';\n\nimport { UsersRepository } from './users.repository';\nimport { UsersService } from './users.service';\n\n@Module({\n  providers: [UsersService, UsersRepository],\n  exports: [UsersService],\n})\nexport class UsersModule {}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\users\\users.repository.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\users\\users.service.spec.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\users\\users.service.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\workspace\\dto\\workspace-response.dto.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\workspace\\workspace.controller.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'WorkspaceResponseDto' is defined but never used.",
+        "line": 9,
+        "column": 10,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 9,
+        "endColumn": 30,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedImportDeclaration",
+            "data": { "varName": "WorkspaceResponseDto" },
+            "fix": { "range": [490, 559], "text": "" },
+            "desc": "Remove unused import declaration."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Controller, Get, Post, Patch, Delete, Body, Param, UseGuards, Req, UsePipes } from '@nestjs/common';\nimport { ThrottlerGuard } from '@nestjs/throttler';\nimport { CreateWorkspaceInput, UpdateWorkspaceInput, createWorkspaceSchema, updateWorkspaceSchema } from '@repo/validation';\n\nimport { ZodValidationPipe } from '../../common/pipes/zod-validation.pipe';\nimport { NestRequest } from '../../common/types/request.type';\nimport { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';\n\nimport { WorkspaceResponseDto } from './dto/workspace-response.dto';\nimport { WorkspaceService } from './workspace.service';\n\n@Controller('workspaces')\n@UseGuards(ThrottlerGuard, JwtAuthGuard)\nexport class WorkspaceController {\n  constructor(private readonly workspaceService: WorkspaceService) {}\n\n  @Get()\n  async findAll(@Req() req: NestRequest) {\n    return this.workspaceService.findAll(req.user.id);\n  }\n\n  @Post()\n  @UsePipes(new ZodValidationPipe(createWorkspaceSchema))\n  async create(@Req() req: NestRequest, @Body() body: CreateWorkspaceInput) {\n    return this.workspaceService.create(req.user.id, body);\n  }\n\n  @Patch(':id')\n  @UsePipes(new ZodValidationPipe(updateWorkspaceSchema))\n  async update(@Req() req: NestRequest, @Param('id') id: string, @Body() body: UpdateWorkspaceInput) {\n    return this.workspaceService.update(req.user.id, id, body);\n  }\n\n  @Delete(':id')\n  async remove(@Req() req: NestRequest, @Param('id') id: string) {\n    await this.workspaceService.remove(req.user.id, id);\n    return { success: true, message: 'Workspace deleted' };\n  }\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\workspace\\workspace.module.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-extraneous-class",
+        "severity": 2,
+        "message": "Unexpected empty class.",
+        "line": 11,
+        "column": 14,
+        "nodeType": "Identifier",
+        "messageId": "empty",
+        "endLine": 11,
+        "endColumn": 29
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Module } from '@nestjs/common';\n\nimport { WorkspaceController } from './workspace.controller';\nimport { WorkspaceRepository } from './workspace.repository';\nimport { WorkspaceService } from './workspace.service';\n\n@Module({\n  providers: [WorkspaceService, WorkspaceRepository],\n  controllers: [WorkspaceController]\n})\nexport class WorkspaceModule {}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\workspace\\workspace.repository.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\workspace\\workspace.service.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/unbound-method",
+        "severity": 2,
+        "message": "A method that is not declared with `this: void` may cause unintentional scoping of `this` when separated from its object.\nConsider using an arrow function or explicitly `.bind()`ing the method to avoid calling the method with an unintended `this` value. \nIf a function does not access `this`, it can be annotated with `this: void`.",
+        "line": 13,
+        "column": 27,
+        "nodeType": "MemberExpression",
+        "messageId": "unboundWithoutThisAnnotation",
+        "endLine": 13,
+        "endColumn": 58
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Injectable, NotFoundException } from '@nestjs/common';\nimport { CreateWorkspaceInput, UpdateWorkspaceInput } from '@repo/validation';\n\nimport { WorkspaceResponseDto } from './dto/workspace-response.dto';\nimport { WorkspaceRepository } from './workspace.repository';\n\n@Injectable()\nexport class WorkspaceService {\n  constructor(private readonly workspaceRepo: WorkspaceRepository) {}\n\n  async findAll(userId: string): Promise<WorkspaceResponseDto[]> {\n    const workspaces = await this.workspaceRepo.findByUserId(userId);\n    return workspaces.map(WorkspaceResponseDto.fromEntity);\n  }\n\n  async create(userId: string, data: CreateWorkspaceInput): Promise<WorkspaceResponseDto> {\n    const workspace = await this.workspaceRepo.create({\n      userId,\n      name: data.name,\n      description: data.description ?? null,\n      color: data.color ?? null,\n      icon: data.icon ?? null,\n    });\n    return WorkspaceResponseDto.fromEntity(workspace);\n  }\n\n  async update(userId: string, workspaceId: string, data: UpdateWorkspaceInput): Promise<WorkspaceResponseDto> {\n    const workspace = await this.workspaceRepo.findByIdAndUserId(workspaceId, userId);\n\n    if (!workspace) {\n      throw new NotFoundException('Workspace not found');\n    }\n\n    const updated = await this.workspaceRepo.update(workspaceId, {\n      ...(data.name !== undefined && { name: data.name }),\n      ...(data.description !== undefined && { description: data.description }),\n      ...(data.color !== undefined && { color: data.color }),\n      ...(data.icon !== undefined && { icon: data.icon }),\n      ...(data.isPinned !== undefined && { isPinned: data.isPinned }),\n      ...(data.sortOrder !== undefined && { sortOrder: data.sortOrder }),\n    });\n    return WorkspaceResponseDto.fromEntity(updated);\n  }\n\n  async remove(userId: string, workspaceId: string): Promise<void> {\n    const workspace = await this.workspaceRepo.findByIdAndUserId(workspaceId, userId);\n\n    if (!workspace) {\n      throw new NotFoundException('Workspace not found');\n    }\n\n    await this.workspaceRepo.delete(workspaceId);\n  }\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\workspace\\workspaces.controller.spec.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of type `any[]` to a variable of type `Type<any>[]`.",
+        "line": 12,
+        "column": 7,
+        "nodeType": "Property",
+        "messageId": "unsafeAssignment",
+        "endLine": 12,
+        "endColumn": 42
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an error typed value.",
+        "line": 15,
+        "column": 5,
+        "nodeType": "AssignmentExpression",
+        "messageId": "anyAssignment",
+        "endLine": 15,
+        "endColumn": 72
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type error typed assigned to a parameter of type `string | symbol | Function | Type<WorkspacesController>`.",
+        "line": 15,
+        "column": 51,
+        "nodeType": "Identifier",
+        "messageId": "unsafeArgument",
+        "endLine": 15,
+        "endColumn": 71
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 3,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Test } from '@nestjs/testing';\n\r\nimport { WorkspacesController } from './workspaces.controller';\n\r\nimport type { TestingModule } from '@nestjs/testing';\n\r\ndescribe('WorkspacesController', () => {\r\n  let controller: WorkspacesController;\r\n\r\n  beforeEach(async () => {\r\n    const module: TestingModule = await Test.createTestingModule({\r\n      controllers: [WorkspacesController],\r\n    }).compile();\r\n\r\n    controller = module.get<WorkspacesController>(WorkspacesController);\r\n  });\r\n\r\n  it('should be defined', () => {\r\n    expect(controller).toBeDefined();\r\n  });\r\n});\r\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\api\\src\\modules\\workspace\\workspaces.service.spec.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of type `any[]` to a variable of type `Provider[]`.",
+        "line": 12,
+        "column": 7,
+        "nodeType": "Property",
+        "messageId": "unsafeAssignment",
+        "endLine": 12,
+        "endColumn": 37
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an error typed value.",
+        "line": 15,
+        "column": 5,
+        "nodeType": "AssignmentExpression",
+        "messageId": "anyAssignment",
+        "endLine": 15,
+        "endColumn": 63
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type error typed assigned to a parameter of type `string | symbol | Function | Type<WorkspacesService>`.",
+        "line": 15,
+        "column": 45,
+        "nodeType": "Identifier",
+        "messageId": "unsafeArgument",
+        "endLine": 15,
+        "endColumn": 62
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 3,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Test } from '@nestjs/testing';\n\r\nimport { WorkspacesService } from './workspaces.service';\n\r\nimport type { TestingModule } from '@nestjs/testing';\n\r\ndescribe('WorkspacesService', () => {\r\n  let service: WorkspacesService;\r\n\r\n  beforeEach(async () => {\r\n    const module: TestingModule = await Test.createTestingModule({\r\n      providers: [WorkspacesService],\r\n    }).compile();\r\n\r\n    service = module.get<WorkspacesService>(WorkspacesService);\r\n  });\r\n\r\n  it('should be defined', () => {\r\n    expect(service).toBeDefined();\r\n  });\r\n});\r\n",
+    "usedDeprecatedRules": []
+  }
+]

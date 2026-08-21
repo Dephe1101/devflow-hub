@@ -1,13 +1,107 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+model User {
+  id           String      @id @default(uuid()) @db.Uuid
+  email        String      @unique
+  name         String
+  passwordHash String?     // Allow null for OAuth users
+  authProvider String?     @default("LOCAL") // "LOCAL", "GOOGLE", "GITHUB"
+  googleId     String?     @unique
+  githubId     String?     @unique
+  avatarUrl    String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  workspaces   Workspace[]
+  tags         Tag[]
+}
+
+model Workspace {
+  id             String              @id @default(uuid()) @db.Uuid
+  userId         String              @db.Uuid
+  user           User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name           String              @db.VarChar(100)
+  description    String?             @db.VarChar(500)
+  color          String?             @db.VarChar(7)
+  icon           String?
+  sortOrder      Int                 @default(0)
+  isPinned       Boolean             @default(false)
+  lastLaunchedAt DateTime?
+  launchCount    Int                 @default(0)
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  resources      WorkspaceResource[]
+  tags           WorkspaceTag[]
+
+  @@index([userId, isPinned, sortOrder], name: "idx_workspace_user_pinned")
+}
+
+model Resource {
+  id              String              @id @default(uuid()) @db.Uuid
+  createdByUserId String              @db.Uuid
+  type            String              @db.VarChar(20) // "URL", "LOCAL_PATH", "APP_URI", "COMMAND"
+  value           String
+  displayName     String?             @db.VarChar(100)
+  faviconUrl      String?
+  notes           String?
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  workspaces      WorkspaceResource[]
+  tags            ResourceTag[]
+
+  @@index([createdByUserId, type], name: "idx_resource_user_type")
+}
+
+model WorkspaceResource {
+  id          String    @id @default(uuid()) @db.Uuid
+  workspaceId String    @db.Uuid
+  resourceId  String    @db.Uuid
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  resource    Resource  @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  sortOrder   Int       @default(0)
+  isEnabled   Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+
+  @@unique([workspaceId, resourceId])
+  @@index([workspaceId, sortOrder], name: "idx_workspace_resource_order")
+}
+
+model Tag {
+  id          String         @id @default(uuid()) @db.Uuid
+  userId      String         @db.Uuid
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String         @db.VarChar(50)
+  color       String?        @db.VarChar(7)
+  resources   ResourceTag[]
+  workspaces  WorkspaceTag[]
+
+  @@unique([userId, name])
+}
+
+model ResourceTag {
+  id         String   @id @default(uuid()) @db.Uuid
+  resourceId String   @db.Uuid
+  tagId      String   @db.Uuid
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  tag        Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([resourceId, tagId])
+}
+
+model WorkspaceTag {
+  id          String    @id @default(uuid()) @db.Uuid
+  workspaceId String    @db.Uuid
+  tagId       String    @db.Uuid
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  tag         Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, tagId])
 }

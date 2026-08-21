@@ -22,14 +22,7 @@ module.exports = {
     ],
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    'import/order': [
-      'error',
-      {
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'type'],
-        'newlines-between': 'always',
-        alphabetize: { order: 'asc' },
-      },
-    ],
+    'import/order': 'off',
     'import/no-cycle': 'error',
     'no-console': ['warn', { allow: ['warn', 'error'] }],
     'prefer-const': 'error',

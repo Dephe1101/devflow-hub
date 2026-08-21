@@ -1,0 +1,1975 @@
+[
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(auth)\\layout.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 1,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 1,
+        "endColumn": 35
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "export default function AuthLayout({ children }: { children: React.ReactNode }) {\n  return (\n    <div className=\"min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900\">\n      <div className=\"w-full max-w-md space-y-8 p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg\">\n        {children}\n      </div>\n    </div>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(auth)\\login\\page.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 10,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 10,
+        "endColumn": 34
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 14,
+        "column": 9,
+        "nodeType": "VariableDeclarator",
+        "messageId": "anyAssignment",
+        "endLine": 14,
+        "endColumn": 58
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 14,
+        "column": 38,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 14,
+        "endColumn": 41,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [423, 426], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [423, 426], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 14,
+        "column": 46,
+        "nodeType": "MemberExpression",
+        "messageId": "unsafeReturn",
+        "endLine": 14,
+        "endColumn": 57
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .login on an `any` value.",
+        "line": 14,
+        "column": 52,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 14,
+        "endColumn": 57
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 15,
+        "column": 9,
+        "nodeType": "VariableDeclarator",
+        "messageId": "anyAssignment",
+        "endLine": 15,
+        "endColumn": 66
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 15,
+        "column": 42,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 15,
+        "endColumn": 45,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [486, 489], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [486, 489], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 15,
+        "column": 50,
+        "nodeType": "MemberExpression",
+        "messageId": "unsafeReturn",
+        "endLine": 15,
+        "endColumn": 65
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .isLoading on an `any` value.",
+        "line": 15,
+        "column": 56,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 15,
+        "endColumn": 65
+      },
+      {
+        "ruleId": "@typescript-eslint/no-deprecated",
+        "severity": 2,
+        "message": "`FormEvent` is deprecated. FormEvent doesn't actually exist.\nYou probably meant to use {@link ChangeEvent}, {@link InputEvent}, {@link SubmitEvent}, or just {@link SyntheticEvent} instead\ndepending on the event type.",
+        "line": 18,
+        "column": 40,
+        "nodeType": "Identifier",
+        "messageId": "deprecatedWithReason",
+        "endLine": 18,
+        "endColumn": 49
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 18,
+        "column": 51,
+        "nodeType": "ArrowFunctionExpression",
+        "messageId": "missingReturnType",
+        "endLine": 18,
+        "endColumn": 53
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-call",
+        "severity": 2,
+        "message": "Unsafe call of an `any` typed value.",
+        "line": 22,
+        "column": 13,
+        "nodeType": "Identifier",
+        "messageId": "unsafeCall",
+        "endLine": 22,
+        "endColumn": 18
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 24,
+        "column": 19,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 24,
+        "endColumn": 22,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [741, 744], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [741, 744], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `SetStateAction<string>`.",
+        "line": 25,
+        "column": 16,
+        "nodeType": "LogicalExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 25,
+        "endColumn": 61
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .response on an `any` value.",
+        "line": 25,
+        "column": 20,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 25,
+        "endColumn": 28
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 25,
+        "column": 44,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 25,
+        "endColumn": 46,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [791, 793], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-misused-promises",
+        "severity": 2,
+        "message": "Promise-returning function provided to attribute where a void return was expected.",
+        "line": 40,
+        "column": 49,
+        "nodeType": "JSXExpressionContainer",
+        "messageId": "voidReturnAttribute",
+        "endLine": 40,
+        "endColumn": 63
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 66,
+        "column": 21,
+        "nodeType": "Identifier",
+        "messageId": "anyAssignment",
+        "endLine": 66,
+        "endColumn": 30
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 18,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { LogIn } from 'lucide-react';\nimport Link from 'next/link';\nimport { useRouter } from 'next/navigation';\nimport { useState } from 'react';\n\nimport { useAuthStore } from '@/stores/auth.store';\n\nexport default function LoginPage() {\n  const [email, setEmail] = useState('');\n  const [password, setPassword] = useState('');\n  const [error, setError] = useState('');\n  const login = useAuthStore((state: any) => state.login);\n  const isLoading = useAuthStore((state: any) => state.isLoading);\n  const router = useRouter();\n\n  const handleSubmit = async (e: React.FormEvent) => {\n    e.preventDefault();\n    setError('');\n    try {\n      await login({ email, password });\n      router.push('/dashboard');\n    } catch (err: any) {\n      setError(err.response?.data?.message || 'Login failed');\n    }\n  };\n\n  return (\n    <>\n      <div className=\"text-center\">\n        <div className=\"mx-auto h-12 w-12 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full flex items-center justify-center mb-4\">\n          <LogIn className=\"h-6 w-6\" />\n        </div>\n        <h2 className=\"text-2xl font-bold text-gray-900 dark:text-white\">Sign in to DevFlow Hub</h2>\n        <p className=\"mt-2 text-sm text-gray-600 dark:text-gray-400\">\n          Or <Link href=\"/register\" className=\"text-blue-600 hover:text-blue-500\">create a new account</Link>\n        </p>\n      </div>\n      <form className=\"mt-8 space-y-6\" onSubmit={handleSubmit}>\n        {error && <div className=\"p-3 bg-red-100 text-red-700 rounded-md text-sm\">{error}</div>}\n        <div className=\"space-y-4\">\n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Email address</label>\n            <input\n              type=\"email\"\n              required\n              className=\"mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500\"\n              value={email}\n              onChange={e => { setEmail(e.target.value); }}\n            />\n          </div>\n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Password</label>\n            <input\n              type=\"password\"\n              required\n              className=\"mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500\"\n              value={password}\n              onChange={e => { setPassword(e.target.value); }}\n            />\n          </div>\n        </div>\n        <button\n          type=\"submit\"\n          disabled={isLoading}\n          className=\"w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50\"\n        >\n          {isLoading ? 'Signing in...' : 'Sign in'}\n        </button>\n      </form>\n    </>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(auth)\\register\\page.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 10,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 10,
+        "endColumn": 37
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 15,
+        "column": 9,
+        "nodeType": "VariableDeclarator",
+        "messageId": "anyAssignment",
+        "endLine": 15,
+        "endColumn": 64
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 15,
+        "column": 41,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 15,
+        "endColumn": 44,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [469, 472], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [469, 472], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 15,
+        "column": 49,
+        "nodeType": "MemberExpression",
+        "messageId": "unsafeReturn",
+        "endLine": 15,
+        "endColumn": 63
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .register on an `any` value.",
+        "line": 15,
+        "column": 55,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 15,
+        "endColumn": 63
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 16,
+        "column": 9,
+        "nodeType": "VariableDeclarator",
+        "messageId": "anyAssignment",
+        "endLine": 16,
+        "endColumn": 66
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 16,
+        "column": 42,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 16,
+        "endColumn": 45,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [535, 538], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [535, 538], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 16,
+        "column": 50,
+        "nodeType": "MemberExpression",
+        "messageId": "unsafeReturn",
+        "endLine": 16,
+        "endColumn": 65
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .isLoading on an `any` value.",
+        "line": 16,
+        "column": 56,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 16,
+        "endColumn": 65
+      },
+      {
+        "ruleId": "@typescript-eslint/no-deprecated",
+        "severity": 2,
+        "message": "`FormEvent` is deprecated. FormEvent doesn't actually exist.\nYou probably meant to use {@link ChangeEvent}, {@link InputEvent}, {@link SubmitEvent}, or just {@link SyntheticEvent} instead\ndepending on the event type.",
+        "line": 19,
+        "column": 40,
+        "nodeType": "Identifier",
+        "messageId": "deprecatedWithReason",
+        "endLine": 19,
+        "endColumn": 49
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 19,
+        "column": 51,
+        "nodeType": "ArrowFunctionExpression",
+        "messageId": "missingReturnType",
+        "endLine": 19,
+        "endColumn": 53
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-call",
+        "severity": 2,
+        "message": "Unsafe call of an `any` typed value.",
+        "line": 23,
+        "column": 13,
+        "nodeType": "Identifier",
+        "messageId": "unsafeCall",
+        "endLine": 23,
+        "endColumn": 21
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 25,
+        "column": 19,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 25,
+        "endColumn": 22,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [799, 802], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [799, 802], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `SetStateAction<string>`.",
+        "line": 26,
+        "column": 16,
+        "nodeType": "LogicalExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 26,
+        "endColumn": 68
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .response on an `any` value.",
+        "line": 26,
+        "column": 20,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 26,
+        "endColumn": 28
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 26,
+        "column": 44,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 26,
+        "endColumn": 46,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [849, 851], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-misused-promises",
+        "severity": 2,
+        "message": "Promise-returning function provided to attribute where a void return was expected.",
+        "line": 41,
+        "column": 49,
+        "nodeType": "JSXExpressionContainer",
+        "messageId": "voidReturnAttribute",
+        "endLine": 41,
+        "endColumn": 63
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 77,
+        "column": 21,
+        "nodeType": "Identifier",
+        "messageId": "anyAssignment",
+        "endLine": 77,
+        "endColumn": 30
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 18,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { LogIn } from 'lucide-react';\nimport Link from 'next/link';\nimport { useRouter } from 'next/navigation';\nimport { useState } from 'react';\n\nimport { useAuthStore } from '@/stores/auth.store';\n\nexport default function RegisterPage() {\n  const [name, setName] = useState('');\n  const [email, setEmail] = useState('');\n  const [password, setPassword] = useState('');\n  const [error, setError] = useState('');\n  const register = useAuthStore((state: any) => state.register);\n  const isLoading = useAuthStore((state: any) => state.isLoading);\n  const router = useRouter();\n\n  const handleSubmit = async (e: React.FormEvent) => {\n    e.preventDefault();\n    setError('');\n    try {\n      await register({ name, email, password });\n      router.push('/dashboard');\n    } catch (err: any) {\n      setError(err.response?.data?.message || 'Registration failed');\n    }\n  };\n\n  return (\n    <>\n      <div className=\"text-center\">\n        <div className=\"mx-auto h-12 w-12 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full flex items-center justify-center mb-4\">\n          <LogIn className=\"h-6 w-6\" />\n        </div>\n        <h2 className=\"text-2xl font-bold text-gray-900 dark:text-white\">Create your account</h2>\n        <p className=\"mt-2 text-sm text-gray-600 dark:text-gray-400\">\n          Or <Link href=\"/login\" className=\"text-blue-600 hover:text-blue-500\">sign in to existing account</Link>\n        </p>\n      </div>\n      <form className=\"mt-8 space-y-6\" onSubmit={handleSubmit}>\n        {error && <div className=\"p-3 bg-red-100 text-red-700 rounded-md text-sm\">{error}</div>}\n        <div className=\"space-y-4\">\n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Full Name</label>\n            <input\n              type=\"text\"\n              required\n              className=\"mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500\"\n              value={name}\n              onChange={e => { setName(e.target.value); }}\n            />\n          </div>\n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Email address</label>\n            <input\n              type=\"email\"\n              required\n              className=\"mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500\"\n              value={email}\n              onChange={e => { setEmail(e.target.value); }}\n            />\n          </div>\n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Password</label>\n            <input\n              type=\"password\"\n              required\n              className=\"mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500\"\n              value={password}\n              onChange={e => { setPassword(e.target.value); }}\n            />\n          </div>\n        </div>\n        <button\n          type=\"submit\"\n          disabled={isLoading}\n          className=\"w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50\"\n        >\n          {isLoading ? 'Creating account...' : 'Create account'}\n        </button>\n      </form>\n    </>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(dashboard)\\dashboard\\page.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 9,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 9,
+        "endColumn": 38
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 34,
+        "column": 64,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 34,
+        "endColumn": 66,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [1002, 1004], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 35,
+        "column": 67,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 35,
+        "endColumn": 69,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [1075, 1077], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 107,
+        "column": 1,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 107,
+        "endColumn": 23
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 107,
+        "column": 52,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 107,
+        "endColumn": 55,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [4036, 4039], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [4036, 4039], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/restrict-template-expressions",
+        "severity": 2,
+        "message": "Invalid type \"any\" of template literal expression.",
+        "line": 110,
+        "column": 38,
+        "nodeType": "MemberExpression",
+        "messageId": "invalidType",
+        "endLine": 110,
+        "endColumn": 50
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .id on an `any` value.",
+        "line": 110,
+        "column": 48,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 110,
+        "endColumn": 50
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-assignment",
+        "severity": 2,
+        "message": "Unsafe assignment of an `any` value.",
+        "line": 115,
+        "column": 18,
+        "nodeType": "Property",
+        "messageId": "anyAssignment",
+        "endLine": 115,
+        "endColumn": 63
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .color on an `any` value.",
+        "line": 115,
+        "column": 45,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 115,
+        "endColumn": 50
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 115,
+        "column": 51,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 115,
+        "endColumn": 53,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [4480, 4482], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .icon on an `any` value.",
+        "line": 121,
+        "column": 26,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 121,
+        "endColumn": 30
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .icon on an `any` value.",
+        "line": 121,
+        "column": 51,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 121,
+        "endColumn": 55
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .name on an `any` value.",
+        "line": 122,
+        "column": 26,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 122,
+        "endColumn": 30
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .description on an `any` value.",
+        "line": 124,
+        "column": 24,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 124,
+        "endColumn": 35
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .description on an `any` value.",
+        "line": 126,
+        "column": 28,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 126,
+        "endColumn": 39
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access ._count on an `any` value.",
+        "line": 132,
+        "column": 28,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 132,
+        "endColumn": 34
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 132,
+        "column": 46,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 132,
+        "endColumn": 48,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [5253, 5255], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `string | number | Date`.",
+        "line": 133,
+        "column": 27,
+        "nodeType": "MemberExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 133,
+        "endColumn": 46
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .createdAt on an `any` value.",
+        "line": 133,
+        "column": 37,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 133,
+        "endColumn": 46
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 19,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { Plus, Pin, Folder } from 'lucide-react';\nimport Link from 'next/link';\n\nimport { useWorkspaces } from '@/hooks/use-workspaces';\nimport { useUIStore } from '@/stores/ui.store';\n\nexport default function DashboardPage() {\n  const { data: workspaces, isLoading, error } = useWorkspaces();\n  const { openCreateWorkspace } = useUIStore();\n\n  if (isLoading) {\n    return (\n      <div className=\"animate-pulse space-y-8\">\n        <div className=\"h-10 w-48 bg-gray-200 dark:bg-gray-700 rounded\"></div>\n        <div className=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3\">\n          {[1, 2, 3].map(i => (\n            <div key={i} className=\"h-40 bg-gray-200 dark:bg-gray-700 rounded-xl\"></div>\n          ))}\n        </div>\n      </div>\n    );\n  }\n\n  if (error) {\n    return (\n      <div className=\"p-4 bg-red-100 text-red-700 rounded-md\">\n        Error loading workspaces. Please try again.\n      </div>\n    );\n  }\n\n  const pinnedWorkspaces = workspaces?.filter(w => w.isPinned) || [];\n  const unpinnedWorkspaces = workspaces?.filter(w => !w.isPinned) || [];\n\n  return (\n    <div className=\"space-y-8\">\n      <div className=\"sm:flex sm:items-center sm:justify-between\">\n        <div>\n          <h1 className=\"text-2xl font-bold text-gray-900 dark:text-white\">Your Workspaces</h1>\n          <p className=\"mt-1 text-sm text-gray-500 dark:text-gray-400\">\n            Manage your project contexts and resources.\n          </p>\n        </div>\n        <div className=\"mt-4 sm:mt-0\">\n          <button \n            onClick={openCreateWorkspace}\n            className=\"inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500\"\n          >\n            <Plus className=\"-ml-1 mr-2 h-5 w-5\" />\n            New Workspace\n          </button>\n        </div>\n      </div>\n\n      {pinnedWorkspaces.length > 0 && (\n        <section>\n          <h2 className=\"text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4 flex items-center\">\n            <Pin className=\"w-4 h-4 mr-2 text-blue-500\" /> Pinned\n          </h2>\n          <div className=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3\">\n            {pinnedWorkspaces.map(workspace => (\n              <WorkspaceCard key={workspace.id} workspace={workspace} />\n            ))}\n          </div>\n        </section>\n      )}\n\n      {unpinnedWorkspaces.length > 0 ? (\n        <section>\n          {pinnedWorkspaces.length > 0 && (\n            <h2 className=\"text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4\">\n              All Workspaces\n            </h2>\n          )}\n          <div className=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3\">\n            {unpinnedWorkspaces.map(workspace => (\n              <WorkspaceCard key={workspace.id} workspace={workspace} />\n            ))}\n          </div>\n        </section>\n      ) : (\n        pinnedWorkspaces.length === 0 && (\n          <div className=\"text-center py-16 px-4 sm:px-6 lg:px-8 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl\">\n            <Folder className=\"mx-auto h-12 w-12 text-gray-400\" />\n            <h3 className=\"mt-2 text-sm font-medium text-gray-900 dark:text-white\">No workspaces</h3>\n            <p className=\"mt-1 text-sm text-gray-500 dark:text-gray-400\">\n              Get started by creating a new workspace.\n            </p>\n            <div className=\"mt-6\">\n              <button \n                onClick={openCreateWorkspace}\n                className=\"inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700\"\n              >\n                <Plus className=\"-ml-1 mr-2 h-5 w-5\" />\n                New Workspace\n              </button>\n            </div>\n          </div>\n        )\n      )}\n    </div>\n  );\n}\n\nfunction WorkspaceCard({ workspace }: { workspace: any }) {\n  return (\n    <Link \n      href={`/dashboard/workspaces/${workspace.id}`}\n      className=\"block group relative bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-200 overflow-hidden\"\n    >\n      <div \n        className=\"absolute top-0 left-0 w-1 h-full\"\n        style={{ backgroundColor: workspace.color || '#3B82F6' }}\n      />\n      <div className=\"p-6 ml-1\">\n        <div className=\"flex justify-between items-start\">\n          <div className=\"flex-1 min-w-0\">\n            <h3 className=\"text-lg font-semibold text-gray-900 dark:text-white truncate flex items-center gap-2\">\n              {workspace.icon && <span>{workspace.icon}</span>}\n              {workspace.name}\n            </h3>\n            {workspace.description && (\n              <p className=\"mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-2\">\n                {workspace.description}\n              </p>\n            )}\n          </div>\n        </div>\n        <div className=\"mt-4 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400\">\n          <span>{workspace._count?.resources || 0} resources</span>\n          <span>{new Date(workspace.createdAt).toLocaleDateString()}</span>\n        </div>\n      </div>\n    </Link>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(dashboard)\\dashboard\\workspaces\\[id]\\page.tsx",
+    "messages": [
+      {
+        "ruleId": "import/order",
+        "severity": 2,
+        "message": "There should be no empty line within import group",
+        "line": 4,
+        "column": 1,
+        "nodeType": "ImportDeclaration",
+        "endLine": 4,
+        "endColumn": 122,
+        "fix": { "range": [250, 251], "text": "" }
+      },
+      {
+        "ruleId": "import/order",
+        "severity": 2,
+        "message": "There should be at least one empty line between import groups",
+        "line": 12,
+        "column": 1,
+        "nodeType": "ImportDeclaration",
+        "endLine": 12,
+        "endColumn": 51,
+        "fix": { "range": [613, 613], "text": "\n" }
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 21,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 21,
+        "endColumn": 44
+      },
+      {
+        "ruleId": "@typescript-eslint/no-floating-promises",
+        "severity": 2,
+        "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
+        "line": 50,
+        "column": 7,
+        "nodeType": "ExpressionStatement",
+        "messageId": "floatingVoid",
+        "endLine": 50,
+        "endColumn": 100,
+        "suggestions": [
+          {
+            "messageId": "floatingFixVoid",
+            "fix": { "range": [2186, 2186], "text": "void " },
+            "desc": "Add void operator to ignore."
+          },
+          {
+            "messageId": "floatingFixAwait",
+            "fix": { "range": [2186, 2186], "text": "await " },
+            "desc": "Add await operator."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 61,
+        "column": 47,
+        "nodeType": "ArrowFunctionExpression",
+        "messageId": "missingReturnType",
+        "endLine": 61,
+        "endColumn": 49
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 88,
+        "column": 91,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 88,
+        "endColumn": 93,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [3514, 3516], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-misused-promises",
+        "severity": 2,
+        "message": "Promise-returning function provided to attribute where a void return was expected.",
+        "line": 103,
+        "column": 21,
+        "nodeType": "JSXExpressionContainer",
+        "messageId": "voidReturnAttribute",
+        "endLine": 103,
+        "endColumn": 55
+      },
+      {
+        "ruleId": "@typescript-eslint/restrict-template-expressions",
+        "severity": 2,
+        "message": "Invalid type \"number\" of template literal expression.",
+        "line": 112,
+        "column": 34,
+        "nodeType": "Identifier",
+        "messageId": "invalidType",
+        "endLine": 112,
+        "endColumn": 47
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 8,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 2,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';\nimport { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';\n\nimport { useMutation, useQueryClient } from '@tanstack/react-query';\nimport { Plus, ArrowLeft, Rocket, AlertTriangle, ExternalLink, X } from 'lucide-react';\nimport Link from 'next/link';\nimport { use, useState, useEffect } from 'react';\n\nimport type { WorkspaceResource } from '@/hooks/use-workspace-resources';\nimport type { DragEndEvent } from '@dnd-kit/core';\nimport { SortableResourceItem } from '@/components/sortable-resource-item';\nimport { useWorkspaceLaunch } from '@/hooks/use-workspace-launch';\nimport { useWorkspaceResources } from '@/hooks/use-workspace-resources';\nimport { useWorkspaces } from '@/hooks/use-workspaces';\nimport { api } from '@/lib/api';\nimport { QUERY_KEYS } from '@/lib/query-keys';\nimport { useUIStore } from '@/stores/ui.store';\n\nexport default function WorkspaceDetailPage(props: { params: Promise<{ id: string }> }) {\n  const params = use(props.params);\n  const workspaceId = params.id;\n\n  const { data: workspaces } = useWorkspaces();\n  const workspace = workspaces?.find(w => w.id === workspaceId);\n  const { openAddResource } = useUIStore();\n  const { data: originalResources, isLoading } = useWorkspaceResources(workspaceId);\n  \n  const { launchWorkspace, isLaunching, isLocked, lockCountdown, blockedUrls, clearBlockedUrls } = useWorkspaceLaunch();\n\n  const [resources, setResources] = useState<WorkspaceResource[]>([]);\n  const queryClient = useQueryClient();\n\n  useEffect(() => {\n    if (originalResources) {\n      // Sort by sortOrder\n      setResources([...originalResources].sort((a, b) => a.sortOrder - b.sortOrder));\n    }\n  }, [originalResources]);\n\n  const reorderMutation = useMutation({\n    mutationFn: async (orderedIds: string[]) => {\n      const data = {\n        resourceOrders: orderedIds.map((id, index) => ({ workspaceResourceId: id, sortOrder: index }))\n      };\n      await api.patch(`/workspaces/${workspaceId}/resources/reorder`, data);\n    },\n    onSuccess: () => {\n      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.workspaceResources.list(workspaceId) });\n    }\n  });\n\n  const sensors = useSensors(\n    useSensor(PointerSensor),\n    useSensor(KeyboardSensor, {\n      coordinateGetter: sortableKeyboardCoordinates,\n    })\n  );\n\n  const handleDragEnd = (event: DragEndEvent) => {\n    const { active, over } = event;\n    \n    if (over && active.id !== over.id) {\n      setResources((items) => {\n        const oldIndex = items.findIndex(item => item.id === active.id);\n        const newIndex = items.findIndex(item => item.id === over.id);\n        \n        const newItems = arrayMove(items, oldIndex, newIndex);\n        reorderMutation.mutate(newItems.map(item => item.id));\n        return newItems;\n      });\n    }\n  };\n\n  if (!workspace) {return null;}\n\n  return (\n    <div className=\"space-y-8 max-w-4xl mx-auto\">\n      <div className=\"flex items-center text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300\">\n        <Link href=\"/dashboard\" className=\"flex items-center gap-1\">\n          <ArrowLeft className=\"w-4 h-4\" /> Back to Dashboard\n        </Link>\n      </div>\n\n      <div className=\"sm:flex sm:items-center sm:justify-between\">\n        <div className=\"flex items-center gap-3\">\n          <div className=\"w-2 h-8 rounded-full\" style={{ backgroundColor: workspace.color || '#3B82F6' }} />\n          <div>\n            <h1 className=\"text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2\">\n              {workspace.icon && <span>{workspace.icon}</span>}\n              {workspace.name}\n            </h1>\n            {workspace.description && (\n              <p className=\"mt-1 text-sm text-gray-500 dark:text-gray-400\">\n                {workspace.description}\n              </p>\n            )}\n          </div>\n        </div>\n        <div className=\"mt-4 sm:mt-0 flex items-center gap-3\">\n          <button \n            onClick={() => launchWorkspace(resources)}\n            disabled={isLocked || isLaunching || resources.length === 0}\n            className=\"inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed\"\n          >\n            {isLaunching ? (\n              <Rocket className=\"-ml-1 mr-2 h-5 w-5 animate-pulse\" />\n            ) : (\n              <Rocket className=\"-ml-1 mr-2 h-5 w-5\" />\n            )}\n            {isLocked ? `Wait (${lockCountdown}s)` : 'Launch Workspace'}\n          </button>\n          \n          <button \n            onClick={() => { openAddResource(workspaceId); }}\n            className=\"inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700\"\n          >\n            <Plus className=\"-ml-1 mr-2 h-5 w-5\" />\n            Add Resource\n          </button>\n        </div>\n      </div>\n\n      {blockedUrls.length > 0 && (\n        <div className=\"bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-700 rounded-lg p-4\">\n          <div className=\"flex items-start\">\n            <div className=\"flex-shrink-0\">\n              <AlertTriangle className=\"h-5 w-5 text-yellow-600 dark:text-yellow-500\" />\n            </div>\n            <div className=\"ml-3 flex-1\">\n              <h3 className=\"text-sm font-medium text-yellow-800 dark:text-yellow-400\">\n                Popup Blocker Detected\n              </h3>\n              <div className=\"mt-2 text-sm text-yellow-700 dark:text-yellow-300\">\n                <p>Your browser prevented {blockedUrls.length} tabs from opening automatically. Please allow popups for DevFlow Hub, or click the links below manually:</p>\n                <ul className=\"mt-3 flex flex-wrap gap-2\">\n                  {blockedUrls.map((url, idx) => (\n                    <li key={idx}>\n                      <a \n                        href={url} \n                        target=\"_blank\" \n                        rel=\"noreferrer\"\n                        className=\"inline-flex items-center px-3 py-1 bg-yellow-100 dark:bg-yellow-800 text-yellow-800 dark:text-yellow-200 rounded-md hover:bg-yellow-200 dark:hover:bg-yellow-700\"\n                      >\n                        {url} <ExternalLink className=\"ml-1 h-3 w-3\" />\n                      </a>\n                    </li>\n                  ))}\n                </ul>\n              </div>\n            </div>\n            <button onClick={clearBlockedUrls} className=\"ml-4 text-yellow-600 hover:text-yellow-700\">\n              <X className=\"h-5 w-5\" />\n            </button>\n          </div>\n        </div>\n      )}\n\n      <div className=\"bg-gray-50 dark:bg-gray-900 rounded-xl p-4 min-h-[300px]\">\n        {isLoading ? (\n          <div className=\"animate-pulse space-y-4\">\n            {[1, 2, 3].map(i => (\n              <div key={i} className=\"h-16 bg-gray-200 dark:bg-gray-800 rounded-lg\"></div>\n            ))}\n          </div>\n        ) : resources.length === 0 ? (\n          <div className=\"text-center py-12\">\n            <p className=\"text-sm text-gray-500 dark:text-gray-400\">No resources yet. Add your first link or app!</p>\n          </div>\n        ) : (\n          <DndContext \n            sensors={sensors}\n            collisionDetection={closestCenter}\n            onDragEnd={handleDragEnd}\n          >\n            <SortableContext \n              items={resources.map(r => r.id)}\n              strategy={verticalListSortingStrategy}\n            >\n              <div className=\"space-y-3\">\n                {resources.map((item) => (\n                  <SortableResourceItem key={item.id} item={item} />\n                ))}\n              </div>\n            </SortableContext>\n          </DndContext>\n        )}\n      </div>\n    </div>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(dashboard)\\layout.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'Plus' is defined but never used.",
+        "line": 3,
+        "column": 44,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 3,
+        "endColumn": 48,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "Plus" },
+            "fix": { "range": [56, 62], "text": "" },
+            "desc": "Remove unused variable \"Plus\"."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 13,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 13,
+        "endColumn": 40
+      },
+      {
+        "ruleId": "@typescript-eslint/no-floating-promises",
+        "severity": 2,
+        "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
+        "line": 19,
+        "column": 5,
+        "nodeType": "ExpressionStatement",
+        "messageId": "floatingVoid",
+        "endLine": 19,
+        "endColumn": 17,
+        "suggestions": [
+          {
+            "messageId": "floatingFixVoid",
+            "fix": { "range": [728, 728], "text": "void " },
+            "desc": "Add void operator to ignore."
+          },
+          {
+            "messageId": "floatingFixAwait",
+            "fix": { "range": [728, 728], "text": "await " },
+            "desc": "Add await operator."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unnecessary-condition",
+        "severity": 2,
+        "message": "Unnecessary optional chain on a non-nullish value.",
+        "line": 77,
+        "column": 30,
+        "nodeType": "MemberExpression",
+        "messageId": "neverOptionalChain",
+        "endLine": 77,
+        "endColumn": 32,
+        "suggestions": [
+          {
+            "messageId": "suggestRemoveOptionalChain",
+            "fix": { "range": [3100, 3102], "text": "" },
+            "desc": "Remove unnecessary optional chain"
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 77,
+        "column": 36,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 77,
+        "endColumn": 38,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [3106, 3108], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-misused-promises",
+        "severity": 2,
+        "message": "Promise-returning function provided to attribute where a void return was expected.",
+        "line": 86,
+        "column": 23,
+        "nodeType": "JSXExpressionContainer",
+        "messageId": "voidReturnAttribute",
+        "endLine": 86,
+        "endColumn": 39
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 6,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { LayoutDashboard, LogOut, Loader2, Plus, Menu, X } from 'lucide-react';\nimport Link from 'next/link';\nimport { useRouter } from 'next/navigation';\nimport { useEffect } from 'react';\nimport { useState } from 'react';\n\nimport AddResourceModal from '@/components/modals/add-resource-modal';\nimport CreateWorkspaceModal from '@/components/modals/create-workspace-modal';\nimport { useAuthStore } from '@/stores/auth.store';\n\nexport default function DashboardLayout({ children }: { children: React.ReactNode }) {\n  const { isAuthenticated, isLoading, checkAuth, user, logout } = useAuthStore();\n  const router = useRouter();\n  const [isSidebarOpen, setIsSidebarOpen] = useState(false);\n\n  useEffect(() => {\n    checkAuth();\n  }, [checkAuth]);\n\n  useEffect(() => {\n    if (!isLoading && !isAuthenticated) {\n      router.push('/login');\n    }\n  }, [isLoading, isAuthenticated, router]);\n\n  if (isLoading) {\n    return (\n      <div className=\"min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900\">\n        <Loader2 className=\"h-8 w-8 animate-spin text-blue-600\" />\n      </div>\n    );\n  }\n\n  if (!isAuthenticated) {return null;}\n\n  return (\n    <div className=\"min-h-screen bg-gray-50 dark:bg-gray-900 flex\">\n      {/* Mobile Sidebar Overlay */}\n      {isSidebarOpen && (\n        <div \n          className=\"fixed inset-0 z-20 bg-black/50 lg:hidden\"\n          onClick={() => { setIsSidebarOpen(false); }}\n        />\n      )}\n\n      {/* Sidebar */}\n      <aside \n        className={`fixed inset-y-0 left-0 z-30 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}\n      >\n        <div className=\"h-full flex flex-col\">\n          <div className=\"h-16 flex items-center px-6 border-b border-gray-200 dark:border-gray-700 justify-between\">\n            <span className=\"text-xl font-bold text-gray-900 dark:text-white\">DevFlow Hub</span>\n            <button className=\"lg:hidden text-gray-500\" onClick={() => { setIsSidebarOpen(false); }}>\n              <X className=\"h-6 w-6\" />\n            </button>\n          </div>\n\n          <div className=\"flex-1 overflow-y-auto py-4\">\n            <nav className=\"px-4 space-y-1\">\n              <Link \n                href=\"/dashboard\" \n                className=\"flex items-center px-2 py-2 text-sm font-medium rounded-md bg-blue-50 text-blue-700 dark:bg-blue-900/50 dark:text-blue-200\"\n              >\n                <LayoutDashboard className=\"mr-3 h-5 w-5 flex-shrink-0\" />\n                Dashboard\n              </Link>\n              {/* Future sidebar links can go here */}\n            </nav>\n          </div>\n\n          <div className=\"p-4 border-t border-gray-200 dark:border-gray-700\">\n            <div className=\"flex items-center\">\n              <div className=\"flex-shrink-0\">\n                <div className=\"h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold uppercase\">\n                  {user?.name?.[0] || 'U'}\n                </div>\n              </div>\n              <div className=\"ml-3 truncate\">\n                <p className=\"text-sm font-medium text-gray-900 dark:text-white truncate\">{user?.name}</p>\n                <p className=\"text-xs text-gray-500 dark:text-gray-400 truncate\">{user?.email}</p>\n              </div>\n            </div>\n            <button\n              onClick={() => logout()}\n              className=\"mt-4 flex w-full items-center px-2 py-2 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md\"\n            >\n              <LogOut className=\"mr-3 h-5 w-5\" />\n              Sign Out\n            </button>\n          </div>\n        </div>\n      </aside>\n\n      {/* Main Content */}\n      <div className=\"flex-1 flex flex-col min-w-0\">\n        {/* Header */}\n        <header className=\"bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 lg:hidden\">\n          <div className=\"h-16 px-4 flex items-center justify-between\">\n            <button \n              onClick={() => { setIsSidebarOpen(true); }}\n              className=\"text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none\"\n            >\n              <Menu className=\"h-6 w-6\" />\n            </button>\n            <span className=\"text-lg font-bold text-gray-900 dark:text-white\">DevFlow Hub</span>\n            <div className=\"w-6\" /> {/* Spacer */}\n          </div>\n        </header>\n\n        <main className=\"flex-1 overflow-y-auto focus:outline-none\">\n          <div className=\"py-6 px-4 sm:px-6 lg:px-8\">\n            {children}\n          </div>\n        </main>\n      </div>\n\n      <CreateWorkspaceModal />\n      <AddResourceModal />\n    </div>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\layout.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 23,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 23,
+        "endColumn": 35
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Geist, Geist_Mono } from 'next/font/google';\n\nimport type { Metadata } from 'next';\nimport './globals.css';\n\nconst geistSans = Geist({\n  variable: '--font-geist-sans',\n  subsets: ['latin'],\n});\n\nconst geistMono = Geist_Mono({\n  variable: '--font-geist-mono',\n  subsets: ['latin'],\n});\n\nexport const metadata: Metadata = {\n  title: 'Create Next App',\n  description: 'Generated by create next app',\n};\n\nimport Providers from '@/components/Providers';\n\nexport default function RootLayout({\n  children,\n}: Readonly<{\n  children: React.ReactNode;\n}>) {\n  return (\n    <html lang=\"en\">\n      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>\n        <Providers>\n          {children}\n        </Providers>\n      </body>\n    </html>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\page.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 3,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 3,
+        "endColumn": 29
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { redirect } from 'next/navigation';\n\nexport default function Home() {\n  redirect('/dashboard');\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\components\\Providers.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 6,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 6,
+        "endColumn": 34
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { QueryClient, QueryClientProvider } from '@tanstack/react-query';\nimport { useState } from 'react';\n\nexport default function Providers({ children }: { children: React.ReactNode }) {\n  const [queryClient] = useState(\n    () =>\n      new QueryClient({\n        defaultOptions: {\n          queries: {\n            staleTime: 60 * 1000, // 1 minute\n            refetchOnWindowFocus: false,\n          },\n        },\n      })\n  );\n\n  return (\n    <QueryClientProvider client={queryClient}>\n      {children}\n    </QueryClientProvider>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\components\\modals\\add-resource-modal.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 12,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 12,
+        "endColumn": 41
+      },
+      {
+        "ruleId": "@typescript-eslint/restrict-template-expressions",
+        "severity": 2,
+        "message": "Invalid type \"string | null\" of template literal expression.",
+        "line": 24,
+        "column": 49,
+        "nodeType": "Identifier",
+        "messageId": "invalidType",
+        "endLine": 24,
+        "endColumn": 79
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 25,
+        "column": 7,
+        "nodeType": "ReturnStatement",
+        "messageId": "unsafeReturn",
+        "endLine": 25,
+        "endColumn": 23
+      },
+      {
+        "ruleId": "@typescript-eslint/no-floating-promises",
+        "severity": 2,
+        "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
+        "line": 28,
+        "column": 7,
+        "nodeType": "ExpressionStatement",
+        "messageId": "floatingVoid",
+        "endLine": 28,
+        "endColumn": 120,
+        "suggestions": [
+          {
+            "messageId": "floatingFixVoid",
+            "fix": { "range": [1018, 1018], "text": "void " },
+            "desc": "Add void operator to ignore."
+          },
+          {
+            "messageId": "floatingFixAwait",
+            "fix": { "range": [1018, 1018], "text": "await " },
+            "desc": "Add await operator."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-non-null-assertion",
+        "severity": 2,
+        "message": "Forbidden non-null assertion.",
+        "line": 28,
+        "column": 84,
+        "nodeType": "TSNonNullExpression",
+        "messageId": "noNonNull",
+        "endLine": 28,
+        "endColumn": 115
+      },
+      {
+        "ruleId": "@typescript-eslint/no-floating-promises",
+        "severity": 2,
+        "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
+        "line": 29,
+        "column": 7,
+        "nodeType": "ExpressionStatement",
+        "messageId": "floatingVoid",
+        "endLine": 29,
+        "endColumn": 78,
+        "suggestions": [
+          {
+            "messageId": "floatingFixVoid",
+            "fix": { "range": [1138, 1138], "text": "void " },
+            "desc": "Add void operator to ignore."
+          },
+          {
+            "messageId": "floatingFixAwait",
+            "fix": { "range": [1138, 1138], "text": "await " },
+            "desc": "Add await operator."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 32,
+        "column": 20,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 32,
+        "endColumn": 23,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [1256, 1259], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [1256, 1259], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `SetStateAction<string>`.",
+        "line": 33,
+        "column": 16,
+        "nodeType": "LogicalExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 33,
+        "endColumn": 71
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .response on an `any` value.",
+        "line": 33,
+        "column": 20,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 33,
+        "endColumn": 28
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 33,
+        "column": 44,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 33,
+        "endColumn": 46,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [1309, 1311], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 37,
+        "column": 25,
+        "nodeType": "ArrowFunctionExpression",
+        "messageId": "missingReturnType",
+        "endLine": 37,
+        "endColumn": 27
+      },
+      {
+        "ruleId": "@typescript-eslint/no-deprecated",
+        "severity": 2,
+        "message": "`FormEvent` is deprecated. FormEvent doesn't actually exist.\nYou probably meant to use {@link ChangeEvent}, {@link InputEvent}, {@link SubmitEvent}, or just {@link SyntheticEvent} instead\ndepending on the event type.",
+        "line": 46,
+        "column": 34,
+        "nodeType": "Identifier",
+        "messageId": "deprecatedWithReason",
+        "endLine": 46,
+        "endColumn": 43
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 46,
+        "column": 45,
+        "nodeType": "ArrowFunctionExpression",
+        "messageId": "missingReturnType",
+        "endLine": 46,
+        "endColumn": 47
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 13,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { useMutation, useQueryClient } from '@tanstack/react-query';\nimport { X, Loader2 } from 'lucide-react';\nimport { useState } from 'react';\n\nimport { api } from '@/lib/api';\nimport { QUERY_KEYS } from '@/lib/query-keys';\nimport { useUIStore } from '@/stores/ui.store';\n\n\nexport default function AddResourceModal() {\n  const { isAddResourceOpen, selectedWorkspaceIdForResource, closeAddResource } = useUIStore();\n  const [type, setType] = useState('URL');\n  const [value, setValue] = useState('');\n  const [displayName, setDisplayName] = useState('');\n  const [notes, setNotes] = useState('');\n  const [error, setError] = useState('');\n\n  const queryClient = useQueryClient();\n\n  const mutation = useMutation({\n    mutationFn: async (data: { type: string; value: string; displayName?: string | undefined; notes?: string | undefined }) => {\n      const res = await api.post(`/workspaces/${selectedWorkspaceIdForResource}/resources`, data);\n      return res.data;\n    },\n    onSuccess: () => {\n      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.workspaceResources.list(selectedWorkspaceIdForResource!) });\n      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.workspaces.all });\n      closeModal();\n    },\n    onError: (err: any) => {\n      setError(err.response?.data?.message || 'Failed to add resource');\n    }\n  });\n\n  const closeModal = () => {\n    setType('URL');\n    setValue('');\n    setDisplayName('');\n    setNotes('');\n    setError('');\n    closeAddResource();\n  };\n\n  const handleSubmit = (e: React.FormEvent) => {\n    e.preventDefault();\n    setError('');\n    mutation.mutate({ type, value, displayName: displayName || undefined, notes: notes || undefined });\n  };\n\n  if (!isAddResourceOpen || !selectedWorkspaceIdForResource) {return null;}\n\n  return (\n    <div className=\"fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50\">\n      <div className=\"bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md overflow-hidden\">\n        <div className=\"flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700\">\n          <h2 className=\"text-xl font-semibold text-gray-900 dark:text-white\">Add Resource</h2>\n          <button onClick={closeModal} className=\"text-gray-400 hover:text-gray-500\">\n            <X className=\"w-5 h-5\" />\n          </button>\n        </div>\n\n        <form onSubmit={handleSubmit} className=\"p-6 space-y-4\">\n          {error && <div className=\"p-3 bg-red-100 text-red-700 rounded-md text-sm\">{error}</div>}\n          \n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Type</label>\n            <select\n              value={type}\n              onChange={e => { setType(e.target.value); }}\n              className=\"mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500\"\n            >\n              <option value=\"URL\">Web URL</option>\n              <option value=\"LOCAL_PATH\">Local Path (Phase 2)</option>\n              <option value=\"APP_URI\">App URI (Phase 2)</option>\n              <option value=\"COMMAND\">Command (Phase 2)</option>\n            </select>\n          </div>\n\n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Resource URL/Value</label>\n            <input\n              type=\"text\"\n              required\n              placeholder={type === 'URL' ? 'https://github.com' : '...'}\n              value={value}\n              onChange={e => { setValue(e.target.value); }}\n              className=\"mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500\"\n            />\n          </div>\n\n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Display Name (Optional)</label>\n            <input\n              type=\"text\"\n              placeholder=\"e.g. GitHub Repo\"\n              value={displayName}\n              onChange={e => { setDisplayName(e.target.value); }}\n              className=\"mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500\"\n            />\n          </div>\n\n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Notes (Optional)</label>\n            <textarea\n              rows={2}\n              value={notes}\n              onChange={e => { setNotes(e.target.value); }}\n              className=\"mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500\"\n            />\n          </div>\n\n          <div className=\"mt-6 flex justify-end gap-3\">\n            <button\n              type=\"button\"\n              onClick={closeModal}\n              className=\"px-4 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600\"\n            >\n              Cancel\n            </button>\n            <button\n              type=\"submit\"\n              disabled={mutation.isPending}\n              className=\"inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50\"\n            >\n              {mutation.isPending && <Loader2 className=\"w-4 h-4 mr-2 animate-spin\" />}\n              Add Resource\n            </button>\n          </div>\n        </form>\n      </div>\n    </div>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\components\\modals\\create-workspace-modal.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 12,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 12,
+        "endColumn": 45
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 24,
+        "column": 7,
+        "nodeType": "ReturnStatement",
+        "messageId": "unsafeReturn",
+        "endLine": 24,
+        "endColumn": 23
+      },
+      {
+        "ruleId": "@typescript-eslint/no-floating-promises",
+        "severity": 2,
+        "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
+        "line": 27,
+        "column": 7,
+        "nodeType": "ExpressionStatement",
+        "messageId": "floatingVoid",
+        "endLine": 27,
+        "endColumn": 78,
+        "suggestions": [
+          {
+            "messageId": "floatingFixVoid",
+            "fix": { "range": [875, 875], "text": "void " },
+            "desc": "Add void operator to ignore."
+          },
+          {
+            "messageId": "floatingFixAwait",
+            "fix": { "range": [875, 875], "text": "await " },
+            "desc": "Add await operator."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 30,
+        "column": 20,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 30,
+        "endColumn": 23,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [993, 996], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [993, 996], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `SetStateAction<string>`.",
+        "line": 31,
+        "column": 16,
+        "nodeType": "LogicalExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 31,
+        "endColumn": 75
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .response on an `any` value.",
+        "line": 31,
+        "column": 20,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 31,
+        "endColumn": 28
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 31,
+        "column": 44,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 31,
+        "endColumn": 46,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [1046, 1048], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 35,
+        "column": 25,
+        "nodeType": "ArrowFunctionExpression",
+        "messageId": "missingReturnType",
+        "endLine": 35,
+        "endColumn": 27
+      },
+      {
+        "ruleId": "@typescript-eslint/no-deprecated",
+        "severity": 2,
+        "message": "`FormEvent` is deprecated. FormEvent doesn't actually exist.\nYou probably meant to use {@link ChangeEvent}, {@link InputEvent}, {@link SubmitEvent}, or just {@link SyntheticEvent} instead\ndepending on the event type.",
+        "line": 43,
+        "column": 34,
+        "nodeType": "Identifier",
+        "messageId": "deprecatedWithReason",
+        "endLine": 43,
+        "endColumn": 43
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 43,
+        "column": 45,
+        "nodeType": "ArrowFunctionExpression",
+        "messageId": "missingReturnType",
+        "endLine": 43,
+        "endColumn": 47
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 10,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { useMutation, useQueryClient } from '@tanstack/react-query';\nimport { X, Loader2 } from 'lucide-react';\nimport { useState } from 'react';\n\nimport { api } from '@/lib/api';\nimport { QUERY_KEYS } from '@/lib/query-keys';\nimport { useUIStore } from '@/stores/ui.store';\n\n\nexport default function CreateWorkspaceModal() {\n  const { isCreateWorkspaceOpen, closeCreateWorkspace } = useUIStore();\n  const [name, setName] = useState('');\n  const [description, setDescription] = useState('');\n  const [color, setColor] = useState('#3B82F6');\n  const [error, setError] = useState('');\n\n  const queryClient = useQueryClient();\n\n  const mutation = useMutation({\n    mutationFn: async (data: { name: string; description: string; color: string }) => {\n      const res = await api.post('/workspaces', data);\n      return res.data;\n    },\n    onSuccess: () => {\n      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.workspaces.all });\n      closeModal();\n    },\n    onError: (err: any) => {\n      setError(err.response?.data?.message || 'Failed to create workspace');\n    }\n  });\n\n  const closeModal = () => {\n    setName('');\n    setDescription('');\n    setColor('#3B82F6');\n    setError('');\n    closeCreateWorkspace();\n  };\n\n  const handleSubmit = (e: React.FormEvent) => {\n    e.preventDefault();\n    setError('');\n    mutation.mutate({ name, description, color });\n  };\n\n  if (!isCreateWorkspaceOpen) {return null;}\n\n  return (\n    <div className=\"fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50\">\n      <div className=\"bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md overflow-hidden\">\n        <div className=\"flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700\">\n          <h2 className=\"text-xl font-semibold text-gray-900 dark:text-white\">New Workspace</h2>\n          <button onClick={closeModal} className=\"text-gray-400 hover:text-gray-500\">\n            <X className=\"w-5 h-5\" />\n          </button>\n        </div>\n\n        <form onSubmit={handleSubmit} className=\"p-6 space-y-4\">\n          {error && <div className=\"p-3 bg-red-100 text-red-700 rounded-md text-sm\">{error}</div>}\n          \n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Name</label>\n            <input\n              type=\"text\"\n              required\n              placeholder=\"e.g. Frontend Project\"\n              value={name}\n              onChange={e => { setName(e.target.value); }}\n              className=\"mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500\"\n            />\n          </div>\n\n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Description</label>\n            <textarea\n              rows={3}\n              value={description}\n              onChange={e => { setDescription(e.target.value); }}\n              className=\"mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500\"\n            />\n          </div>\n\n          <div>\n            <label className=\"block text-sm font-medium text-gray-700 dark:text-gray-300\">Theme Color</label>\n            <div className=\"mt-2 flex items-center gap-3\">\n              <input\n                type=\"color\"\n                value={color}\n                onChange={e => { setColor(e.target.value); }}\n                className=\"h-8 w-8 rounded cursor-pointer border-0 p-0\"\n              />\n              <span className=\"text-sm text-gray-500\">{color}</span>\n            </div>\n          </div>\n\n          <div className=\"mt-6 flex justify-end gap-3\">\n            <button\n              type=\"button\"\n              onClick={closeModal}\n              className=\"px-4 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600\"\n            >\n              Cancel\n            </button>\n            <button\n              type=\"submit\"\n              disabled={mutation.isPending}\n              className=\"inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50\"\n            >\n              {mutation.isPending && <Loader2 className=\"w-4 h-4 mr-2 animate-spin\" />}\n              Create\n            </button>\n          </div>\n        </form>\n      </div>\n    </div>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\components\\sortable-resource-item.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 7,
+        "column": 8,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 7,
+        "endColumn": 37
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 21,
+        "column": 34,
+        "nodeType": "ArrowFunctionExpression",
+        "messageId": "missingReturnType",
+        "endLine": 21,
+        "endColumn": 36
+      },
+      {
+        "ruleId": "@next/next/no-img-element",
+        "severity": 1,
+        "message": "Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element",
+        "line": 47,
+        "column": 11,
+        "nodeType": "JSXOpeningElement",
+        "endLine": 47,
+        "endColumn": 87
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 55,
+        "column": 38,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 55,
+        "endColumn": 40,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [1835, 1837], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 3,
+    "fatalErrorCount": 0,
+    "warningCount": 1,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { useSortable } from '@dnd-kit/sortable';\nimport { CSS } from '@dnd-kit/utilities';\nimport { GripVertical, Globe, Folder, Terminal, MonitorSmartphone } from 'lucide-react';\n\nimport type { WorkspaceResource } from '@/hooks/use-workspace-resources';\n\nexport function SortableResourceItem({ item }: { item: WorkspaceResource }) {\n  const {\n    attributes,\n    listeners,\n    setNodeRef,\n    transform,\n    transition,\n  } = useSortable({ id: item.id });\n\n  const style = {\n    transform: CSS.Transform.toString(transform),\n    transition,\n  };\n\n  const getIcon = (type: string) => {\n    switch (type) {\n      case 'URL': return <Globe className=\"w-5 h-5 text-blue-500\" />;\n      case 'LOCAL_PATH': return <Folder className=\"w-5 h-5 text-yellow-500\" />;\n      case 'APP_URI': return <MonitorSmartphone className=\"w-5 h-5 text-green-500\" />;\n      case 'COMMAND': return <Terminal className=\"w-5 h-5 text-gray-500\" />;\n      default: return <Globe className=\"w-5 h-5 text-blue-500\" />;\n    }\n  };\n\n  return (\n    <div\n      ref={setNodeRef}\n      style={style}\n      className=\"flex items-center gap-4 p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm\"\n    >\n      <button\n        {...attributes}\n        {...listeners}\n        className=\"cursor-grab hover:bg-gray-100 dark:hover:bg-gray-700 p-1 rounded\"\n      >\n        <GripVertical className=\"w-5 h-5 text-gray-400\" />\n      </button>\n\n      <div className=\"flex-shrink-0\">\n        {item.resource.faviconUrl ? (\n          <img src={item.resource.faviconUrl} alt=\"\" className=\"w-6 h-6 rounded-sm\" />\n        ) : (\n          getIcon(item.resource.type)\n        )}\n      </div>\n\n      <div className=\"flex-1 min-w-0\">\n        <p className=\"text-sm font-medium text-gray-900 dark:text-white truncate\">\n          {item.resource.displayName || item.resource.value}\n        </p>\n        <p className=\"text-sm text-gray-500 dark:text-gray-400 truncate\">\n          {item.resource.value}\n        </p>\n      </div>\n    </div>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\hooks\\use-workspace-launch.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 10,
+        "column": 8,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 10,
+        "endColumn": 35
+      },
+      {
+        "ruleId": "@typescript-eslint/no-non-null-assertion",
+        "severity": 2,
+        "message": "Forbidden non-null assertion.",
+        "line": 72,
+        "column": 25,
+        "nodeType": "TSNonNullExpression",
+        "messageId": "noNonNull",
+        "endLine": 72,
+        "endColumn": 46
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 2,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { useState, useRef } from 'react';\n\nimport type { WorkspaceResource } from './use-workspace-resources';\n\ninterface LaunchResult {\n  success: boolean;\n  blockedUrls: string[];\n}\n\nexport function useWorkspaceLaunch() {\n  const [isLaunching, setIsLaunching] = useState(false);\n  const [isLocked, setIsLocked] = useState(false);\n  const [lockCountdown, setLockCountdown] = useState(0);\n  const [blockedUrls, setBlockedUrls] = useState<string[]>([]);\n  \n  const lockTimerRef = useRef<NodeJS.Timeout | null>(null);\n\n  const launchWorkspace = async (resources: WorkspaceResource[]): Promise<LaunchResult> => {\n    if (isLocked || isLaunching) {\n      return { success: false, blockedUrls: [] };\n    }\n\n    setIsLaunching(true);\n    setBlockedUrls([]);\n\n    // Filter only URLs that are enabled\n    const webResources = resources\n      .filter(r => r.isEnabled && r.resource.type === 'URL' && r.resource.value)\n      .map(r => r.resource.value);\n\n    const failedUrls: string[] = [];\n\n    // F2.5: Throttling Mechanism\n    // If > 15 tabs, batch them in groups of 5 with 1s delay\n    const BATCH_SIZE = 5;\n    const DELAY_MS = 1000;\n    \n    // We'll just always batch by 5 to be safe and consistent, \n    // or strictly follow \"> 15\" rule. Let's do batching for all to avoid popup blockers.\n    for (let i = 0; i < webResources.length; i += BATCH_SIZE) {\n      const batch = webResources.slice(i, i + BATCH_SIZE);\n      \n      batch.forEach(url => {\n        // window.open returns null if blocked by popup blocker\n        const newWindow = window.open(url, '_blank');\n        if (!newWindow) {\n          failedUrls.push(url);\n        }\n      });\n\n      // Wait 1s before next batch if there are more\n      if (i + BATCH_SIZE < webResources.length) {\n        await new Promise(resolve => setTimeout(resolve, DELAY_MS));\n      }\n    }\n\n    if (failedUrls.length > 0) {\n      setBlockedUrls(failedUrls);\n    }\n\n    setIsLaunching(false);\n\n    // F2.8: Anti-spam Lock (5s)\n    setIsLocked(true);\n    setLockCountdown(5);\n\n    if (lockTimerRef.current) {clearInterval(lockTimerRef.current);}\n\n    lockTimerRef.current = setInterval(() => {\n      setLockCountdown(prev => {\n        if (prev <= 1) {\n          clearInterval(lockTimerRef.current!);\n          setIsLocked(false);\n          return 0;\n        }\n        return prev - 1;\n      });\n    }, 1000);\n\n    return {\n      success: failedUrls.length === 0,\n      blockedUrls: failedUrls\n    };\n  };\n\n  return {\n    launchWorkspace,\n    isLaunching,\n    isLocked,\n    lockCountdown,\n    blockedUrls,\n    clearBlockedUrls: () => { setBlockedUrls([]); }\n  };\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\hooks\\use-workspace-resources.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 27,
+        "column": 8,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 27,
+        "endColumn": 38
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .data on an `any` value.",
+        "line": 32,
+        "column": 24,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 32,
+        "endColumn": 28
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 2,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { useQuery } from '@tanstack/react-query';\n\nimport { api } from '@/lib/api';\nimport { QUERY_KEYS } from '@/lib/query-keys';\n\nexport interface Resource {\n  id: string;\n  createdByUserId: string;\n  type: string;\n  value: string;\n  displayName: string | null;\n  faviconUrl: string | null;\n  notes: string | null;\n  createdAt: string;\n  updatedAt: string;\n}\n\nexport interface WorkspaceResource {\n  id: string;\n  workspaceId: string;\n  resourceId: string;\n  sortOrder: number;\n  isEnabled: boolean;\n  resource: Resource;\n}\n\nexport function useWorkspaceResources(workspaceId: string) {\n  return useQuery({\n    queryKey: QUERY_KEYS.workspaceResources.list(workspaceId),\n    queryFn: async () => {\n      const res = await api.get(`/workspaces/${workspaceId}/resources`);\n      return res.data?.data as WorkspaceResource[];\n    },\n    enabled: !!workspaceId,\n  });\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\hooks\\use-workspaces.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 20,
+        "column": 8,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 20,
+        "endColumn": 30
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .data on an `any` value.",
+        "line": 25,
+        "column": 24,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 25,
+        "endColumn": 28
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 2,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { useQuery } from '@tanstack/react-query';\n\nimport { api } from '@/lib/api';\nimport { QUERY_KEYS } from '@/lib/query-keys';\n\nexport interface Workspace {\n  id: string;\n  name: string;\n  description: string | null;\n  color: string | null;\n  icon: string | null;\n  sortOrder: number;\n  isPinned: boolean;\n  createdAt: string;\n  _count?: {\n    resources: number;\n  };\n}\n\nexport function useWorkspaces() {\n  return useQuery({\n    queryKey: QUERY_KEYS.workspaces.all,\n    queryFn: async () => {\n      const res = await api.get('/workspaces');\n      return res.data?.data as Workspace[];\n    },\n  });\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\lib\\api.ts",
+    "messages": [
+      {
+        "ruleId": "import/order",
+        "severity": 2,
+        "message": "There should be at least one empty line between import groups",
+        "line": 1,
+        "column": 1,
+        "nodeType": "ImportDeclaration",
+        "endLine": 1,
+        "endColumn": 43,
+        "fix": { "range": [42, 42], "text": "\n" }
+      },
+      {
+        "ruleId": "import/order",
+        "severity": 2,
+        "message": "`../stores/auth.store` import should occur before type import of `axios`",
+        "line": 4,
+        "column": 1,
+        "nodeType": "ImportDeclaration",
+        "endLine": 4,
+        "endColumn": 53,
+        "fix": {
+          "range": [43, 154],
+          "text": "import { useAuthStore } from '../stores/auth.store';\nimport type { InternalAxiosRequestConfig } from 'axios';\n\n"
+        }
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 7,
+        "column": 44,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 7,
+        "endColumn": 46,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [232, 234], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unnecessary-condition",
+        "severity": 2,
+        "message": "Unnecessary conditional, value is always truthy.",
+        "line": 17,
+        "column": 18,
+        "nodeType": "MemberExpression",
+        "messageId": "alwaysTruthy",
+        "endLine": 17,
+        "endColumn": 32
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unnecessary-type-assertion",
+        "severity": 2,
+        "message": "This assertion is unnecessary since it does not change the type of the expression.",
+        "line": 41,
+        "column": 17,
+        "nodeType": "TSAsExpression",
+        "messageId": "unnecessaryAssertion",
+        "endLine": 41,
+        "endColumn": 37,
+        "fix": { "range": [1201, 1208], "text": "" }
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 41,
+        "column": 17,
+        "nodeType": "TSAsExpression",
+        "messageId": "unsafeReturn",
+        "endLine": 41,
+        "endColumn": 37
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 44,
+        "column": 27,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 44,
+        "endColumn": 56,
+        "fix": { "range": [1311, 1340], "text": "{return Promise.reject(error);}" }
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unnecessary-condition",
+        "severity": 2,
+        "message": "Unnecessary conditional, value is always truthy.",
+        "line": 53,
+        "column": 17,
+        "nodeType": "MemberExpression",
+        "messageId": "alwaysTruthy",
+        "endLine": 53,
+        "endColumn": 40
+      },
+      {
+        "ruleId": "@typescript-eslint/restrict-template-expressions",
+        "severity": 2,
+        "message": "Invalid type \"string | undefined\" of template literal expression.",
+        "line": 67,
+        "column": 14,
+        "nodeType": "MemberExpression",
+        "messageId": "invalidType",
+        "endLine": 67,
+        "endColumn": 34
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unnecessary-condition",
+        "severity": 2,
+        "message": "Unnecessary conditional, value is always truthy.",
+        "line": 75,
+        "column": 13,
+        "nodeType": "MemberExpression",
+        "messageId": "alwaysTruthy",
+        "endLine": 75,
+        "endColumn": 36
+      },
+      {
+        "ruleId": "@typescript-eslint/return-await",
+        "severity": 2,
+        "message": "Returning an awaited promise is required in this context.",
+        "line": 84,
+        "column": 16,
+        "nodeType": "CallExpression",
+        "messageId": "requiredPromiseAwait",
+        "endLine": 84,
+        "endColumn": 110,
+        "suggestions": [
+          {
+            "messageId": "requiredPromiseAwaitSuggestion",
+            "fix": { "range": [2940, 2940], "text": "await " },
+            "desc": "Add `await` before the expression. Use caution as this may impact control flow."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 41,
+        "column": 34,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 41,
+        "endColumn": 37,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [1205, 1208], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [1205, 1208], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 11,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 4,
+    "fixableWarningCount": 0,
+    "source": "import axios, { AxiosError } from 'axios';\nimport type { InternalAxiosRequestConfig } from 'axios';\n\nimport { useAuthStore } from '../stores/auth.store';\n\nexport const api = axios.create({\n  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api',\n  withCredentials: true,\n  headers: {\n    'Content-Type': 'application/json',\n  },\n});\n\napi.interceptors.request.use(\n  (config: InternalAxiosRequestConfig) => {\n    const token = useAuthStore.getState().accessToken;\n    if (token && config.headers) {\n      config.headers.Authorization = `Bearer ${token}`;\n    }\n    return config;\n  },\n  async (error: unknown) => Promise.reject(error instanceof Error ? error : new Error(String(error)))\n);\n\nlet isRefreshing = false;\nlet failedQueue: { resolve: (value?: unknown) => void; reject: (reason?: unknown) => void }[] = [];\n\nconst processQueue = (error: AxiosError | null, token: string | null = null): void => {\n  failedQueue.forEach((prom) => {\n    if (error) {\n      prom.reject(error);\n    } else {\n      prom.resolve(token);\n    }\n  });\n  failedQueue = [];\n};\n\napi.interceptors.response.use(\n  // eslint-disable-next-line @typescript-eslint/no-explicit-any\n  (response) => response.data as any,\n  async (error: AxiosError) => {\n    const originalRequest = error.config;\n    if (!originalRequest) return Promise.reject(error);\n\n    // If 401 and it's not the refresh endpoint itself\n    if (error.response?.status === 401 && !originalRequest.url?.includes('/auth/refresh') && !originalRequest.url?.includes('/auth/login')) {\n      if (isRefreshing) {\n        return new Promise((resolve, reject) => {\n          failedQueue.push({ resolve, reject });\n        })\n          .then((token) => {\n            if (originalRequest.headers) {\n              originalRequest.headers.Authorization = `Bearer ${String(token)}`;\n            }\n            return api(originalRequest);\n          })\n          .catch((err: unknown) => Promise.reject(err instanceof Error ? err : new Error(String(err))));\n      }\n\n      const { logout, setAccessToken } = useAuthStore.getState();\n      (originalRequest as unknown as { _retry: boolean })._retry = true;\n      isRefreshing = true;\n\n      try {\n        const response = await axios.post<{ data?: { accessToken?: string } }>(\n          `${api.defaults.baseURL}/auth/refresh`,\n          {},\n          { withCredentials: true }\n        );\n\n        const newAccessToken = response.data.data?.accessToken ?? null;\n        setAccessToken(newAccessToken);\n        \n        if (originalRequest.headers && newAccessToken) {\n          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;\n        }\n        \n        processQueue(null, newAccessToken);\n        return await api(originalRequest);\n      } catch (refreshError: unknown) {\n        processQueue(refreshError instanceof AxiosError ? refreshError : new AxiosError(String(refreshError)), null);\n        await logout();\n        return Promise.reject(refreshError instanceof Error ? refreshError : new Error(String(refreshError)));\n      } finally {\n        isRefreshing = false;\n      }\n    }\n\n    return Promise.reject(error);\n  }\n);\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\lib\\query-keys.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 5,
+        "column": 37,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 5,
+        "endColumn": 40,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [180, 183], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [180, 183], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "export const QUERY_KEYS = {\n  workspaces: {\n    all: ['workspaces'] as const,\n    lists: () => [...QUERY_KEYS.workspaces.all, 'list'] as const,\n    list: (filters?: Record<string, any>) => [...QUERY_KEYS.workspaces.lists(), filters] as const,\n    details: () => [...QUERY_KEYS.workspaces.all, 'detail'] as const,\n    detail: (id: string) => [...QUERY_KEYS.workspaces.details(), id] as const,\n  },\n  workspaceResources: {\n    all: ['workspaceResources'] as const,\n    lists: () => [...QUERY_KEYS.workspaceResources.all, 'list'] as const,\n    list: (workspaceId: string) => [...QUERY_KEYS.workspaceResources.lists(), workspaceId] as const,\n  },\n} as const;\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\stores\\auth.store.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 40,
+        "column": 34,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 40,
+        "endColumn": 37,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [997, 1000], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [997, 1000], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 53,
+        "column": 34,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 53,
+        "endColumn": 37,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [1394, 1397], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [1394, 1397], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 79,
+        "column": 36,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 79,
+        "endColumn": 39,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [2193, 2196], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [2193, 2196], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 86,
+        "column": 37,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 86,
+        "endColumn": 40,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [2457, 2460], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [2457, 2460], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'error' is defined but never used.",
+        "line": 90,
+        "column": 14,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 90,
+        "endColumn": 19
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 5,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { create } from 'zustand';\n\nimport { api } from '../lib/api';\n\nimport type { ApiResponse } from '@repo/types';\nimport type { LoginInput, RegisterInput } from '@repo/validation';\n\nexport interface User {\n  id: string;\n  email: string;\n  name: string;\n  avatarUrl?: string | null;\n}\n\ninterface AuthState {\n  user: User | null;\n  accessToken: string | null;\n  isAuthenticated: boolean;\n  isLoading: boolean;\n  setAccessToken: (token: string | null) => void;\n  login: (data: LoginInput) => Promise<void>;\n  register: (data: RegisterInput) => Promise<void>;\n  logout: () => Promise<void>;\n  checkAuth: () => Promise<void>;\n}\n\nexport const useAuthStore = create<AuthState>((set, get) => ({\n  user: null,\n  accessToken: null,\n  isAuthenticated: false,\n  isLoading: true,\n\n  setAccessToken: (token: string | null) => {\n    set({ accessToken: token, isAuthenticated: !!token });\n  },\n\n  login: async (data: LoginInput) => {\n    try {\n      set({ isLoading: true });\n      const res = await api.post<any, ApiResponse<{ accessToken: string }>>('/auth/login', data);\n      if (res.data?.accessToken) {\n        set({ accessToken: res.data.accessToken, isAuthenticated: true });\n        await get().checkAuth();\n      }\n    } finally {\n      set({ isLoading: false });\n    }\n  },\n\n  register: async (data: RegisterInput) => {\n    try {\n      set({ isLoading: true });\n      const res = await api.post<any, ApiResponse<{ accessToken: string }>>('/auth/register', data);\n      if (res.data?.accessToken) {\n        set({ accessToken: res.data.accessToken, isAuthenticated: true });\n        await get().checkAuth();\n      }\n    } finally {\n      set({ isLoading: false });\n    }\n  },\n\n  logout: async () => {\n    try {\n      await api.post('/auth/logout');\n    } catch (error) {\n      console.error('Logout error', error);\n    } finally {\n      set({ user: null, accessToken: null, isAuthenticated: false });\n      window.location.href = '/login';\n    }\n  },\n\n  checkAuth: async () => {\n    try {\n      set({ isLoading: true });\n      // If we don't have an access token, try to refresh first (which sets it via interceptor or manually)\n      if (!get().accessToken) {\n        const res = await api.post<any, ApiResponse<{ accessToken: string }>>('/auth/refresh');\n        if (res.data?.accessToken) {\n          set({ accessToken: res.data.accessToken, isAuthenticated: true });\n        }\n      }\n      \n      // Fetch user profile\n      const userRes = await api.get<any, ApiResponse<User>>('/auth/me');\n      if (userRes.data) {\n        set({ user: userRes.data, isAuthenticated: true });\n      }\n    } catch (error) {\n      set({ user: null, accessToken: null, isAuthenticated: false });\n    } finally {\n      set({ isLoading: false });\n    }\n  },\n}));\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\stores\\ui.store.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  }
+]

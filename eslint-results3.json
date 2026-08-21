@@ -1,0 +1,1147 @@
+[
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(auth)\\layout.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(auth)\\login\\page.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 24,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 24,
+        "endColumn": 34
+      },
+      {
+        "ruleId": "@typescript-eslint/no-deprecated",
+        "severity": 2,
+        "message": "`FormEvent` is deprecated. FormEvent doesn't actually exist.\nYou probably meant to use {@link ChangeEvent}, {@link InputEvent}, {@link SubmitEvent}, or just {@link SyntheticEvent} instead\ndepending on the event type.",
+        "line": 33,
+        "column": 40,
+        "nodeType": "Identifier",
+        "messageId": "deprecatedWithReason",
+        "endLine": 33,
+        "endColumn": 49
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 33,
+        "column": 51,
+        "nodeType": "ArrowFunctionExpression",
+        "messageId": "missingReturnType",
+        "endLine": 33,
+        "endColumn": 53
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `SetStateAction<string>`.",
+        "line": 41,
+        "column": 18,
+        "nodeType": "LogicalExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 41,
+        "endColumn": 63
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .message on an `any` value.",
+        "line": 41,
+        "column": 38,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 41,
+        "endColumn": 45
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 41,
+        "column": 46,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 41,
+        "endColumn": 48,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [1067, 1069], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-misused-promises",
+        "severity": 2,
+        "message": "Promise-returning function provided to attribute where a void return was expected.",
+        "line": 61,
+        "column": 24,
+        "nodeType": "JSXExpressionContainer",
+        "messageId": "voidReturnAttribute",
+        "endLine": 61,
+        "endColumn": 38
+      },
+      {
+        "ruleId": "react/no-unescaped-entities",
+        "severity": 2,
+        "message": "`'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.",
+        "line": 118,
+        "column": 18,
+        "nodeType": "JSXText",
+        "messageId": "unescapedEntityAlts",
+        "suggestions": [
+          {
+            "messageId": "replaceWithAlt",
+            "data": { "alt": "&apos;" },
+            "fix": { "range": [3902, 3939], "text": "\n              Don&apos;t have an account?" },
+            "desc": "Replace with `&apos;`."
+          },
+          {
+            "messageId": "replaceWithAlt",
+            "data": { "alt": "&lsquo;" },
+            "fix": {
+              "range": [3902, 3939],
+              "text": "\n              Don&lsquo;t have an account?"
+            },
+            "desc": "Replace with `&lsquo;`."
+          },
+          {
+            "messageId": "replaceWithAlt",
+            "data": { "alt": "&#39;" },
+            "fix": { "range": [3902, 3939], "text": "\n              Don&#39;t have an account?" },
+            "desc": "Replace with `&#39;`."
+          },
+          {
+            "messageId": "replaceWithAlt",
+            "data": { "alt": "&rsquo;" },
+            "fix": {
+              "range": [3902, 3939],
+              "text": "\n              Don&rsquo;t have an account?"
+            },
+            "desc": "Replace with `&rsquo;`."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 8,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport {\n  Button,\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n  Input,\n  Label,\n} from '@repo/ui';\nimport axios from 'axios';\nimport { Loader2, LogIn } from 'lucide-react';\nimport Link from 'next/link';\nimport { useRouter } from 'next/navigation';\nimport { useState } from 'react';\n\n\nimport { SlideUp } from '@/components/animations/slide-up';\nimport { useAuthStore } from '@/stores/auth.store';\n\nexport default function LoginPage() {\n  const [email, setEmail] = useState('');\n  const [password, setPassword] = useState('');\n  const [error, setError] = useState('');\n\n  const login = useAuthStore((state) => state.login);\n  const isSubmitting = useAuthStore((state) => state.isSubmitting);\n  const router = useRouter();\n\n  const handleSubmit = async (e: React.FormEvent) => {\n    e.preventDefault();\n    setError('');\n    try {\n      await login({ email, password });\n      router.push('/dashboard');\n    } catch (err: unknown) {\n      if (axios.isAxiosError(err)) {\n        setError(err.response?.data?.message || 'Login failed');\n      } else {\n        setError('Login failed');\n      }\n    }\n  };\n\n  return (\n    <SlideUp duration={0.6}>\n      <Card className=\"w-full bg-card/60 backdrop-blur-xl border-white/10 dark:border-white/5 shadow-2xl\">\n        <CardHeader className=\"space-y-3 text-center\">\n          <div className=\"mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-2\">\n            <LogIn className=\"h-8 w-8 text-primary\" />\n          </div>\n          <CardTitle className=\"text-3xl font-bold tracking-tight\">Welcome back</CardTitle>\n          <CardDescription className=\"text-muted-foreground text-sm\">\n            Enter your credentials to access DevFlow Hub\n          </CardDescription>\n        </CardHeader>\n\n        <form onSubmit={handleSubmit}>\n          <CardContent className=\"space-y-4\">\n            {error && (\n              <div className=\"p-3 text-sm text-destructive bg-destructive/10 rounded-md border border-destructive/20\">\n                {error}\n              </div>\n            )}\n\n            <div className=\"space-y-2\">\n              <Label htmlFor=\"email\">Email Address</Label>\n              <Input\n                id=\"email\"\n                type=\"email\"\n                placeholder=\"you@example.com\"\n                required\n                value={email}\n                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value); }}\n                className=\"bg-background/50 focus-visible:ring-primary/50\"\n              />\n            </div>\n\n            <div className=\"space-y-2\">\n              <div className=\"flex items-center justify-between\">\n                <Label htmlFor=\"password\">Password</Label>\n                <Link href=\"#\" className=\"text-sm font-medium text-primary hover:underline\">\n                  Forgot password?\n                </Link>\n              </div>\n              <Input\n                id=\"password\"\n                type=\"password\"\n                placeholder=\"••••••••\"\n                required\n                value={password}\n                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setPassword(e.target.value); }}\n                className=\"bg-background/50 focus-visible:ring-primary/50\"\n              />\n            </div>\n          </CardContent>\n\n          <CardFooter className=\"flex flex-col space-y-4 pt-4\">\n            <Button\n              type=\"submit\"\n              className=\"w-full h-11 text-base font-semibold\"\n              disabled={isSubmitting}\n            >\n              {isSubmitting ? (\n                <>\n                  <Loader2 className=\"mr-2 h-5 w-5 animate-spin\" />\n                  Signing in...\n                </>\n              ) : (\n                'Sign in'\n              )}\n            </Button>\n\n            <p className=\"text-center text-sm text-muted-foreground\">\n              Don't have an account?{' '}\n              <Link href=\"/register\" className=\"font-semibold text-primary hover:underline\">\n                Create one now\n              </Link>\n            </p>\n          </CardFooter>\n        </form>\n      </Card>\n    </SlideUp>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(auth)\\register\\page.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 24,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 24,
+        "endColumn": 37
+      },
+      {
+        "ruleId": "@typescript-eslint/no-deprecated",
+        "severity": 2,
+        "message": "`FormEvent` is deprecated. FormEvent doesn't actually exist.\nYou probably meant to use {@link ChangeEvent}, {@link InputEvent}, {@link SubmitEvent}, or just {@link SyntheticEvent} instead\ndepending on the event type.",
+        "line": 34,
+        "column": 40,
+        "nodeType": "Identifier",
+        "messageId": "deprecatedWithReason",
+        "endLine": 34,
+        "endColumn": 49
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 34,
+        "column": 51,
+        "nodeType": "ArrowFunctionExpression",
+        "messageId": "missingReturnType",
+        "endLine": 34,
+        "endColumn": 53
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `SetStateAction<string>`.",
+        "line": 42,
+        "column": 18,
+        "nodeType": "LogicalExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 42,
+        "endColumn": 70
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .message on an `any` value.",
+        "line": 42,
+        "column": 38,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 42,
+        "endColumn": 45
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 42,
+        "column": 46,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 42,
+        "endColumn": 48,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [1128, 1130], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-misused-promises",
+        "severity": 2,
+        "message": "Promise-returning function provided to attribute where a void return was expected.",
+        "line": 62,
+        "column": 24,
+        "nodeType": "JSXExpressionContainer",
+        "messageId": "voidReturnAttribute",
+        "endLine": 62,
+        "endColumn": 38
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 7,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport {\n  Button,\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n  Input,\n  Label,\n} from '@repo/ui';\nimport axios from 'axios';\nimport { Loader2, UserPlus } from 'lucide-react';\nimport Link from 'next/link';\nimport { useRouter } from 'next/navigation';\nimport { useState } from 'react';\n\n\nimport { SlideUp } from '@/components/animations/slide-up';\nimport { useAuthStore } from '@/stores/auth.store';\n\nexport default function RegisterPage() {\n  const [name, setName] = useState('');\n  const [email, setEmail] = useState('');\n  const [password, setPassword] = useState('');\n  const [error, setError] = useState('');\n\n  const register = useAuthStore((state) => state.register);\n  const isSubmitting = useAuthStore((state) => state.isSubmitting);\n  const router = useRouter();\n\n  const handleSubmit = async (e: React.FormEvent) => {\n    e.preventDefault();\n    setError('');\n    try {\n      await register({ name, email, password });\n      router.push('/dashboard');\n    } catch (err: unknown) {\n      if (axios.isAxiosError(err)) {\n        setError(err.response?.data?.message || 'Registration failed');\n      } else {\n        setError('Registration failed');\n      }\n    }\n  };\n\n  return (\n    <SlideUp duration={0.6}>\n      <Card className=\"w-full bg-card/60 backdrop-blur-xl border-white/10 dark:border-white/5 shadow-2xl\">\n        <CardHeader className=\"space-y-3 text-center\">\n          <div className=\"mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-2\">\n            <UserPlus className=\"h-8 w-8 text-primary\" />\n          </div>\n          <CardTitle className=\"text-3xl font-bold tracking-tight\">Create an account</CardTitle>\n          <CardDescription className=\"text-muted-foreground text-sm\">\n            Join DevFlow Hub and organize your workspace\n          </CardDescription>\n        </CardHeader>\n\n        <form onSubmit={handleSubmit}>\n          <CardContent className=\"space-y-4\">\n            {error && (\n              <div className=\"p-3 text-sm text-destructive bg-destructive/10 rounded-md border border-destructive/20\">\n                {error}\n              </div>\n            )}\n\n            <div className=\"space-y-2\">\n              <Label htmlFor=\"name\">Full Name</Label>\n              <Input\n                id=\"name\"\n                type=\"text\"\n                placeholder=\"John Doe\"\n                required\n                value={name}\n                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setName(e.target.value); }}\n                className=\"bg-background/50 focus-visible:ring-primary/50\"\n              />\n            </div>\n\n            <div className=\"space-y-2\">\n              <Label htmlFor=\"email\">Email Address</Label>\n              <Input\n                id=\"email\"\n                type=\"email\"\n                placeholder=\"you@example.com\"\n                required\n                value={email}\n                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value); }}\n                className=\"bg-background/50 focus-visible:ring-primary/50\"\n              />\n            </div>\n\n            <div className=\"space-y-2\">\n              <Label htmlFor=\"password\">Password</Label>\n              <Input\n                id=\"password\"\n                type=\"password\"\n                placeholder=\"••••••••\"\n                required\n                value={password}\n                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setPassword(e.target.value); }}\n                className=\"bg-background/50 focus-visible:ring-primary/50\"\n              />\n            </div>\n          </CardContent>\n\n          <CardFooter className=\"flex flex-col space-y-4 pt-4\">\n            <Button\n              type=\"submit\"\n              className=\"w-full h-11 text-base font-semibold\"\n              disabled={isSubmitting}\n            >\n              {isSubmitting ? (\n                <>\n                  <Loader2 className=\"mr-2 h-5 w-5 animate-spin\" />\n                  Creating account...\n                </>\n              ) : (\n                'Create account'\n              )}\n            </Button>\n\n            <p className=\"text-center text-sm text-muted-foreground\">\n              Already have an account?{' '}\n              <Link href=\"/login\" className=\"font-semibold text-primary hover:underline\">\n                Sign in\n              </Link>\n            </p>\n          </CardFooter>\n        </form>\n      </Card>\n    </SlideUp>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(dashboard)\\dashboard\\page.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'CardDescription' is defined but never used.",
+        "line": 7,
+        "column": 3,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 7,
+        "endColumn": 18,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "CardDescription" },
+            "fix": { "range": [55, 74], "text": "" },
+            "desc": "Remove unused variable \"CardDescription\"."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'CardHeader' is defined but never used.",
+        "line": 8,
+        "column": 3,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 8,
+        "endColumn": 13,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "CardHeader" },
+            "fix": { "range": [74, 88], "text": "" },
+            "desc": "Remove unused variable \"CardHeader\"."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'CardTitle' is defined but never used.",
+        "line": 9,
+        "column": 3,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 9,
+        "endColumn": 12,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "CardTitle" },
+            "fix": { "range": [88, 101], "text": "" },
+            "desc": "Remove unused variable \"CardTitle\"."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'CalendarDays' is defined but never used.",
+        "line": 12,
+        "column": 10,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 12,
+        "endColumn": 22,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "CalendarDays" },
+            "fix": { "range": [143, 156], "text": "" },
+            "desc": "Remove unused variable \"CalendarDays\"."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'Link' is defined but never used.",
+        "line": 13,
+        "column": 8,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 13,
+        "endColumn": 12,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedImportDeclaration",
+            "data": { "varName": "Link" },
+            "fix": { "range": [210, 240], "text": "" },
+            "desc": "Remove unused import declaration."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 24,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 24,
+        "endColumn": 38
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 6,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport {\n  Button,\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n  Skeleton,\n} from '@repo/ui';\nimport { CalendarDays, Folder, LayoutGrid, Pin, Plus } from 'lucide-react';\nimport Link from 'next/link';\nimport { useRouter } from 'next/navigation';\n\n\n\nimport { FadeIn } from '@/components/animations/fade-in';\nimport { StaggerContainer, StaggerItem } from '@/components/animations/stagger-container';\nimport { WorkspaceCard } from '@/features/workspace/components/workspace-card';\nimport { useWorkspaces } from '@/features/workspace/hooks/use-workspaces';\nimport { useUIStore } from '@/stores/ui.store';\n\nexport default function DashboardPage() {\n  const { data: workspaces, isLoading, error } = useWorkspaces();\n  const { openCreateWorkspace } = useUIStore();\n  const router = useRouter();\n\n  if (isLoading) {\n    return (\n      <div className=\"space-y-8\">\n        <div className=\"space-y-2\">\n          <Skeleton className=\"h-10 w-48\" />\n          <Skeleton className=\"h-4 w-64\" />\n        </div>\n        <div className=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3\">\n          {[1, 2, 3, 4, 5, 6].map((i) => (\n            <Skeleton key={i} className=\"h-[180px] w-full rounded-xl\" />\n          ))}\n        </div>\n      </div>\n    );\n  }\n\n  if (error) {\n    return (\n      <FadeIn>\n        <Card className=\"border-destructive/50 bg-destructive/10\">\n          <CardContent className=\"pt-6 text-center text-destructive\">\n            <p>Error loading workspaces. Please try again later.</p>\n          </CardContent>\n        </Card>\n      </FadeIn>\n    );\n  }\n\n  const pinnedWorkspaces = workspaces?.filter((w) => w.isPinned) ?? [];\n  const unpinnedWorkspaces = workspaces?.filter((w) => !w.isPinned) ?? [];\n\n  return (\n    <FadeIn className=\"space-y-8 pb-12\">\n      <div className=\"sm:flex sm:items-center sm:justify-between\">\n        <div className=\"space-y-1\">\n          <h1 className=\"text-3xl font-bold tracking-tight\">Your Workspaces</h1>\n          <p className=\"text-muted-foreground\">Manage your project contexts and resources.</p>\n        </div>\n        <div className=\"mt-4 sm:mt-0\">\n          <Button\n            onClick={openCreateWorkspace}\n            className=\"shadow-lg hover:shadow-primary/25 transition-all\"\n          >\n            <Plus className=\"mr-2 h-4 w-4\" />\n            New Workspace\n          </Button>\n        </div>\n      </div>\n\n      {workspaces?.length === 0 ? (\n        <FadeIn delay={0.2}>\n          <Card className=\"border-dashed border-2 bg-transparent shadow-none\">\n            <CardContent className=\"flex flex-col items-center justify-center py-24 text-center\">\n              <div className=\"h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center mb-6\">\n                <Folder className=\"h-10 w-10 text-primary\" />\n              </div>\n              <h3 className=\"text-xl font-semibold tracking-tight mb-2\">No workspaces yet</h3>\n              <p className=\"text-muted-foreground max-w-sm mb-6\">\n                Get started by creating your first workspace to organize your resources.\n              </p>\n              <Button onClick={openCreateWorkspace} size=\"lg\">\n                <Plus className=\"mr-2 h-4 w-4\" />\n                Create Workspace\n              </Button>\n            </CardContent>\n          </Card>\n        </FadeIn>\n      ) : (\n        <div className=\"space-y-10\">\n          {pinnedWorkspaces.length > 0 && (\n            <section>\n              <div className=\"flex items-center gap-2 mb-4\">\n                <Pin className=\"h-4 w-4 text-primary\" />\n                <h2 className=\"text-sm font-semibold uppercase tracking-wider text-primary\">\n                  Pinned\n                </h2>\n              </div>\n              <StaggerContainer className=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4\">\n                {pinnedWorkspaces.map((workspace) => (\n                  <StaggerItem key={workspace.id}>\n                    <WorkspaceCard\n                      workspace={workspace}\n                      onClick={() => { router.push(`/dashboard/workspaces/${workspace.id}`); }}\n                    />\n                  </StaggerItem>\n                ))}\n              </StaggerContainer>\n            </section>\n          )}\n\n          {unpinnedWorkspaces.length > 0 && (\n            <section>\n              {pinnedWorkspaces.length > 0 && (\n                <div className=\"flex items-center gap-2 mb-4\">\n                  <LayoutGrid className=\"h-4 w-4 text-muted-foreground\" />\n                  <h2 className=\"text-sm font-semibold uppercase tracking-wider text-muted-foreground\">\n                    All Workspaces\n                  </h2>\n                </div>\n              )}\n              <StaggerContainer className=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4\">\n                {unpinnedWorkspaces.map((workspace) => (\n                  <StaggerItem key={workspace.id}>\n                    <WorkspaceCard\n                      workspace={workspace}\n                      onClick={() => { router.push(`/dashboard/workspaces/${workspace.id}`); }}\n                    />\n                  </StaggerItem>\n                ))}\n              </StaggerContainer>\n            </section>\n          )}\n        </div>\n      )}\n    </FadeIn>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(dashboard)\\dashboard\\workspaces\\[id]\\page.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 57,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 57,
+        "endColumn": 44
+      },
+      {
+        "ruleId": "@typescript-eslint/no-floating-promises",
+        "severity": 2,
+        "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
+        "line": 90,
+        "column": 7,
+        "nodeType": "ExpressionStatement",
+        "messageId": "floatingVoid",
+        "endLine": 90,
+        "endColumn": 100,
+        "suggestions": [
+          {
+            "messageId": "floatingFixVoid",
+            "fix": { "range": [2607, 2607], "text": "void " },
+            "desc": "Add void operator to ignore."
+          },
+          {
+            "messageId": "floatingFixAwait",
+            "fix": { "range": [2607, 2607], "text": "await " },
+            "desc": "Add await operator."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 101,
+        "column": 47,
+        "nodeType": "ArrowFunctionExpression",
+        "messageId": "missingReturnType",
+        "endLine": 101,
+        "endColumn": 49
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 133,
+        "column": 58,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 133,
+        "endColumn": 60,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [4180, 4182], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 140,
+        "column": 49,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 140,
+        "endColumn": 51,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [4445, 4447], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/restrict-template-expressions",
+        "severity": 2,
+        "message": "Invalid type \"number\" of template literal expression.",
+        "line": 175,
+        "column": 34,
+        "nodeType": "Identifier",
+        "messageId": "invalidType",
+        "endLine": 175,
+        "endColumn": 47
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 6,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\n\n\nimport {\n  DndContext,\n  KeyboardSensor,\n  PointerSensor,\n  closestCenter,\n  useSensor,\n  useSensors,\n} from '@dnd-kit/core';\nimport {\n  SortableContext,\n  arrayMove,\n  sortableKeyboardCoordinates,\n  verticalListSortingStrategy,\n} from '@dnd-kit/sortable';\nimport { API_ROUTES } from '@repo/constants';\nimport {\n  Button,\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n  Skeleton,\n} from '@repo/ui';\nimport { useMutation, useQueryClient } from '@tanstack/react-query';\nimport {\n  AlertTriangle,\n  ArrowLeft,\n  ExternalLink,\n  Folder,\n  Plus,\n  Rocket,\n  Settings2,\n  X,\n} from 'lucide-react';\nimport Link from 'next/link';\nimport { use, useEffect, useState } from 'react';\n\nimport type {\n  DragEndEvent} from '@dnd-kit/core';\nimport type { WorkspaceResource } from '@repo/types';\n\nimport { FadeIn } from '@/components/animations/fade-in';\nimport { SlideUp } from '@/components/animations/slide-up';\nimport { SortableResourceItem } from '@/components/sortable-resource-item';\nimport { useWorkspaceResources } from '@/features/workspace/hooks/use-workspace-resources';\nimport { useWorkspaces } from '@/features/workspace/hooks/use-workspaces';\nimport { useWorkspaceLaunch } from '@/hooks/use-workspace-launch';\nimport { api } from '@/lib/api';\nimport { QUERY_KEYS } from '@/lib/query-keys';\nimport { useUIStore } from '@/stores/ui.store';\n\nexport default function WorkspaceDetailPage(props: { params: Promise<{ id: string }> }) {\n  const params = use(props.params);\n  const workspaceId = params.id;\n\n  const { data: workspaces } = useWorkspaces();\n  const workspace = workspaces?.find((w) => w.id === workspaceId);\n  const { openAddResource } = useUIStore();\n  const { data: originalResources, isLoading } = useWorkspaceResources(workspaceId);\n\n  const { launchWorkspace, isLaunching, isLocked, lockCountdown, blockedUrls, clearBlockedUrls } =\n    useWorkspaceLaunch();\n\n  const [resources, setResources] = useState<WorkspaceResource[]>([]);\n  const queryClient = useQueryClient();\n\n  useEffect(() => {\n    if (originalResources) {\n      setResources([...originalResources].sort((a, b) => a.sortOrder - b.sortOrder));\n    }\n  }, [originalResources]);\n\n  const reorderMutation = useMutation({\n    mutationFn: async (orderedIds: string[]) => {\n      const data = {\n        resourceOrders: orderedIds.map((id, index) => ({\n          workspaceResourceId: id,\n          sortOrder: index,\n        })),\n      };\n      const route = API_ROUTES.RESOURCES.REORDER.replace(':workspaceId', workspaceId);\n      await api.patch(`/${route}`, data);\n    },\n    onSuccess: () => {\n      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.workspaceResources.list(workspaceId) });\n    },\n  });\n\n  const sensors = useSensors(\n    useSensor(PointerSensor),\n    useSensor(KeyboardSensor, {\n      coordinateGetter: sortableKeyboardCoordinates,\n    }),\n  );\n\n  const handleDragEnd = (event: DragEndEvent) => {\n    const { active, over } = event;\n\n    if (over && active.id !== over.id) {\n      setResources((items) => {\n        const oldIndex = items.findIndex((item) => item.id === active.id);\n        const newIndex = items.findIndex((item) => item.id === over.id);\n\n        const newItems = arrayMove(items, oldIndex, newIndex);\n        void reorderMutation.mutateAsync(newItems.map((item) => item.id));\n        return newItems;\n      });\n    }\n  };\n\n  if (!workspace) {return null;}\n\n  return (\n    <FadeIn className=\"space-y-8 max-w-5xl mx-auto pb-12\">\n      <div className=\"flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors\">\n        <Link\n          href=\"/dashboard\"\n          className=\"flex items-center gap-1.5 px-3 py-1.5 -ml-3 rounded-md hover:bg-secondary/50\"\n        >\n          <ArrowLeft className=\"w-4 h-4\" /> Back to Dashboard\n        </Link>\n      </div>\n\n      <div className=\"sm:flex sm:items-start sm:justify-between border-b border-border/50 pb-6\">\n        <div className=\"flex items-start gap-4\">\n          <div\n            className=\"w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-sm border border-border/50\"\n            style={{ backgroundColor: `${workspace.color || 'hsl(var(--primary))'}15` }}\n          >\n            {workspace.icon ? (\n              <span className=\"text-3xl\">{workspace.icon}</span>\n            ) : (\n              <Folder\n                className=\"w-8 h-8\"\n                style={{ color: workspace.color || 'hsl(var(--primary))' }}\n              />\n            )}\n          </div>\n          <div>\n            <h1 className=\"text-3xl font-bold tracking-tight mb-1 flex items-center gap-2\">\n              {workspace.name}\n            </h1>\n            {workspace.description && (\n              <p className=\"text-muted-foreground max-w-2xl text-sm md:text-base\">\n                {workspace.description}\n              </p>\n            )}\n            <div className=\"flex items-center gap-4 mt-3 text-xs font-medium text-muted-foreground\">\n              <span className=\"flex items-center gap-1\">\n                <Settings2 className=\"w-3.5 h-3.5\" /> {resources.length} resources\n              </span>\n            </div>\n          </div>\n        </div>\n        <div className=\"mt-6 sm:mt-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-3\">\n          <Button\n            variant=\"outline\"\n            onClick={() => { openAddResource(workspaceId); }}\n            className=\"shadow-sm\"\n          >\n            <Plus className=\"mr-2 h-4 w-4\" />\n            Add Resource\n          </Button>\n          <Button\n            onClick={() => void launchWorkspace(resources)}\n            disabled={isLocked || isLaunching || resources.length === 0}\n            className=\"shadow-sm bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white border-0\"\n          >\n            <Rocket className={`mr-2 h-4 w-4 ${isLaunching ? 'animate-pulse' : ''}`} />\n            {isLocked ? `Wait (${lockCountdown}s)` : 'Launch Workspace'}\n          </Button>\n        </div>\n      </div>\n\n      {blockedUrls.length > 0 && (\n        <SlideUp duration={0.4}>\n          <Card className=\"border-yellow-500/50 bg-yellow-500/10 shadow-sm\">\n            <CardHeader className=\"py-4\">\n              <div className=\"flex items-start justify-between\">\n                <div className=\"flex gap-3\">\n                  <AlertTriangle className=\"h-5 w-5 text-yellow-600 dark:text-yellow-500 shrink-0 mt-0.5\" />\n                  <div>\n                    <CardTitle className=\"text-sm font-semibold text-yellow-800 dark:text-yellow-500\">\n                      Popup Blocker Detected\n                    </CardTitle>\n                    <CardDescription className=\"text-yellow-700 dark:text-yellow-400/80 mt-1\">\n                      Your browser prevented {blockedUrls.length} tabs from opening automatically.\n                      Please allow popups for DevFlow Hub.\n                    </CardDescription>\n                  </div>\n                </div>\n                <Button\n                  variant=\"ghost\"\n                  size=\"icon\"\n                  onClick={clearBlockedUrls}\n                  className=\"text-yellow-600 hover:bg-yellow-500/20 -mr-2 -mt-2\"\n                >\n                  <X className=\"h-4 w-4\" />\n                </Button>\n              </div>\n            </CardHeader>\n            <CardContent className=\"pb-4 pt-0 pl-[3.25rem]\">\n              <div className=\"flex flex-wrap gap-2\">\n                {blockedUrls.map((url, idx) => (\n                  <a\n                    key={idx}\n                    href={url}\n                    target=\"_blank\"\n                    rel=\"noreferrer\"\n                    className=\"inline-flex items-center px-2.5 py-1 text-xs font-medium bg-yellow-500/20 text-yellow-800 dark:text-yellow-300 rounded hover:bg-yellow-500/30 transition-colors\"\n                  >\n                    {url} <ExternalLink className=\"ml-1.5 h-3 w-3 opacity-70\" />\n                  </a>\n                ))}\n              </div>\n            </CardContent>\n          </Card>\n        </SlideUp>\n      )}\n\n      <div className=\"bg-card/50 backdrop-blur-sm rounded-xl border border-border/50 p-6 min-h-[400px] shadow-sm\">\n        <h2 className=\"text-lg font-semibold tracking-tight mb-6\">Workspace Resources</h2>\n\n        {isLoading ? (\n          <div className=\"space-y-3\">\n            {[1, 2, 3].map((i) => (\n              <Skeleton key={i} className=\"h-[72px] w-full rounded-lg\" />\n            ))}\n          </div>\n        ) : resources.length === 0 ? (\n          <div className=\"text-center py-16\">\n            <div className=\"mx-auto w-16 h-16 rounded-full bg-secondary/50 flex items-center justify-center mb-4\">\n              <Plus className=\"h-8 w-8 text-muted-foreground/50\" />\n            </div>\n            <h3 className=\"text-sm font-medium\">No resources added</h3>\n            <p className=\"mt-1 text-sm text-muted-foreground\">\n              Get started by adding a new resource to this workspace.\n            </p>\n          </div>\n        ) : (\n          <DndContext\n            sensors={sensors}\n            collisionDetection={closestCenter}\n            onDragEnd={handleDragEnd}\n          >\n            <SortableContext\n              items={resources.map((r) => r.id)}\n              strategy={verticalListSortingStrategy}\n            >\n              <div className=\"space-y-3\">\n                {resources.map((item) => (\n                  <SortableResourceItem key={item.id} item={item} />\n                ))}\n              </div>\n            </SortableContext>\n          </DndContext>\n        )}\n      </div>\n    </FadeIn>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\(dashboard)\\layout.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 24,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 24,
+        "endColumn": 40
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unnecessary-condition",
+        "severity": 2,
+        "message": "Unnecessary optional chain on a non-nullish value.",
+        "line": 98,
+        "column": 34,
+        "nodeType": "MemberExpression",
+        "messageId": "neverOptionalChain",
+        "endLine": 98,
+        "endColumn": 36,
+        "suggestions": [
+          {
+            "messageId": "suggestRemoveOptionalChain",
+            "fix": { "range": [3552, 3554], "text": "" },
+            "desc": "Remove unnecessary optional chain"
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 2,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport {\n  Button,\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from '@repo/ui';\nimport { AnimatePresence } from 'framer-motion';\nimport { LayoutDashboard, Loader2, LogOut, Menu, Settings, User, X } from 'lucide-react';\nimport Link from 'next/link';\nimport { useRouter } from 'next/navigation';\nimport { useEffect, useState } from 'react';\n\n\nimport { FadeIn } from '@/components/animations/fade-in';\nimport AddResourceModal from '@/components/modals/add-resource-modal';\nimport CreateWorkspaceModal from '@/components/modals/create-workspace-modal';\nimport { useAuthStore } from '@/stores/auth.store';\n\nexport default function DashboardLayout({ children }: { children: React.ReactNode }) {\n  const { isAuthenticated, isLoading, checkAuth, user, logout } = useAuthStore();\n  const router = useRouter();\n  const [isSidebarOpen, setIsSidebarOpen] = useState(false);\n\n  useEffect(() => {\n    void checkAuth();\n  }, [checkAuth]);\n\n  useEffect(() => {\n    if (!isLoading && !isAuthenticated) {\n      router.push('/login');\n    }\n  }, [isLoading, isAuthenticated, router]);\n\n  if (isLoading) {\n    return (\n      <div className=\"min-h-screen flex items-center justify-center bg-background\">\n        <Loader2 className=\"h-8 w-8 animate-spin text-primary\" />\n      </div>\n    );\n  }\n\n  if (!isAuthenticated) {return null;}\n\n  return (\n    <div className=\"min-h-screen bg-background flex overflow-hidden\">\n      {/* Mobile Sidebar Overlay */}\n      <AnimatePresence>\n        {isSidebarOpen && (\n          <FadeIn\n            duration={0.2}\n            className=\"fixed inset-0 z-20 bg-background/80 backdrop-blur-sm lg:hidden\"\n            onClick={() => { setIsSidebarOpen(false); }}\n          />\n        )}\n      </AnimatePresence>\n\n      {/* Sidebar */}\n      <aside\n        className={`fixed inset-y-0 left-0 z-30 w-64 bg-card border-r border-border transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}\n      >\n        <div className=\"h-full flex flex-col\">\n          <div className=\"h-16 flex items-center px-6 border-b border-border justify-between\">\n            <span className=\"text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500\">\n              DevFlow Hub\n            </span>\n            <Button\n              variant=\"ghost\"\n              size=\"icon\"\n              className=\"lg:hidden\"\n              onClick={() => { setIsSidebarOpen(false); }}\n            >\n              <X className=\"h-5 w-5\" />\n            </Button>\n          </div>\n\n          <div className=\"flex-1 overflow-y-auto py-6\">\n            <nav className=\"px-4 space-y-2\">\n              <Link href=\"/dashboard\" passHref>\n                <Button variant=\"secondary\" className=\"w-full justify-start font-medium\">\n                  <LayoutDashboard className=\"mr-3 h-4 w-4\" />\n                  Dashboard\n                </Button>\n              </Link>\n            </nav>\n          </div>\n\n          <div className=\"p-4 border-t border-border\">\n            <DropdownMenu>\n              <DropdownMenuTrigger asChild>\n                <Button variant=\"ghost\" className=\"w-full justify-start h-auto p-2\">\n                  <div className=\"flex items-center gap-3 w-full\">\n                    <div className=\"h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold uppercase shrink-0\">\n                      {user?.name?.[0] ?? 'U'}\n                    </div>\n                    <div className=\"flex flex-col items-start truncate\">\n                      <span className=\"text-sm font-medium truncate w-full\">{user?.name}</span>\n                      <span className=\"text-xs text-muted-foreground truncate w-full\">\n                        {user?.email}\n                      </span>\n                    </div>\n                  </div>\n                </Button>\n              </DropdownMenuTrigger>\n              <DropdownMenuContent align=\"end\" className=\"w-56\">\n                <DropdownMenuLabel>My Account</DropdownMenuLabel>\n                <DropdownMenuSeparator />\n                <DropdownMenuItem>\n                  <User className=\"mr-2 h-4 w-4\" />\n                  Profile\n                </DropdownMenuItem>\n                <DropdownMenuItem>\n                  <Settings className=\"mr-2 h-4 w-4\" />\n                  Settings\n                </DropdownMenuItem>\n                <DropdownMenuSeparator />\n                <DropdownMenuItem\n                  onClick={() => void logout()}\n                  className=\"text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer\"\n                >\n                  <LogOut className=\"mr-2 h-4 w-4\" />\n                  Sign Out\n                </DropdownMenuItem>\n              </DropdownMenuContent>\n            </DropdownMenu>\n          </div>\n        </div>\n      </aside>\n\n      {/* Main Content */}\n      <div className=\"flex-1 flex flex-col min-w-0 h-screen overflow-hidden\">\n        {/* Header (Mobile) */}\n        <header className=\"bg-card shadow-sm border-b border-border lg:hidden shrink-0\">\n          <div className=\"h-16 px-4 flex items-center justify-between\">\n            <Button variant=\"ghost\" size=\"icon\" onClick={() => { setIsSidebarOpen(true); }}>\n              <Menu className=\"h-5 w-5\" />\n            </Button>\n            <span className=\"text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500\">\n              DevFlow Hub\n            </span>\n            <div className=\"w-9\" /> {/* Spacer */}\n          </div>\n        </header>\n\n        <main className=\"flex-1 overflow-y-auto focus:outline-none p-4 sm:p-6 lg:p-8 bg-background/50\">\n          <div className=\"max-w-7xl mx-auto\">{children}</div>\n        </main>\n      </div>\n\n      <CreateWorkspaceModal />\n      <AddResourceModal />\n    </div>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\error.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'AlertTriangle' is defined but never used.",
+        "line": 3,
+        "column": 10,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 3,
+        "endColumn": 23,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "AlertTriangle" },
+            "fix": { "range": [58, 72], "text": "" },
+            "desc": "Remove unused variable \"AlertTriangle\"."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'ArrowLeft' is defined but never used.",
+        "line": 3,
+        "column": 25,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 3,
+        "endColumn": 34,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "ArrowLeft" },
+            "fix": { "range": [71, 82], "text": "" },
+            "desc": "Remove unused variable \"ArrowLeft\"."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 9,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 9,
+        "endColumn": 30
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 3,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\nimport { Button } from '@repo/ui';\nimport { AlertTriangle, ArrowLeft, RefreshCcw } from 'lucide-react';\nimport Link from 'next/link';\nimport { useEffect } from 'react';\n\n\n\nexport default function Error({\n  error,\n  reset,\n}: {\n  error: Error & { digest?: string };\n  reset: () => void;\n}) {\n  useEffect(() => {\n    // Log the error to an error reporting service\n    console.error(error);\n  }, [error]);\n\n  return (\n    <div className=\"flex flex-col items-center justify-center min-h-screen p-4 bg-gray-950 text-white\">\n      <div className=\"max-w-md w-full bg-gray-900 border border-red-500/20 rounded-xl p-8 shadow-2xl text-center space-y-6\">\n        <div className=\"mx-auto w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center\">\n          <svg\n            className=\"w-8 h-8 text-red-500\"\n            fill=\"none\"\n            viewBox=\"0 0 24 24\"\n            stroke=\"currentColor\"\n          >\n            <path\n              strokeLinecap=\"round\"\n              strokeLinejoin=\"round\"\n              strokeWidth={2}\n              d=\"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z\"\n            />\n          </svg>\n        </div>\n\n        <div>\n          <h2 className=\"text-2xl font-bold text-gray-100 mb-2\">Something went wrong!</h2>\n          <p className=\"text-gray-400 text-sm\">\n            We apologize for the inconvenience. An unexpected error has occurred.\n          </p>\n        </div>\n\n        <div className=\"flex flex-col sm:flex-row gap-3 pt-4\">\n          <Button onClick={() => { reset(); }} className=\"inline-flex items-center\">\n            <RefreshCcw className=\"mr-2 h-4 w-4\" />\n            Try again\n          </Button>\n          <Link\n            href=\"/\"\n            className=\"flex-1 bg-gray-800 text-white hover:bg-gray-700 px-4 py-2 rounded-lg font-medium transition-colors\"\n          >\n            Go Home\n          </Link>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\global-error.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 7,
+        "column": 16,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 7,
+        "endColumn": 36
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'error' is defined but never used. Allowed unused args must match /^_/u.",
+        "line": 8,
+        "column": 3,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 8,
+        "endColumn": 8
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 2,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { Button } from '@repo/ui';\nimport { RefreshCcw } from 'lucide-react';\n\n\nexport default function GlobalError({\n  error,\n  reset,\n}: {\n  error: Error & { digest?: string };\n  reset: () => void;\n}) {\n  return (\n    <html>\n      <body>\n        <div\n          style={{\n            display: 'flex',\n            flexDirection: 'column',\n            alignItems: 'center',\n            justifyContent: 'center',\n            minHeight: '100vh',\n            padding: '1rem',\n            backgroundColor: '#030712',\n            color: '#f3f4f6',\n            fontFamily: 'system-ui, sans-serif',\n          }}\n        >\n          <div\n            style={{\n              maxWidth: '28rem',\n              width: '100%',\n              backgroundColor: '#111827',\n              border: '1px solid rgba(239, 68, 68, 0.2)',\n              borderRadius: '0.75rem',\n              padding: '2rem',\n              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',\n              textAlign: 'center',\n            }}\n          >\n            <h2\n              style={{\n                fontSize: '1.5rem',\n                fontWeight: 'bold',\n                marginBottom: '0.5rem',\n                color: '#f3f4f6',\n              }}\n            >\n              Global Critical Error\n            </h2>\n            <p style={{ color: '#9ca3af', fontSize: '0.875rem', marginBottom: '1.5rem' }}>\n              A fatal error occurred. Please try to reload the application.\n            </p>\n            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>\n              <Button onClick={() => { reset(); }} className=\"inline-flex items-center\">\n                <RefreshCcw className=\"mr-2 h-4 w-4\" />\n                Try again\n              </Button>\n            </div>\n          </div>\n        </div>\n      </body>\n    </html>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\layout.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\app\\page.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\components\\Providers.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\components\\animations\\fade-in.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 15,
+        "column": 8,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 15,
+        "endColumn": 23
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { motion } from 'framer-motion';\n\nimport type { HTMLMotionProps} from 'framer-motion';\nimport type { ReactNode } from 'react';\n\n\ninterface FadeInProps extends HTMLMotionProps<'div'> {\n  children?: ReactNode;\n  delay?: number;\n  duration?: number;\n}\n\nexport function FadeIn({\n  children,\n  delay = 0,\n  duration = 0.5,\n  className = '',\n  ...props\n}: FadeInProps) {\n  return (\n    <motion.div\n      initial={{ opacity: 0 }}\n      animate={{ opacity: 1 }}\n      exit={{ opacity: 0 }}\n      transition={{ duration, delay, ease: 'easeOut' }}\n      className={className}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\components\\animations\\slide-up.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 16,
+        "column": 8,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 16,
+        "endColumn": 24
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { motion } from 'framer-motion';\n\nimport type { ReactNode } from 'react';\n\n\ninterface SlideUpProps {\n  children: ReactNode;\n  delay?: number;\n  duration?: number;\n  yOffset?: number;\n  className?: string;\n}\n\nexport function SlideUp({\n  children,\n  delay = 0,\n  duration = 0.5,\n  yOffset = 20,\n  className = '',\n}: SlideUpProps) {\n  return (\n    <motion.div\n      initial={{ opacity: 0, y: yOffset }}\n      animate={{ opacity: 1, y: 0 }}\n      exit={{ opacity: 0, y: -yOffset }}\n      transition={{ duration, delay, ease: [0.25, 0.1, 0.25, 1] }}\n      className={className}\n    >\n      {children}\n    </motion.div>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\components\\animations\\stagger-container.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 14,
+        "column": 8,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 14,
+        "endColumn": 33
+      },
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 40,
+        "column": 8,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 40,
+        "endColumn": 28
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 2,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\nimport { motion } from 'framer-motion';\n\nimport type { ReactNode } from 'react';\n\n\ninterface StaggerContainerProps {\n  children: ReactNode;\n  staggerDelay?: number;\n  className?: string;\n}\n\nexport function StaggerContainer({\n  children,\n  staggerDelay = 0.1,\n  className = '',\n}: StaggerContainerProps) {\n  return (\n    <motion.div\n      initial=\"hidden\"\n      animate=\"visible\"\n      exit=\"hidden\"\n      variants={{\n        hidden: { opacity: 0 },\n        visible: {\n          opacity: 1,\n          transition: {\n            staggerChildren: staggerDelay,\n          },\n        },\n      }}\n      className={className}\n    >\n      {children}\n    </motion.div>\n  );\n}\n\nexport function StaggerItem({\n  children,\n  className = '',\n  yOffset = 20,\n}: {\n  children: ReactNode;\n  className?: string;\n  yOffset?: number;\n}) {\n  return (\n    <motion.div\n      variants={{\n        hidden: { opacity: 0, y: yOffset },\n        visible: {\n          opacity: 1,\n          y: 0,\n          transition: {\n            ease: [0.25, 0.1, 0.25, 1],\n            duration: 0.5,\n          },\n        },\n      }}\n      className={className}\n    >\n      {children}\n    </motion.div>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\components\\modals\\add-resource-modal.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 50,
+        "column": 7,
+        "nodeType": "ReturnStatement",
+        "messageId": "unsafeReturn",
+        "endLine": 50,
+        "endColumn": 23
+      },
+      {
+        "ruleId": "@typescript-eslint/no-floating-promises",
+        "severity": 2,
+        "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
+        "line": 53,
+        "column": 7,
+        "nodeType": "ExpressionStatement",
+        "messageId": "floatingVoid",
+        "endLine": 55,
+        "endColumn": 10,
+        "suggestions": [
+          {
+            "messageId": "floatingFixVoid",
+            "fix": { "range": [1599, 1599], "text": "void " },
+            "desc": "Add void operator to ignore."
+          },
+          {
+            "messageId": "floatingFixAwait",
+            "fix": { "range": [1599, 1599], "text": "await " },
+            "desc": "Add await operator."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-non-null-assertion",
+        "severity": 2,
+        "message": "Forbidden non-null assertion.",
+        "line": 54,
+        "column": 54,
+        "nodeType": "TSNonNullExpression",
+        "messageId": "noNonNull",
+        "endLine": 54,
+        "endColumn": 85
+      },
+      {
+        "ruleId": "@typescript-eslint/no-floating-promises",
+        "severity": 2,
+        "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
+        "line": 56,
+        "column": 7,
+        "nodeType": "ExpressionStatement",
+        "messageId": "floatingVoid",
+        "endLine": 56,
+        "endColumn": 78,
+        "suggestions": [
+          {
+            "messageId": "floatingFixVoid",
+            "fix": { "range": [1734, 1734], "text": "void " },
+            "desc": "Add void operator to ignore."
+          },
+          {
+            "messageId": "floatingFixAwait",
+            "fix": { "range": [1734, 1734], "text": "await " },
+            "desc": "Add await operator."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `SetStateAction<string>`.",
+        "line": 61,
+        "column": 18,
+        "nodeType": "LogicalExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 61,
+        "endColumn": 73
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .message on an `any` value.",
+        "line": 61,
+        "column": 38,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 61,
+        "endColumn": 45
+      },
+      {
+        "ruleId": "@typescript-eslint/no-deprecated",
+        "severity": 2,
+        "message": "`FormEvent` is deprecated. FormEvent doesn't actually exist.\nYou probably meant to use {@link ChangeEvent}, {@link InputEvent}, {@link SubmitEvent}, or just {@link SyntheticEvent} instead\ndepending on the event type.",
+        "line": 77,
+        "column": 34,
+        "nodeType": "Identifier",
+        "messageId": "deprecatedWithReason",
+        "endLine": 77,
+        "endColumn": 43
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 7,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\n\nimport { API_ROUTES } from '@repo/constants';\nimport {\n  Button,\n  Input,\n  Label,\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n  Textarea,\n} from '@repo/ui';\nimport { useMutation, useQueryClient } from '@tanstack/react-query';\nimport axios from 'axios';\nimport { Loader2, X } from 'lucide-react';\nimport { useState } from 'react';\n\nimport type { CreateResourceInput } from '@repo/validation';\n\n\nimport { FadeIn } from '@/components/animations/fade-in';\nimport { SlideUp } from '@/components/animations/slide-up';\nimport { api } from '@/lib/api';\nimport { QUERY_KEYS } from '@/lib/query-keys';\nimport { useUIStore } from '@/stores/ui.store';\n\nexport default function AddResourceModal(): React.ReactElement | null {\n  const { isAddResourceOpen, selectedWorkspaceIdForResource, closeAddResource } = useUIStore();\n  const [type, setType] = useState<'URL' | 'LOCAL_PATH' | 'APP_URI' | 'COMMAND'>('URL');\n  const [value, setValue] = useState('');\n  const [displayName, setDisplayName] = useState('');\n  const [notes, setNotes] = useState('');\n  const [error, setError] = useState('');\n\n  const queryClient = useQueryClient();\n\n  const mutation = useMutation({\n    mutationFn: async (data: CreateResourceInput) => {\n      if (!selectedWorkspaceIdForResource) {\n        throw new Error('Workspace ID is missing');\n      }\n      const route = API_ROUTES.RESOURCES.BASE.replace(\n        ':workspaceId',\n        selectedWorkspaceIdForResource,\n      );\n      const res = await api.post(`/${route}`, data);\n      return res.data;\n    },\n    onSuccess: () => {\n      queryClient.invalidateQueries({\n        queryKey: QUERY_KEYS.workspaceResources.list(selectedWorkspaceIdForResource!),\n      });\n      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.workspaces.all });\n      closeModal();\n    },\n    onError: (err: unknown) => {\n      if (axios.isAxiosError(err)) {\n        setError(err.response?.data?.message ?? 'Failed to add resource');\n      } else {\n        setError('Failed to add resource');\n      }\n    },\n  });\n\n  const closeModal = (): void => {\n    setType('URL');\n    setValue('');\n    setDisplayName('');\n    setNotes('');\n    setError('');\n    closeAddResource();\n  };\n\n  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {\n    e.preventDefault();\n    setError('');\n    mutation.mutate({\n      type,\n      value,\n      displayName: displayName || undefined,\n      notes: notes || undefined,\n    });\n  };\n\n  if (!isAddResourceOpen || !selectedWorkspaceIdForResource) {\n    return null;\n  }\n\n  return (\n    <FadeIn\n      duration={0.2}\n      className=\"fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm\"\n    >\n      <SlideUp duration={0.3} className=\"w-full max-w-md\">\n        <div className=\"bg-card/95 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-border/50\">\n          <div className=\"flex justify-between items-center px-6 py-4 border-b border-border/50\">\n            <div>\n              <h2 className=\"text-lg font-semibold tracking-tight text-foreground\">Add Resource</h2>\n              <p className=\"text-sm text-muted-foreground mt-1\">\n                Add a new link, local path, or command to this workspace.\n              </p>\n            </div>\n            <Button\n              variant=\"ghost\"\n              size=\"icon\"\n              onClick={() => { closeModal(); }}\n              className=\"text-muted-foreground hover:text-foreground transition-colors self-start mt-1 rounded-sm opacity-70 hover:opacity-100 w-6 h-6\"\n            >\n              <X className=\"w-4 h-4\" />\n            </Button>\n          </div>\n\n          <form\n            onSubmit={(e) => {\n              handleSubmit(e);\n            }}\n            className=\"p-6 space-y-4\"\n          >\n            {error && (\n              <div className=\"p-3 bg-destructive/10 text-destructive border border-destructive/20 rounded-lg text-sm\">\n                {error}\n              </div>\n            )}\n\n            <div className=\"space-y-2\">\n              <Label>Type</Label>\n              <Select\n                value={type}\n                onValueChange={(val: string) =>\n                  { setType(val as 'URL' | 'LOCAL_PATH' | 'APP_URI' | 'COMMAND'); }\n                }\n              >\n                <SelectTrigger className=\"w-full h-10 bg-background/50 backdrop-blur-sm border-input/60 transition-all duration-200 hover:border-primary/50 focus:ring-2 focus:ring-primary/20\">\n                  <SelectValue placeholder=\"Select resource type\" />\n                </SelectTrigger>\n                <SelectContent className=\"bg-card/95 backdrop-blur-md border-border/50\">\n                  <SelectItem value=\"URL\">Web URL</SelectItem>\n                  <SelectItem value=\"LOCAL_PATH\">Local Path (Phase 2)</SelectItem>\n                  <SelectItem value=\"APP_URI\">App URI (Phase 2)</SelectItem>\n                  <SelectItem value=\"COMMAND\">Command (Phase 2)</SelectItem>\n                </SelectContent>\n              </Select>\n            </div>\n\n            <div className=\"space-y-2\">\n              <Label>Resource URL/Value</Label>\n              <Input\n                type=\"text\"\n                required\n                placeholder={type === 'URL' ? 'https://github.com' : '...'}\n                value={value}\n                onChange={(e) => {\n                  setValue(e.target.value);\n                }}\n              />\n            </div>\n\n            <div className=\"space-y-2\">\n              <Label>Display Name (Optional)</Label>\n              <Input\n                type=\"text\"\n                placeholder=\"e.g. GitHub Repo\"\n                value={displayName}\n                onChange={(e) => {\n                  setDisplayName(e.target.value);\n                }}\n              />\n            </div>\n\n            <div className=\"space-y-2\">\n              <Label>Notes (Optional)</Label>\n              <Textarea\n                rows={2}\n                value={notes}\n                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {\n                  setNotes(e.target.value);\n                }}\n                className=\"flex w-full bg-background/50 border-input/60 transition-all duration-200 hover:border-primary/50 focus:ring-2 focus:ring-primary/20 resize-none shadow-sm backdrop-blur-sm\"\n              />\n            </div>\n\n            <div className=\"pt-4 flex justify-end gap-3\">\n              <Button type=\"button\" variant=\"outline\" onClick={() => { closeModal(); }}>\n                Cancel\n              </Button>\n              <Button type=\"submit\" disabled={mutation.isPending}>\n                {mutation.isPending && <Loader2 className=\"w-4 h-4 mr-2 animate-spin\" />}\n                Add Resource\n              </Button>\n            </div>\n          </form>\n        </div>\n      </SlideUp>\n    </FadeIn>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\components\\modals\\create-workspace-modal.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 32,
+        "column": 7,
+        "nodeType": "ReturnStatement",
+        "messageId": "unsafeReturn",
+        "endLine": 32,
+        "endColumn": 23
+      },
+      {
+        "ruleId": "@typescript-eslint/no-floating-promises",
+        "severity": 2,
+        "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
+        "line": 35,
+        "column": 7,
+        "nodeType": "ExpressionStatement",
+        "messageId": "floatingVoid",
+        "endLine": 35,
+        "endColumn": 78,
+        "suggestions": [
+          {
+            "messageId": "floatingFixVoid",
+            "fix": { "range": [1203, 1203], "text": "void " },
+            "desc": "Add void operator to ignore."
+          },
+          {
+            "messageId": "floatingFixAwait",
+            "fix": { "range": [1203, 1203], "text": "await " },
+            "desc": "Add await operator."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 2,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `SetStateAction<string>`.",
+        "line": 40,
+        "column": 18,
+        "nodeType": "LogicalExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 40,
+        "endColumn": 77
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-member-access",
+        "severity": 2,
+        "message": "Unsafe member access .message on an `any` value.",
+        "line": 40,
+        "column": 38,
+        "nodeType": "Identifier",
+        "messageId": "unsafeMemberExpression",
+        "endLine": 40,
+        "endColumn": 45
+      },
+      {
+        "ruleId": "@typescript-eslint/no-deprecated",
+        "severity": 2,
+        "message": "`FormEvent` is deprecated. FormEvent doesn't actually exist.\nYou probably meant to use {@link ChangeEvent}, {@link InputEvent}, {@link SubmitEvent}, or just {@link SyntheticEvent} instead\ndepending on the event type.",
+        "line": 55,
+        "column": 34,
+        "nodeType": "Identifier",
+        "messageId": "deprecatedWithReason",
+        "endLine": 55,
+        "endColumn": 43
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 5,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "'use client';\n\n\nimport { API_ROUTES } from '@repo/constants';\nimport { Button, Input, Label, Textarea } from '@repo/ui';\nimport { useMutation, useQueryClient } from '@tanstack/react-query';\nimport axios from 'axios';\nimport { Loader2, X } from 'lucide-react';\nimport { useState } from 'react';\n\nimport type { CreateWorkspaceInput } from '@repo/validation';\n\n\nimport { FadeIn } from '@/components/animations/fade-in';\nimport { SlideUp } from '@/components/animations/slide-up';\nimport { api } from '@/lib/api';\nimport { QUERY_KEYS } from '@/lib/query-keys';\nimport { useUIStore } from '@/stores/ui.store';\n\nexport default function CreateWorkspaceModal(): React.ReactElement | null {\n  const { isCreateWorkspaceOpen, closeCreateWorkspace } = useUIStore();\n  const [name, setName] = useState('');\n  const [description, setDescription] = useState('');\n  const [color, setColor] = useState('#3B82F6');\n  const [error, setError] = useState('');\n\n  const queryClient = useQueryClient();\n\n  const mutation = useMutation({\n    mutationFn: async (data: CreateWorkspaceInput) => {\n      const res = await api.post(`/${API_ROUTES.WORKSPACES.BASE}`, data);\n      return res.data;\n    },\n    onSuccess: () => {\n      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.workspaces.all });\n      closeModal();\n    },\n    onError: (err: unknown) => {\n      if (axios.isAxiosError(err)) {\n        setError(err.response?.data?.message ?? 'Failed to create workspace');\n      } else {\n        setError('Failed to create workspace');\n      }\n    },\n  });\n\n  const closeModal = (): void => {\n    setName('');\n    setDescription('');\n    setColor('#3B82F6');\n    setError('');\n    closeCreateWorkspace();\n  };\n\n  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {\n    e.preventDefault();\n    setError('');\n    mutation.mutate({ name, description, color });\n  };\n\n  if (!isCreateWorkspaceOpen) {\n    return null;\n  }\n\n  return (\n    <FadeIn\n      duration={0.2}\n      className=\"fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm\"\n    >\n      <SlideUp duration={0.3} className=\"w-full max-w-md\">\n        <div className=\"bg-card/95 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-border/50\">\n          <div className=\"flex justify-between items-center px-6 py-4 border-b border-border/50\">\n            <div>\n              <h2 className=\"text-lg font-semibold tracking-tight text-foreground\">\n                New Workspace\n              </h2>\n              <p className=\"text-sm text-muted-foreground mt-1\">\n                Create a new workspace to organize your resources.\n              </p>\n            </div>\n            <Button\n              variant=\"ghost\"\n              size=\"icon\"\n              onClick={closeModal}\n              className=\"text-muted-foreground hover:text-foreground transition-colors self-start mt-1 rounded-sm opacity-70 hover:opacity-100 w-6 h-6\"\n            >\n              <X className=\"w-4 h-4\" />\n            </Button>\n          </div>\n\n          <form\n            onSubmit={(e) => {\n              handleSubmit(e);\n            }}\n            className=\"p-6 space-y-4\"\n          >\n            {error && (\n              <div className=\"p-3 bg-destructive/10 text-destructive border border-destructive/20 rounded-lg text-sm\">\n                {error}\n              </div>\n            )}\n\n            <div className=\"space-y-2\">\n              <Label>Name</Label>\n              <Input\n                type=\"text\"\n                required\n                placeholder=\"e.g. Frontend Project\"\n                value={name}\n                onChange={(e) => {\n                  setName(e.target.value);\n                }}\n              />\n            </div>\n\n            <div className=\"space-y-2\">\n              <Label>Description</Label>\n              <Textarea\n                rows={3}\n                value={description}\n                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {\n                  setDescription(e.target.value);\n                }}\n                className=\"flex w-full bg-background/50 border-input/60 transition-all duration-200 hover:border-primary/50 focus:ring-2 focus:ring-primary/20 resize-none shadow-sm backdrop-blur-sm\"\n              />\n            </div>\n\n            <div className=\"space-y-2\">\n              <Label>Theme Color</Label>\n              <div className=\"mt-2 flex items-center gap-3\">\n                <Input\n                  type=\"color\"\n                  value={color}\n                  onChange={(e) => {\n                    setColor(e.target.value);\n                  }}\n                  className=\"h-8 w-12 rounded cursor-pointer border-0 p-1 bg-transparent hover:bg-transparent shadow-none focus-visible:ring-0\"\n                />\n                <span className=\"text-sm text-muted-foreground font-mono\">{color}</span>\n              </div>\n            </div>\n\n            <div className=\"pt-4 flex justify-end gap-3\">\n              <Button type=\"button\" variant=\"outline\" onClick={closeModal}>\n                Cancel\n              </Button>\n              <Button type=\"submit\" disabled={mutation.isPending}>\n                {mutation.isPending && <Loader2 className=\"w-4 h-4 mr-2 animate-spin\" />}\n                Create\n              </Button>\n            </div>\n          </form>\n        </div>\n      </SlideUp>\n    </FadeIn>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\components\\sortable-resource-item.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\features\\workspace\\components\\workspace-card.tsx",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/explicit-function-return-type",
+        "severity": 2,
+        "message": "Missing return type on function.",
+        "line": 6,
+        "column": 8,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingReturnType",
+        "endLine": 6,
+        "endColumn": 30
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 20,
+        "column": 51,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 20,
+        "endColumn": 53,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [758, 760], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 29,
+        "column": 60,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 29,
+        "endColumn": 62,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [1195, 1197], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/prefer-nullish-coalescing",
+        "severity": 2,
+        "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+        "line": 33,
+        "column": 49,
+        "nodeType": "Punctuator",
+        "messageId": "preferNullishOverOr",
+        "endLine": 33,
+        "endColumn": 51,
+        "suggestions": [
+          {
+            "messageId": "suggestNullish",
+            "data": { "equals": "" },
+            "fix": { "range": [1347, 1349], "text": "??" },
+            "desc": "Fix to nullish coalescing operator (`??`)."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unnecessary-condition",
+        "severity": 2,
+        "message": "Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined.",
+        "line": 47,
+        "column": 20,
+        "nodeType": "MemberExpression",
+        "messageId": "neverNullish",
+        "endLine": 47,
+        "endColumn": 43
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 5,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/ui';\nimport { CalendarDays, Folder, LayoutGrid } from 'lucide-react';\n\nimport type { Workspace } from '@repo/types';\n\nexport function WorkspaceCard({\n  workspace,\n  onClick,\n}: {\n  workspace: Workspace;\n  onClick: () => void;\n}) {\n  return (\n    <Card\n      className=\"group relative cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 border-border/50 hover:border-primary/50 h-full flex flex-col\"\n      onClick={onClick}\n    >\n      <div\n        className=\"absolute top-0 left-0 w-full h-1 transition-opacity duration-300 opacity-80 group-hover:opacity-100\"\n        style={{ backgroundColor: workspace.color || 'hsl(var(--primary))' }}\n      />\n      <CardHeader className=\"pb-3 flex-1\">\n        <CardTitle className=\"text-lg flex items-center gap-2.5\">\n          {workspace.icon ? (\n            <span className=\"text-xl shrink-0\">{workspace.icon}</span>\n          ) : (\n            <div\n              className=\"h-8 w-8 rounded-md flex items-center justify-center shrink-0 opacity-80\"\n              style={{ backgroundColor: `${workspace.color || 'hsl(var(--primary))'}20` }}\n            >\n              <Folder\n                className=\"h-4 w-4\"\n                style={{ color: workspace.color || 'hsl(var(--primary))' }}\n              />\n            </div>\n          )}\n          <span className=\"truncate\">{workspace.name}</span>\n        </CardTitle>\n        {workspace.description && (\n          <CardDescription className=\"line-clamp-2 mt-2\">{workspace.description}</CardDescription>\n        )}\n      </CardHeader>\n      <CardContent className=\"pt-0 mt-auto\">\n        <div className=\"flex items-center justify-between text-xs text-muted-foreground pt-4 border-t border-border/50\">\n          <div className=\"flex items-center gap-1.5 font-medium\">\n            <LayoutGrid className=\"h-3.5 w-3.5\" />\n            <span>{workspace.resourceCount ?? 0} resources</span>\n          </div>\n          <div className=\"flex items-center gap-1.5\">\n            <CalendarDays className=\"h-3.5 w-3.5\" />\n            <span>{new Date(workspace.createdAt).toLocaleDateString()}</span>\n          </div>\n        </div>\n      </CardContent>\n    </Card>\n  );\n}\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\features\\workspace\\hooks\\use-workspace-resources.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\features\\workspace\\hooks\\use-workspaces.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\hooks\\use-workspace-launch.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\lib\\api.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-return",
+        "severity": 2,
+        "message": "Unsafe return of a value of type `any`.",
+        "line": 45,
+        "column": 17,
+        "nodeType": "MemberExpression",
+        "messageId": "unsafeReturn",
+        "endLine": 45,
+        "endColumn": 30
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unnecessary-condition",
+        "severity": 2,
+        "message": "Unnecessary conditional, value is always truthy.",
+        "line": 61,
+        "column": 17,
+        "nodeType": "MemberExpression",
+        "messageId": "alwaysTruthy",
+        "endLine": 61,
+        "endColumn": 40
+      },
+      {
+        "ruleId": "@typescript-eslint/return-await",
+        "severity": 2,
+        "message": "Returning an awaited promise is required in this context.",
+        "line": 98,
+        "column": 16,
+        "nodeType": "CallExpression",
+        "messageId": "requiredPromiseAwait",
+        "endLine": 100,
+        "endColumn": 10,
+        "suggestions": [
+          {
+            "messageId": "requiredPromiseAwaitSuggestion",
+            "fix": { "range": [2967, 2967], "text": "await " },
+            "desc": "Add `await` before the expression. Use caution as this may impact control flow."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 3,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { API_ROUTES } from '@repo/constants';\nimport axios, { AxiosError } from 'axios';\n\nimport { useAuthStore } from '../stores/auth.store';\n\nimport type { InternalAxiosRequestConfig } from 'axios';\n\n\n\nexport const api = axios.create({\n  baseURL: process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api',\n  withCredentials: true,\n  headers: {\n    'Content-Type': 'application/json',\n  },\n});\n\napi.interceptors.request.use(\n  (config: InternalAxiosRequestConfig) => {\n    const token = useAuthStore.getState().accessToken;\n    if (token) {\n      config.headers.Authorization = `Bearer ${token}`;\n    }\n    return config;\n  },\n  async (error: unknown) =>\n    Promise.reject(error instanceof Error ? error : new Error(String(error))),\n);\n\nlet isRefreshing = false;\nlet failedQueue: { resolve: (value?: unknown) => void; reject: (reason?: unknown) => void }[] = [];\n\nconst processQueue = (error: AxiosError | null, token: string | null = null): void => {\n  failedQueue.forEach((prom) => {\n    if (error) {\n      prom.reject(error);\n    } else {\n      prom.resolve(token);\n    }\n  });\n  failedQueue = [];\n};\n\napi.interceptors.response.use(\n  (response) => response.data,\n  async (error: AxiosError) => {\n    const originalRequest = error.config;\n    if (!originalRequest) {\n      return Promise.reject(error);\n    }\n\n    if (\n      !originalRequest.url?.includes(`/${API_ROUTES.AUTH.REFRESH}`) &&\n      !originalRequest.url?.includes(`/${API_ROUTES.AUTH.LOGIN}`)\n    ) {\n      if (isRefreshing) {\n        return new Promise((resolve, reject) => {\n          failedQueue.push({ resolve, reject });\n        })\n          .then((token) => {\n            if (originalRequest.headers) {\n              originalRequest.headers.Authorization = `Bearer ${String(token)}`;\n            }\n            return api(originalRequest);\n          })\n          .catch((err: unknown) =>\n            Promise.reject(err instanceof Error ? err : new Error(String(err))),\n          );\n      }\n\n      const { logout, setAccessToken } = useAuthStore.getState();\n      (originalRequest as unknown as { _retry: boolean })._retry = true;\n      isRefreshing = true;\n\n      try {\n        const response = await axios.post<{ data?: { accessToken?: string } }>(\n          `${api.defaults.baseURL ?? 'http://localhost:4000/api'}/${API_ROUTES.AUTH.BASE}/${API_ROUTES.AUTH.REFRESH}`,\n          {},\n          { withCredentials: true },\n        );\n\n        const newAccessToken = response.data.data?.accessToken ?? null;\n        setAccessToken(newAccessToken);\n\n        if (newAccessToken) {\n          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;\n        }\n\n        processQueue(null, newAccessToken);\n         \n        return await api(originalRequest);\n      } catch (refreshError: unknown) {\n        processQueue(\n          refreshError instanceof AxiosError ? refreshError : new AxiosError(String(refreshError)),\n          null,\n        );\n        await logout();\n        return Promise.reject(\n          refreshError instanceof Error ? refreshError : new Error(String(refreshError)),\n        );\n      } finally {\n        isRefreshing = false;\n      }\n    }\n\n    return Promise.reject(error);\n  },\n);\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\lib\\query-keys.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\stores\\auth.store.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "D:\\WorkSpace_HN\\devflow-hub\\apps\\web\\src\\stores\\ui.store.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  }
+]
