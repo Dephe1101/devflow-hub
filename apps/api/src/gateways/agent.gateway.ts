@@ -79,7 +79,7 @@ export class AgentGateway
     const forwardedFor = req?.headers?.['x-forwarded-for'];
     const realIp =
       typeof forwardedFor === 'string'
-        ? forwardedFor.split(',')[0].trim()
+        ? forwardedFor.split(',')[0]?.trim()
         : undefined;
     const clientIp =
       realIp ||
