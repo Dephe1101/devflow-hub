@@ -46,7 +46,7 @@ function Popup(): React.ReactElement {
               : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
           }`}
         >
-          Quick Add
+          Thêm Nhanh
         </button>
         <button
           onClick={() => {
@@ -58,7 +58,7 @@ function Popup(): React.ReactElement {
               : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
           }`}
         >
-          Capture Session
+          Lưu Phiên (Capture)
         </button>
       </div>
 

@@ -5,11 +5,9 @@
  */
 
 /** Backend API base URL (e.g. http://localhost:4000/api) */
-export const API_BASE_URL: string =
-  import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:4000/api';
+export const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL as string;
 
-/** Web App URL (e.g. http://localhost:3000) */
-export const WEB_APP_URL: string = import.meta.env.VITE_WEB_APP_URL ?? 'http://localhost:3000';
+export const WEB_APP_URL: string = import.meta.env.VITE_WEB_APP_URL as string;
 
 /** Content script match pattern — derived from WEB_APP_URL */
 export const WEB_APP_MATCH_PATTERN = `${WEB_APP_URL}/*`;

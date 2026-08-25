@@ -200,7 +200,7 @@ export function CommandPalette(): React.ReactElement | null {
 
             {/* Group: Workspaces */}
             {results.some((r) => r.type === 'workspace') && (
-              <CommandGroup heading="Workspaces">
+              <CommandGroup heading="Không gian làm việc">
                 {results
                   .filter((r) => r.type === 'workspace')
                   .map((item) => (
@@ -211,7 +211,7 @@ export function CommandPalette(): React.ReactElement | null {
 
             {/* Group: Resources */}
             {results.some((r) => r.type === 'resource') && (
-              <CommandGroup heading="Resources">
+              <CommandGroup heading="Tài nguyên">
                 {results
                   .filter((r) => r.type === 'resource')
                   .map((item) => (
@@ -222,7 +222,7 @@ export function CommandPalette(): React.ReactElement | null {
 
             {/* Group: Actions */}
             {results.some((r) => r.type === 'action') && (
-              <CommandGroup heading="Actions">
+              <CommandGroup heading="Hành động">
                 {results
                   .filter((r) => r.type === 'action')
                   .map((item) => (

@@ -64,15 +64,11 @@ export class AgentGateway
   async handleConnection(client: WebSocket, req?: any) {
     // ISSUE-3 Fix: Validate Origin to prevent XSS/CSRF from malicious browsers
     const origin = req?.headers?.origin;
-    const allowedOrigin =
-      process.env.FRONTEND_URL ||
-      process.env.WEB_URL ||
-      'http://localhost:3000';
-    if (origin && origin !== allowedOrigin) {
-      this.logger.warn(
-        `Rejected WS connection from unallowed origin: ${origin}`,
-      );
-      client.close(1008, 'Origin not allowed');
+    const allowedOrigin = String(process.env.CORS_ORIGIN);
+
+    if (origin && allowedOrigin && origin !== allowedOrigin) {
+      this.logger.warn(`Từ chối kết nối WS từ origin không hợp lệ: ${origin}`);
+      client.close(1008, 'Origin không hợp lệ');
       return;
     }
 
@@ -89,13 +85,13 @@ export class AgentGateway
       'unknown';
     (client as any).clientIp = clientIp;
 
-    this.logger.log(`Agent connected from ${clientIp}`);
+    this.logger.log(`Agent đã kết nối từ ${clientIp}`);
     // BUG-NEW-2: Initialize heartbeat timestamp on connection
     this.lastHeartbeat.set(client, Date.now());
   }
 
   handleDisconnect(client: WebSocket) {
-    this.logger.log(`Agent disconnected`);
+    this.logger.log(`Agent đã ngắt kết nối`);
     // BUG-NEW-2: Clean up heartbeat tracking
     this.lastHeartbeat.delete(client);
 
@@ -187,7 +183,7 @@ export class AgentGateway
         }),
       );
 
-      this.logger.log(`Agent authenticated via pairing for user ${userId}`);
+      this.logger.log(`Agent đã xác thực qua pairing cho người dùng ${userId}`);
     } catch (error) {
       client.send(
         JSON.stringify({
@@ -247,7 +243,9 @@ export class AgentGateway
         }),
       );
 
-      this.logger.log(`Agent reconnected via token for user ${userId}`);
+      this.logger.log(
+        `Agent đã kết nối lại qua token cho người dùng ${userId}`,
+      );
     } catch (error) {
       client.send(
         JSON.stringify({ event: WS_EVENTS.ERROR, data: 'Invalid token' }),
@@ -266,7 +264,7 @@ export class AgentGateway
       const user = (client as any).user;
 
       if (!user?.sub) {
-        this.logger.warn('Received agent:result from unauthenticated socket');
+        this.logger.warn('Nhận agent:result từ socket chưa xác thực');
         return;
       }
 
@@ -276,7 +274,7 @@ export class AgentGateway
 
       // TODO (F2.6): Forward results to web client via notification gateway or store in DB
     } catch (error) {
-      this.logger.error('Failed to process agent:result', error);
+      this.logger.error('Xử lý agent:result thất bại', error);
     }
   }
 

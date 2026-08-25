@@ -12,8 +12,12 @@ function manifestPlugin() {
       if (fs.existsSync(manifestPath)) {
         let manifest = fs.readFileSync(manifestPath, 'utf-8');
         const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd());
-        const webAppUrl = env.VITE_WEB_APP_URL || 'http://localhost:3000';
-        const apiUrl = env.VITE_API_BASE_URL || 'http://localhost:4000/api';
+        const webAppUrl = env.VITE_WEB_APP_URL as string;
+        const apiUrl = env.VITE_API_BASE_URL as string;
+
+        if (!webAppUrl || !apiUrl) {
+          console.warn('Missing VITE_WEB_APP_URL or VITE_API_BASE_URL in environment variables.');
+        }
 
         try {
           const apiOrigin = new URL(apiUrl).origin + '/*';
