@@ -38,7 +38,15 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
     // Sync token to extension via content script
     if (typeof window !== 'undefined') {
-      window.postMessage({ type: EXTENSION_POST_MESSAGE_TYPE, token }, window.location.origin);
+      const syncToken = (): void => {
+        window.postMessage({ type: EXTENSION_POST_MESSAGE_TYPE, token }, window.location.origin);
+      };
+
+      // Send immediately
+      syncToken();
+      // Retry to ensure content script is loaded (useful on first mount)
+      setTimeout(syncToken, 500);
+      setTimeout(syncToken, 2000);
     }
   },
 
