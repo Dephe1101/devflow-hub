@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -84,14 +85,27 @@ export function AddResourceModal(): React.ReactElement | null {
     },
   });
 
-  const closeModal = (): void => {
+  const closeModal = useCallback((): void => {
     reset();
     closeAddResource();
-  };
+  }, [reset, closeAddResource]);
 
   const onSubmit = (data: CreateResourceInput): void => {
     mutation.mutate(data);
   };
+
+  // Keyboard navigation support: Close on Escape
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
+      if (e.key === 'Escape' && isAddResourceOpen) {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isAddResourceOpen, closeModal]);
 
   if (!isAddResourceOpen || !selectedWorkspaceIdForResource) {
     return null;
@@ -103,10 +117,18 @@ export function AddResourceModal(): React.ReactElement | null {
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
     >
       <SlideUp duration={0.3} className="w-full max-w-md">
-        <div className="bg-card/95 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-border/50">
+        <div
+          className="bg-card/95 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-border/50 focus:outline-none"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="add-resource-title"
+        >
           <div className="flex justify-between items-center px-6 py-4 border-b border-border/50">
             <div>
-              <h2 className="text-lg font-semibold tracking-tight text-foreground">
+              <h2
+                id="add-resource-title"
+                className="text-lg font-semibold tracking-tight text-foreground"
+              >
                 Thêm Tài nguyên
               </h2>
               <p className="text-sm text-muted-foreground mt-1">
@@ -118,7 +140,8 @@ export function AddResourceModal(): React.ReactElement | null {
               size="icon"
               onClick={closeModal}
               disabled={mutation.isPending}
-              className="text-muted-foreground hover:text-foreground transition-colors self-start mt-1 rounded-sm opacity-70 hover:opacity-100 w-6 h-6"
+              className="text-muted-foreground hover:text-foreground transition-colors self-start mt-1 rounded-sm opacity-70 hover:opacity-100 w-6 h-6 focus-visible:ring-2"
+              aria-label="Đóng"
             >
               <X className="w-4 h-4" />
             </Button>
@@ -141,7 +164,10 @@ export function AddResourceModal(): React.ReactElement | null {
                     onValueChange={field.onChange}
                     disabled={mutation.isPending}
                   >
-                    <SelectTrigger className="w-full h-10 bg-background/50 backdrop-blur-sm border-input/60 transition-all duration-200 hover:border-primary/50 focus:ring-2 focus:ring-primary/20">
+                    <SelectTrigger
+                      autoFocus
+                      className="w-full h-10 bg-background/50 backdrop-blur-sm border-input/60 transition-all duration-200 hover:border-primary/50 focus:ring-2 focus:ring-primary/20"
+                    >
                       <SelectValue placeholder="Chọn loại tài nguyên" />
                     </SelectTrigger>
                     <SelectContent className="bg-card/95 backdrop-blur-md border-border/50">

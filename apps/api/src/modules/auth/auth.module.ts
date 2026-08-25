@@ -8,12 +8,17 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
+const jwtSecret = process.env.JWT_SECRET;
+if (!jwtSecret) {
+  throw new Error('FATAL: JWT_SECRET environment variable is missing');
+}
+
 @Module({
   imports: [
     UsersModule,
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET ?? 'devflow-secret-key-super-safe',
+      secret: jwtSecret,
       signOptions: { expiresIn: '15m' },
     }),
   ],

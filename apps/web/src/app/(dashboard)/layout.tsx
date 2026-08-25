@@ -19,6 +19,7 @@ import {
 } from '@repo/ui';
 
 import { FadeIn } from '@/components/animations/fade-in';
+import { SkipNavigation } from '@/components/skip-navigation';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { AddResourceModal } from '@/features/workspace/components/modals/add-resource-modal';
 import { CreateWorkspaceModal } from '@/features/workspace/components/modals/create-workspace-modal';
@@ -57,7 +58,9 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-background flex overflow-hidden">
+    <div className="min-h-screen bg-background flex overflow-hidden relative">
+      <SkipNavigation />
+
       {/* Mobile Sidebar Overlay */}
       <AnimatePresence>
         {isSidebarOpen && (
@@ -169,7 +172,11 @@ export default function DashboardLayout({
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto focus:outline-none p-4 sm:p-6 lg:p-8 bg-background/50">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="flex-1 overflow-y-auto focus:outline-none p-4 sm:p-6 lg:p-8 bg-background/50"
+        >
           <div className="max-w-7xl mx-auto">{children}</div>
         </main>
       </div>

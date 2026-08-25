@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Browser Extension for DevFlow Hub",
   "permissions": ["tabs", "tabGroups", "storage", "activeTab", "scripting"],
-  "host_permissions": ["http://localhost:3000/*", "http://localhost:4000/*"],
+  "host_permissions": ["__WEB_APP_URL__", "__API_ORIGIN__"],
   "background": {
     "service_worker": "assets/background.js",
     "type": "module"
@@ -19,7 +19,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": ["__WEB_APP_URL__"],
       "js": ["assets/content.js"]
     }
   ]

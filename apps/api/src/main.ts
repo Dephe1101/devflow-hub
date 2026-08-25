@@ -2,6 +2,7 @@ import 'dotenv/config';
 import fastifyCookie from '@fastify/cookie';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
+import { WsAdapter } from '@nestjs/platform-ws';
 
 import { AppModule } from './app.module';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
@@ -14,6 +15,8 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
+
+  app.useWebSocketAdapter(new WsAdapter(app));
 
   const cookieSecret = process.env.COOKIE_SECRET;
   if (!cookieSecret) {

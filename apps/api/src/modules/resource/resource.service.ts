@@ -49,7 +49,18 @@ export class ResourceService {
     if (type === 'URL' && value) {
       try {
         const urlObj = new URL(value);
-        return `https://www.google.com/s2/favicons?domain=${urlObj.hostname}&sz=64`;
+        const hostname = urlObj.hostname.toLowerCase();
+
+        // SEC-7: Block local hostnames and raw IP addresses to prevent SSRF
+        const isLocalHost =
+          hostname === 'localhost' || hostname.endsWith('.local');
+        const isIp = /^[\d.]+$|^\[?[\d:]+\]?$/.test(hostname);
+
+        if (isLocalHost || isIp) {
+          return null;
+        }
+
+        return `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`;
       } catch {
         // ignore
       }
@@ -118,6 +129,13 @@ export class ResourceService {
       throw new NotFoundException('Không tìm thấy workspace');
     }
 
+    // Bug 2 Fix: Check if resource actually belongs to the workspace
+    const pivots = await this.resourceRepo.findWorkspaceResources(workspaceId);
+    const existingPivot = pivots.find((p) => p.resourceId === resourceId);
+    if (!existingPivot) {
+      throw new NotFoundException('Resource không thuộc về workspace này');
+    }
+
     const faviconUrl = this.getFaviconUrl(data.type ?? '', data.value);
 
     const updatedResource = await this.resourceRepo.updateResource(resourceId, {
@@ -171,5 +189,26 @@ export class ResourceService {
       sortOrder: index,
     }));
     await this.resourceRepo.reorderWorkspaceResources(workspaceId, updates);
+  }
+
+  /**
+   * SEC-2 fix: Check if a user owns a resource by its value (path/appName)
+   * Used by AgentController to validate launch requests
+   */
+  async userOwnsResource(userId: string, value: string): Promise<boolean> {
+    const resource = await this.resourceRepo.findByUserAndValue(
+      userId,
+      'LOCAL_PATH',
+      value,
+    );
+    if (resource) {
+      return true;
+    }
+    const appResource = await this.resourceRepo.findByUserAndValue(
+      userId,
+      'APP_URI',
+      value,
+    );
+    return !!appResource;
   }
 }

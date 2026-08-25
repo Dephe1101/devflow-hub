@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { API_ROUTES, APP_ROUTES } from '@repo/constants';
+import { API_ROUTES, APP_ROUTES, EXTENSION_POST_MESSAGE_TYPE } from '@repo/constants';
 import type { ApiResponse } from '@repo/types';
 import type { LoginInput, RegisterInput } from '@repo/validation';
 
@@ -35,6 +35,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   setAccessToken: (token: string | null) => {
     set({ accessToken: token, isAuthenticated: !!token });
+
+    // Sync token to extension via content script
+    if (typeof window !== 'undefined') {
+      window.postMessage({ type: EXTENSION_POST_MESSAGE_TYPE, token }, window.location.origin);
+    }
   },
 
   login: async (data: LoginInput) => {
@@ -45,7 +50,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         data,
       );
       if (res.data?.accessToken) {
-        set({ accessToken: res.data.accessToken, isAuthenticated: true });
+        get().setAccessToken(res.data.accessToken);
         await get().checkAuth();
       }
     } finally {
@@ -61,7 +66,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         data,
       );
       if (res.data?.accessToken) {
-        set({ accessToken: res.data.accessToken, isAuthenticated: true });
+        get().setAccessToken(res.data.accessToken);
         await get().checkAuth();
       }
     } finally {
@@ -76,6 +81,15 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       console.error('Logout error', error);
     } finally {
       set({ user: null, accessToken: null, isAuthenticated: false });
+
+      // Sync logout to extension via content script
+      if (typeof window !== 'undefined') {
+        window.postMessage(
+          { type: EXTENSION_POST_MESSAGE_TYPE, token: null },
+          window.location.origin,
+        );
+      }
+
       window.location.href = APP_ROUTES.LOGIN;
     }
   },
@@ -89,7 +103,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
           `/${API_ROUTES.AUTH.BASE}/${API_ROUTES.AUTH.REFRESH}`,
         );
         if (res.data?.accessToken) {
-          set({ accessToken: res.data.accessToken, isAuthenticated: true });
+          get().setAccessToken(res.data.accessToken);
         }
       }
 

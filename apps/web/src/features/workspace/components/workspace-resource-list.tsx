@@ -148,7 +148,7 @@ export function WorkspaceResourceList({
             items={resources.map((r) => r.id)}
             strategy={verticalListSortingStrategy}
           >
-            <div className="space-y-3">
+            <div className="space-y-3" role="list" aria-label="Danh sách tài nguyên">
               {resources.map((item) => (
                 <SortableResourceItem
                   key={item.id}

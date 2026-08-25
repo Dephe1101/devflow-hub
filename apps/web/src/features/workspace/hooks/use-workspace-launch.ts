@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { toast } from 'sonner';
+
 import { RESOURCE_TYPE } from '@repo/constants';
 import type { WorkspaceResource } from '@repo/types';
+
+import { useAgentLaunch } from '@/features/agent/hooks/use-agent-launch';
 
 interface LaunchResult {
   success: boolean;
@@ -22,6 +26,7 @@ export function useWorkspaceLaunch(): UseWorkspaceLaunchReturn {
   const [isLocked, setIsLocked] = useState(false);
   const [lockCountdown, setLockCountdown] = useState(0);
   const [blockedUrls, setBlockedUrls] = useState<string[]>([]);
+  const { mutateAsync: launchAgent } = useAgentLaunch();
 
   const lockTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -41,34 +46,56 @@ export function useWorkspaceLaunch(): UseWorkspaceLaunchReturn {
     setIsLaunching(true);
     setBlockedUrls([]);
 
-    // Filter only URLs that are enabled
-    const webResources = resources
-      .filter((r) => r.isEnabled && r.resource.type === RESOURCE_TYPE.URL && r.resource.value)
+    const enabledResources = resources.filter((r) => r.isEnabled && r.resource.value);
+    const webResources = enabledResources
+      .filter((r) => r.resource.type === RESOURCE_TYPE.URL)
       .map((r) => r.resource.value);
+
+    const localResources = enabledResources.filter(
+      (r) =>
+        r.resource.type === RESOURCE_TYPE.LOCAL_PATH || r.resource.type === RESOURCE_TYPE.APP_URI,
+    );
 
     const failedUrls: string[] = [];
 
-    // F2.5: Throttling Mechanism
-    // If > 15 tabs, batch them in groups of 5 with 1s delay
+    // F2.5: Throttling Mechanism for Web
     const BATCH_SIZE = 5;
     const DELAY_MS = 1000;
 
-    // We'll just always batch by 5 to be safe and consistent,
-    // or strictly follow "> 15" rule. Let's do batching for all to avoid popup blockers.
     for (let i = 0; i < webResources.length; i += BATCH_SIZE) {
       const batch = webResources.slice(i, i + BATCH_SIZE);
 
       batch.forEach((url) => {
-        // window.open returns null if blocked by popup blocker
-        const newWindow = window.open(url, '_blank');
+        const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
         if (!newWindow) {
           failedUrls.push(url);
         }
       });
 
-      // Wait 1s before next batch if there are more
       if (i + BATCH_SIZE < webResources.length) {
         await new Promise<void>((resolve) => setTimeout(resolve, DELAY_MS));
+      }
+    }
+
+    // Launch Local Resources via WSS — BUG-8 fix: parallel instead of sequential
+    if (localResources.length > 0) {
+      const results = await Promise.allSettled(
+        localResources.map((r) => {
+          if (r.resource.type === RESOURCE_TYPE.APP_URI) {
+            return launchAgent({ action: 'launch_app', appName: r.resource.value });
+          }
+          return launchAgent({ action: 'open_folder', path: r.resource.value });
+        }),
+      );
+
+      const failedCount = results.filter((r) => r.status === 'rejected').length;
+      const successCount = localResources.length - failedCount;
+
+      if (successCount > 0) {
+        toast.success(`Đã gửi lệnh mở ${successCount.toString()} tài nguyên local.`);
+      }
+      if (failedCount > 0) {
+        toast.error(`Lỗi khi mở ${failedCount.toString()} tài nguyên local.`);
       }
     }
 

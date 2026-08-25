@@ -4,7 +4,12 @@ export const resourceTypeEnum = z.enum(['URL', 'LOCAL_PATH', 'APP_URI', 'COMMAND
 
 export const createResourceSchema = z.object({
   type: resourceTypeEnum,
-  value: z.string().min(1, 'Giá trị không được để trống'),
+  value: z
+    .string()
+    .min(1, 'Giá trị không được để trống')
+    .refine((val) => val.trim().toLowerCase().indexOf('javascript:') !== 0, {
+      message: 'URL không hợp lệ (không cho phép javascript:)',
+    }),
   displayName: z.string().max(100).optional(),
   notes: z.string().optional(),
   tags: z.array(z.string()).optional(),

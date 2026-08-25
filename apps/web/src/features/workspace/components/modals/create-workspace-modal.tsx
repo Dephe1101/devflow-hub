@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -52,14 +53,27 @@ export function CreateWorkspaceModal(): React.ReactElement | null {
     },
   });
 
-  const closeModal = (): void => {
+  const closeModal = useCallback((): void => {
     reset();
     closeCreateWorkspace();
-  };
+  }, [reset, closeCreateWorkspace]);
 
   const onSubmit = (data: CreateWorkspaceInput): void => {
     mutation.mutate(data);
   };
+
+  // Keyboard navigation support: Close on Escape
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
+      if (e.key === 'Escape' && isCreateWorkspaceOpen) {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isCreateWorkspaceOpen, closeModal]);
 
   if (!isCreateWorkspaceOpen) {
     return null;
@@ -71,10 +85,18 @@ export function CreateWorkspaceModal(): React.ReactElement | null {
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
     >
       <SlideUp duration={0.3} className="w-full max-w-md">
-        <div className="bg-card/95 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-border/50">
+        <div
+          className="bg-card/95 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-border/50 focus:outline-none"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="create-workspace-title"
+        >
           <div className="flex justify-between items-center px-6 py-4 border-b border-border/50">
             <div>
-              <h2 className="text-lg font-semibold tracking-tight text-foreground">
+              <h2
+                id="create-workspace-title"
+                className="text-lg font-semibold tracking-tight text-foreground"
+              >
                 Workspace Mới
               </h2>
               <p className="text-sm text-muted-foreground mt-1">
@@ -86,7 +108,8 @@ export function CreateWorkspaceModal(): React.ReactElement | null {
               size="icon"
               onClick={closeModal}
               disabled={mutation.isPending}
-              className="text-muted-foreground hover:text-foreground transition-colors self-start mt-1 rounded-sm opacity-70 hover:opacity-100 w-6 h-6"
+              className="text-muted-foreground hover:text-foreground transition-colors self-start mt-1 rounded-sm opacity-70 hover:opacity-100 w-6 h-6 focus-visible:ring-2"
+              aria-label="Đóng"
             >
               <X className="w-4 h-4" />
             </Button>
@@ -102,6 +125,7 @@ export function CreateWorkspaceModal(): React.ReactElement | null {
               <Label>Tên Workspace</Label>
               <Input
                 type="text"
+                autoFocus
                 placeholder="VD: Dự án Frontend"
                 {...register('name')}
                 disabled={mutation.isPending}

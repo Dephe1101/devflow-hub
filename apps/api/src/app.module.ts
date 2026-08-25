@@ -10,6 +10,7 @@ import { HealthModule } from './modules/health/health.module';
 import { ResourceModule } from './modules/resource/resource.module';
 import { UsersModule } from './modules/users/users.module';
 import { WorkspaceModule } from './modules/workspace/workspace.module';
+import { AgentModule } from './modules/agent/agent.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { WorkspaceModule } from './modules/workspace/workspace.module';
     }),
     WorkspaceModule,
     ResourceModule,
+    AgentModule,
   ],
   controllers: [],
   providers: [],
