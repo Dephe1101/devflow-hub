@@ -25,7 +25,7 @@ export default function AgentSettingsPage(): React.ReactElement {
       onSuccess: (data) => {
         setPairingCode(data.code);
         setCountdown(data.expiresIn);
-        toast.success('Pairing code generated successfully');
+        toast.success('Tạo mã kết nối thành công');
 
         // Simple countdown
         const interval = setInterval(() => {
@@ -40,7 +40,7 @@ export default function AgentSettingsPage(): React.ReactElement {
         }, 1000);
       },
       onError: (error) => {
-        toast.error(error.message || 'Failed to generate code');
+        toast.error(error.message || 'Tạo mã kết nối thất bại');
       },
     });
   };
@@ -59,7 +59,7 @@ export default function AgentSettingsPage(): React.ReactElement {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <MonitorSmartphone className="w-5 h-5" />
-            Connect New Device
+            Kết nối thiết bị mới
           </CardTitle>
           <CardDescription>
             Tạo một mã kết nối (Pairing Code) dùng một lần để liên kết Desktop Agent với tài khoản
@@ -70,7 +70,7 @@ export default function AgentSettingsPage(): React.ReactElement {
           {!pairingCode ? (
             <Button onClick={handleGenerate} disabled={isPending}>
               {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Generate Pairing Code
+              Tạo mã kết nối
             </Button>
           ) : (
             <div className="space-y-4">
@@ -92,7 +92,7 @@ export default function AgentSettingsPage(): React.ReactElement {
                   setPairingCode(null);
                 }}
               >
-                Cancel
+                Hủy
               </Button>
             </div>
           )}
@@ -101,7 +101,7 @@ export default function AgentSettingsPage(): React.ReactElement {
 
       <Card>
         <CardHeader>
-          <CardTitle>Connected Devices</CardTitle>
+          <CardTitle>Thiết bị đã kết nối</CardTitle>
           <CardDescription>
             Danh sách các Desktop Agent đang được kết nối với tài khoản này.
           </CardDescription>

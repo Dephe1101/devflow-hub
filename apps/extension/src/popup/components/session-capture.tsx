@@ -107,7 +107,7 @@ export function SessionCapture(): React.ReactElement {
           disabled={feedback.type === 'loading'}
           className="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 disabled:opacity-50 transition-colors"
         >
-          {feedback.type === 'loading' ? 'Đang thu thập...' : 'Capture All Tabs'}
+          {feedback.type === 'loading' ? 'Đang thu thập...' : 'Thu thập toàn bộ Tabs'}
         </button>
         {feedback.type === 'error' && (
           <p className="mt-2 text-xs text-red-500">{feedback.message}</p>

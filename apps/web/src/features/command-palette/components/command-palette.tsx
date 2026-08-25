@@ -88,8 +88,8 @@ export function CommandPalette(): React.ReactElement | null {
     items.push({
       id: 'action-dark',
       type: 'action',
-      name: 'Switch to Dark Mode',
-      description: 'Change theme to Dark',
+      name: 'Chuyển sang giao diện tối',
+      description: 'Thay đổi giao diện sang chế độ Tối',
       action: () => {
         setTheme('dark');
       },
@@ -97,8 +97,8 @@ export function CommandPalette(): React.ReactElement | null {
     items.push({
       id: 'action-light',
       type: 'action',
-      name: 'Switch to Light Mode',
-      description: 'Change theme to Light',
+      name: 'Chuyển sang giao diện sáng',
+      description: 'Thay đổi giao diện sang chế độ Sáng',
       action: () => {
         setTheme('light');
       },
@@ -106,8 +106,8 @@ export function CommandPalette(): React.ReactElement | null {
     items.push({
       id: 'action-logout',
       type: 'action',
-      name: 'Logout',
-      description: 'Sign out of your account',
+      name: 'Đăng xuất',
+      description: 'Đăng xuất khỏi tài khoản của bạn',
       action: () => {
         void logout();
       },

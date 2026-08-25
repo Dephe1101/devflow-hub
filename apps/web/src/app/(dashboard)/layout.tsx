@@ -100,7 +100,7 @@ export default function DashboardLayout({
               <Link href="/dashboard" passHref>
                 <Button variant="secondary" className="w-full justify-start font-medium">
                   <LayoutDashboard className="mr-3 h-4 w-4" />
-                  Dashboard
+                  Tổng quan
                 </Button>
               </Link>
             </nav>

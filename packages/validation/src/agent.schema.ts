@@ -3,8 +3,8 @@ import { z } from 'zod';
 export const agentLaunchSchema = z
   .object({
     action: z.enum(['open_folder', 'launch_app'], {
-      required_error: 'Action is required',
-      invalid_type_error: 'Action must be open_folder or launch_app',
+      required_error: 'Yêu cầu phải có Hành động (Action)',
+      invalid_type_error: 'Hành động phải là open_folder hoặc launch_app',
     }),
     path: z.string().optional(),
     appName: z.string().optional(),
@@ -17,7 +17,7 @@ export const agentLaunchSchema = z
       return true;
     },
     {
-      message: 'Path is required for open_folder, appName is required for launch_app',
+      message: 'Yêu cầu Path cho open_folder, hoặc appName cho launch_app',
       path: ['action'],
     },
   );
