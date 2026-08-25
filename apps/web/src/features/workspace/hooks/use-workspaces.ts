@@ -11,8 +11,11 @@ import type { UpdateWorkspaceInput } from '@repo/validation';
 
 import { api } from '@/lib/api';
 import { QUERY_KEYS } from '@/lib/query-keys';
+import { useAuthStore } from '@/stores/auth.store';
 
 export function useWorkspaces(): ReturnType<typeof useQuery<Workspace[]>> {
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
   return useQuery({
     queryKey: QUERY_KEYS.workspaces.all,
     queryFn: async () => {
@@ -21,6 +24,7 @@ export function useWorkspaces(): ReturnType<typeof useQuery<Workspace[]>> {
       );
       return response.data ?? [];
     },
+    enabled: isAuthenticated,
   });
 }
 
