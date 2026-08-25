@@ -18,6 +18,7 @@ import {
 } from '@nestjs/common';
 import { AgentService } from '../modules/agent/agent.service';
 import { WsJwtGuard } from '../modules/auth/guards/ws-jwt.guard';
+import { WS_EVENTS } from '@repo/constants';
 
 // BUG-NEW-2: Heartbeat timeout constants
 const HEARTBEAT_CHECK_INTERVAL_MS = 60_000; // Check every 60s
@@ -142,7 +143,7 @@ export class AgentGateway
   }
 
   @SetMetadata('isPublic', true)
-  @SubscribeMessage('auth:pairing')
+  @SubscribeMessage(WS_EVENTS.AUTH_PAIRING)
   async handleAuthPairing(
     @MessageBody() data: any,
     @ConnectedSocket() client: WebSocket,
@@ -156,7 +157,10 @@ export class AgentGateway
 
       if (!pairingCode || !deviceId) {
         client.send(
-          JSON.stringify({ event: 'error', data: 'Missing credentials' }),
+          JSON.stringify({
+            event: WS_EVENTS.ERROR,
+            data: 'Missing credentials',
+          }),
         );
         return;
       }
@@ -178,7 +182,7 @@ export class AgentGateway
 
       client.send(
         JSON.stringify({
-          event: 'auth:success',
+          event: WS_EVENTS.AUTH_SUCCESS,
           data: { agentToken },
         }),
       );
@@ -186,12 +190,15 @@ export class AgentGateway
       this.logger.log(`Agent authenticated via pairing for user ${userId}`);
     } catch (error) {
       client.send(
-        JSON.stringify({ event: 'error', data: 'Authentication failed' }),
+        JSON.stringify({
+          event: WS_EVENTS.ERROR,
+          data: 'Authentication failed',
+        }),
       );
     }
   }
 
-  @SubscribeMessage('auth:token')
+  @SubscribeMessage(WS_EVENTS.AUTH_TOKEN)
   async handleAuthToken(
     @MessageBody() data: any,
     @ConnectedSocket() client: WebSocket,
@@ -201,7 +208,9 @@ export class AgentGateway
       const agentToken = payload.agentToken;
 
       if (!agentToken) {
-        client.send(JSON.stringify({ event: 'error', data: 'Missing token' }));
+        client.send(
+          JSON.stringify({ event: WS_EVENTS.ERROR, data: 'Missing token' }),
+        );
         return;
       }
 
@@ -217,7 +226,10 @@ export class AgentGateway
       );
       if (!deviceExists) {
         client.send(
-          JSON.stringify({ event: 'error', data: 'Device has been revoked' }),
+          JSON.stringify({
+            event: WS_EVENTS.ERROR,
+            data: 'Device has been revoked',
+          }),
         );
         client.close(1008, 'Revoked');
         return;
@@ -230,19 +242,21 @@ export class AgentGateway
 
       client.send(
         JSON.stringify({
-          event: 'auth:success',
+          event: WS_EVENTS.AUTH_SUCCESS,
           data: { status: 'reconnected' },
         }),
       );
 
       this.logger.log(`Agent reconnected via token for user ${userId}`);
     } catch (error) {
-      client.send(JSON.stringify({ event: 'error', data: 'Invalid token' }));
+      client.send(
+        JSON.stringify({ event: WS_EVENTS.ERROR, data: 'Invalid token' }),
+      );
     }
   }
 
   // BUG-NEW-1: Handle agent:result event — forward launch results for status dashboard (F2.6)
-  @SubscribeMessage('agent:result')
+  @SubscribeMessage(WS_EVENTS.AGENT_RESULT)
   handleAgentResult(
     @MessageBody() data: any,
     @ConnectedSocket() client: WebSocket,
@@ -267,7 +281,7 @@ export class AgentGateway
   }
 
   // BUG-NEW-2: Update heartbeat timestamp when agent sends heartbeat
-  @SubscribeMessage('agent:heartbeat')
+  @SubscribeMessage(WS_EVENTS.AGENT_HEARTBEAT)
   handleHeartbeat(
     @MessageBody() _data: any,
     @ConnectedSocket() client: WebSocket,
@@ -304,7 +318,7 @@ export class AgentGateway
 
         const commandToken = (socket as any).token || '';
         const message = JSON.stringify({
-          event: 'agent:command',
+          event: WS_EVENTS.AGENT_COMMAND,
           data: {
             action,
             commandToken,

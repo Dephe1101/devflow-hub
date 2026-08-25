@@ -21,7 +21,7 @@ import { AgentModule } from './modules/agent/agent.module';
     RedisModule,
     ThrottlerModule.forRootAsync({
       useFactory: () => {
-        const redisUrl = process.env.REDIS_URL ?? 'redis://localhost:6379';
+        const redisUrl = String(process.env.REDIS_URL);
         return {
           throttlers: [{ ttl: 60000, limit: 100 }],
           storage: new ThrottlerStorageRedisService(new Redis(redisUrl)),

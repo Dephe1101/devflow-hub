@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { Loader2, UserPlus } from 'lucide-react';
 
@@ -20,25 +22,36 @@ import {
   Label,
   toast,
 } from '@repo/ui';
+import type { RegisterInput } from '@repo/validation';
+import { registerSchema } from '@repo/validation';
 
 import { SlideUp } from '@/components/animations/slide-up';
 import { useAuthStore } from '@/stores/auth.store';
 
 export default function RegisterPage(): React.ReactNode {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const register = useAuthStore((state) => state.register);
+  const {
+    register: formRegister,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterInput>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+  });
+
+  const authRegister = useAuthStore((state) => state.register);
   const isSubmitting = useAuthStore((state) => state.isSubmitting);
   const router = useRouter();
 
-  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
+  const onSubmit = async (data: RegisterInput): Promise<void> => {
     setError('');
     try {
-      await register({ name, email, password });
+      await authRegister(data);
       router.push('/dashboard');
     } catch (err: unknown) {
       let errorMessage = 'Đăng ký thất bại';
@@ -65,7 +78,7 @@ export default function RegisterPage(): React.ReactNode {
 
         <form
           onSubmit={(e) => {
-            void handleSubmit(e);
+            void handleSubmit(onSubmit)(e);
           }}
         >
           <CardContent className="space-y-4">
@@ -81,13 +94,12 @@ export default function RegisterPage(): React.ReactNode {
                 id="name"
                 type="text"
                 placeholder="John Doe"
-                required
-                value={name}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setName(e.target.value);
-                }}
+                {...formRegister('name')}
                 className="bg-background/50 focus-visible:ring-primary/50"
               />
+              {errors.name && (
+                <p className="text-sm text-destructive mt-1">{errors.name.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -96,13 +108,12 @@ export default function RegisterPage(): React.ReactNode {
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                required
-                value={email}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setEmail(e.target.value);
-                }}
+                {...formRegister('email')}
                 className="bg-background/50 focus-visible:ring-primary/50"
               />
+              {errors.email && (
+                <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -111,13 +122,12 @@ export default function RegisterPage(): React.ReactNode {
                 id="password"
                 type="password"
                 placeholder="••••••••"
-                required
-                value={password}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setPassword(e.target.value);
-                }}
+                {...formRegister('password')}
                 className="bg-background/50 focus-visible:ring-primary/50"
               />
+              {errors.password && (
+                <p className="text-sm text-destructive mt-1">{errors.password.message}</p>
+              )}
             </div>
           </CardContent>
 

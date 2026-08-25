@@ -6,7 +6,7 @@ import { API_ROUTES } from '@repo/constants';
 import { useAuthStore } from '../stores/auth.store';
 
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api',
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ api.interceptors.response.use(
 
       try {
         const response = await axios.post<{ data?: { accessToken?: string } }>(
-          `${api.defaults.baseURL ?? 'http://localhost:4000/api'}/${API_ROUTES.AUTH.BASE}/${API_ROUTES.AUTH.REFRESH}`,
+          `${api.defaults.baseURL ?? ''}/${API_ROUTES.AUTH.BASE}/${API_ROUTES.AUTH.REFRESH}`,
           {},
           { withCredentials: true },
         );

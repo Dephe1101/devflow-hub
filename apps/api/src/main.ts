@@ -28,7 +28,7 @@ async function bootstrap() {
     secret: cookieSecret,
   });
 
-  const corsOrigin = process.env.CORS_ORIGIN ?? 'http://localhost:3000';
+  const corsOrigin = String(process.env.CORS_ORIGIN);
   app.enableCors({
     origin: corsOrigin.split(','),
     credentials: true,
@@ -41,6 +41,6 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
-  void app.listen(process.env.PORT ?? 4000, '0.0.0.0');
+  void app.listen(Number(process.env.PORT), '0.0.0.0');
 }
 void bootstrap();

@@ -29,7 +29,7 @@ export default function App() {
     try {
       await invoke('pair_agent', { code });
       setStatus('success');
-      setMessage('Agent paired successfully! You can now launch resources from the web.');
+      setMessage('Kết nối Agent thành công! Bạn có thể khởi chạy tài nguyên từ trình duyệt.');
     } catch (err: any) {
       setStatus('error');
       setMessage(err.toString());
@@ -45,26 +45,26 @@ export default function App() {
           </div>
           <CardTitle className="text-2xl font-bold tracking-tight">DevFlow Hub Agent</CardTitle>
           <CardDescription className="text-neutral-400">
-            Link this device to your DevFlow Hub account to execute local resources.
+            Liên kết thiết bị này với tài khoản DevFlow Hub để khởi chạy tài nguyên local.
           </CardDescription>
         </CardHeader>
         <CardContent>
           {status === 'success' ? (
             <div className="flex flex-col items-center justify-center space-y-4 text-center pb-4">
               <CheckCircle2 className="w-16 h-16 text-green-500 mb-2" />
-              <h3 className="text-xl font-medium text-neutral-100">Successfully Paired</h3>
+              <h3 className="text-xl font-medium text-neutral-100">Kết nối thành công</h3>
               <p className="text-sm text-neutral-400">{message}</p>
             </div>
           ) : (
             <form onSubmit={handlePair} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="code" className="text-neutral-200">
-                  Pairing Code
+                  Mã kết nối
                 </Label>
                 <Input
                   id="code"
                   type="text"
-                  placeholder="Enter 6-digit code"
+                  placeholder="Nhập mã 6 chữ số"
                   className="text-center text-2xl tracking-widest bg-neutral-950 border-neutral-800 text-neutral-100 placeholder:text-neutral-700"
                   value={code}
                   onChange={(e) => setCode(e.target.value.toUpperCase())}
@@ -88,10 +88,10 @@ export default function App() {
                 {status === 'pairing' ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Pairing...
+                    Đang kết nối...
                   </>
                 ) : (
-                  'Pair Device'
+                  'Kết nối thiết bị'
                 )}
               </Button>
             </form>

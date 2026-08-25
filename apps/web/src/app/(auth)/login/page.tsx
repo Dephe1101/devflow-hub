@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { Loader2, LogIn } from 'lucide-react';
 
@@ -20,24 +22,35 @@ import {
   Label,
   toast,
 } from '@repo/ui';
+import type { LoginInput } from '@repo/validation';
+import { loginSchema } from '@repo/validation';
 
 import { SlideUp } from '@/components/animations/slide-up';
 import { useAuthStore } from '@/stores/auth.store';
 
 export default function LoginPage(): React.ReactNode {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginInput>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
   const login = useAuthStore((state) => state.login);
   const isSubmitting = useAuthStore((state) => state.isSubmitting);
   const router = useRouter();
 
-  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
+  const onSubmit = async (data: LoginInput): Promise<void> => {
     setError('');
     try {
-      await login({ email, password });
+      await login(data);
       router.push('/dashboard');
     } catch (err: unknown) {
       let errorMessage = 'Đăng nhập thất bại';
@@ -64,7 +77,7 @@ export default function LoginPage(): React.ReactNode {
 
         <form
           onSubmit={(e) => {
-            void handleSubmit(e);
+            void handleSubmit(onSubmit)(e);
           }}
         >
           <CardContent className="space-y-4">
@@ -80,13 +93,12 @@ export default function LoginPage(): React.ReactNode {
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                required
-                value={email}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setEmail(e.target.value);
-                }}
+                {...register('email')}
                 className="bg-background/50 focus-visible:ring-primary/50"
               />
+              {errors.email && (
+                <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -100,13 +112,12 @@ export default function LoginPage(): React.ReactNode {
                 id="password"
                 type="password"
                 placeholder="••••••••"
-                required
-                value={password}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setPassword(e.target.value);
-                }}
+                {...register('password')}
                 className="bg-background/50 focus-visible:ring-primary/50"
               />
+              {errors.password && (
+                <p className="text-sm text-destructive mt-1">{errors.password.message}</p>
+              )}
             </div>
           </CardContent>
 

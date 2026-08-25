@@ -26,7 +26,7 @@ pub async fn connect_to_server(ws_url: &str, app_handle: &tauri::AppHandle, reco
 
     info!("WebSocket connected");
     if let Some(tray) = app_handle.tray_by_id("main") {
-        let _ = tray.set_tooltip(Some("Connected"));
+        let _ = tray.set_tooltip(Some("Đã kết nối"));
     }
 
     let (write, mut read) = ws_stream.split();
