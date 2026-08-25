@@ -7,8 +7,8 @@ const PROTECTED_PREFIXES = ['/dashboard', '/settings'];
 export function middleware(request: NextRequest): NextResponse {
   const { pathname } = request.nextUrl;
 
-  // The backend sets the refreshToken cookie named 'devflow_refresh_token'
-  const hasToken = request.cookies.has('devflow_refresh_token');
+  // The backend sets the refreshToken cookie named 'refreshToken'
+  const hasToken = request.cookies.has('refreshToken');
 
   const isAuthRoute = AUTH_ROUTES.some((route) => pathname.startsWith(route));
   const isProtectedRoute = PROTECTED_PREFIXES.some((prefix) => pathname.startsWith(prefix));
