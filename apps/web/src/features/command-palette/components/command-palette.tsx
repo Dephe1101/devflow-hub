@@ -63,7 +63,7 @@ export function CommandPalette(): React.ReactElement | null {
     }
 
     // 2. Resources
-    if (resources?.length > 0) {
+    if (Array.isArray(resources) && resources.length > 0) {
       resources.forEach((res) => {
         const isLocal = res.type === RESOURCE_TYPE.LOCAL_PATH || res.type === RESOURCE_TYPE.APP_URI;
         const path = isLocal ? res.value : undefined;
