@@ -1,14 +1,15 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const AUTH_ROUTES = ['/login', '/register'];
-const PROTECTED_PREFIXES = ['/dashboard', '/settings'];
+import { APP_ROUTES, KEYS } from '@repo/constants';
+
+const AUTH_ROUTES = [APP_ROUTES.LOGIN, APP_ROUTES.REGISTER];
+const PROTECTED_PREFIXES = [APP_ROUTES.DASHBOARD, APP_ROUTES.SETTINGS];
 
 export function middleware(request: NextRequest): NextResponse {
   const { pathname } = request.nextUrl;
 
-  // The backend sets the refreshToken cookie named 'refreshToken'
-  const hasToken = request.cookies.has('refreshToken');
+  const hasToken = request.cookies.has(KEYS.COOKIE.REFRESH_TOKEN);
 
   const isAuthRoute = AUTH_ROUTES.some((route) => pathname.startsWith(route));
   const isProtectedRoute = PROTECTED_PREFIXES.some((prefix) => pathname.startsWith(prefix));

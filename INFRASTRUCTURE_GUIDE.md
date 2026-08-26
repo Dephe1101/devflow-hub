@@ -1,4 +1,4 @@
-# ☁️ DevFlow Hub — Cloud Infrastructure & Environment Guide (Solo Dev Workflow)
+# ☁️ WorkFlow Hub — Cloud Infrastructure & Environment Guide (Solo Dev Workflow)
 
 Vì bạn làm việc độc lập (solo developer), quy trình tối ưu nhất lúc này là: **Đẩy toàn bộ source code lên GitHub → Kết nối GitHub với Vercel & Railway để tự động Deploy → Cấu hình biến môi trường trên Cloud → Kéo biến môi trường về máy Local để code và test.**
 

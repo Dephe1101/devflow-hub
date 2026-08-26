@@ -13,9 +13,9 @@ export function LoginPrompt(): React.ReactElement {
 
   return (
     <div className="flex flex-col items-center justify-center py-8 px-4 text-center">
-      <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-4">
+      <div className="w-12 h-12 rounded-full bg-blue-500/15 flex items-center justify-center mb-4">
         <svg
-          className="w-6 h-6 text-blue-500"
+          className="w-6 h-6 text-blue-400"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -28,15 +28,13 @@ export function LoginPrompt(): React.ReactElement {
           />
         </svg>
       </div>
-      <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Chưa đăng nhập</h3>
-      <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
-        Đăng nhập trên DevFlow Hub để sử dụng extension
-      </p>
+      <h3 className="text-sm font-semibold text-gray-100 mb-1">Chưa đăng nhập</h3>
+      <p className="text-xs text-gray-400 mb-4">Đăng nhập trên WorkFlow Hub để sử dụng extension</p>
       <button
         onClick={handleOpenLogin}
-        className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
+        className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-sm"
       >
-        Mở DevFlow Hub
+        Mở WorkFlow Hub
       </button>
     </div>
   );

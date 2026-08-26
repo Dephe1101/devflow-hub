@@ -66,9 +66,11 @@ export function useWorkspaceLaunch(): UseWorkspaceLaunchReturn {
       const batch = webResources.slice(i, i + BATCH_SIZE);
 
       batch.forEach((url) => {
-        const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+        const newWindow = window.open(url, '_blank');
         if (!newWindow) {
           failedUrls.push(url);
+        } else {
+          newWindow.opener = null;
         }
       });
 

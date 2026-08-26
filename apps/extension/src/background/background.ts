@@ -6,7 +6,7 @@ import { apiFetch, getAuthToken, removeAuthToken, setAuthToken } from '../utils/
 
 chrome.runtime.onInstalled.addListener(() => {
   // eslint-disable-next-line no-console
-  console.log('[DevFlow Hub] Extension installed');
+  console.log('[WorkFlow Hub] Extension installed');
 });
 
 // --- Message Handlers ---

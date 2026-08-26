@@ -15,15 +15,15 @@ function Popup(): React.ReactElement {
 
   if (isLoading) {
     return (
-      <div className="w-[360px] p-6 flex items-center justify-center">
-        <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+      <div className="w-[360px] p-6 flex items-center justify-center bg-gray-900">
+        <div className="w-5 h-5 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="w-[360px]">
+      <div className="w-[360px] bg-gray-900 text-gray-100 min-h-[300px]">
         <PopupHeader />
         <LoginPrompt />
       </div>
@@ -31,19 +31,19 @@ function Popup(): React.ReactElement {
   }
 
   return (
-    <div className="w-[360px]">
+    <div className="w-[360px] bg-gray-900 text-gray-100 min-h-[300px]">
       <PopupHeader />
 
       {/* Tab Navigation */}
-      <div className="flex border-b border-gray-200 dark:border-gray-700">
+      <div className="flex border-b border-gray-700/60">
         <button
           onClick={() => {
             setActiveTab('quick-add');
           }}
           className={`flex-1 px-4 py-2.5 text-xs font-medium transition-colors ${
             activeTab === 'quick-add'
-              ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50/50 dark:bg-blue-900/10'
-              : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+              ? 'text-blue-400 border-b-2 border-blue-400 bg-blue-500/10'
+              : 'text-gray-400 hover:text-gray-200'
           }`}
         >
           Thêm Nhanh
@@ -54,8 +54,8 @@ function Popup(): React.ReactElement {
           }}
           className={`flex-1 px-4 py-2.5 text-xs font-medium transition-colors ${
             activeTab === 'capture'
-              ? 'text-purple-600 border-b-2 border-purple-600 bg-purple-50/50 dark:bg-purple-900/10'
-              : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+              ? 'text-purple-400 border-b-2 border-purple-400 bg-purple-500/10'
+              : 'text-gray-400 hover:text-gray-200'
           }`}
         >
           Lưu Phiên (Capture)
@@ -70,9 +70,9 @@ function Popup(): React.ReactElement {
 
 function PopupHeader(): React.ReactElement {
   return (
-    <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-      <h1 className="text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-        DevFlow Hub
+    <div className="px-4 py-3 border-b border-gray-700/60">
+      <h1 className="text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+        WorkFlow Hub
       </h1>
     </div>
   );

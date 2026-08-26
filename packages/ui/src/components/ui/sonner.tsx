@@ -1,19 +1,68 @@
 'use client';
 
+import * as React from 'react';
+
 import { useTheme } from 'next-themes';
 
-import { Toaster as Sonner, toast } from 'sonner';
+import { Toaster as Sonner, toast as sonnerToast } from 'sonner';
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
 
+// Event target to broadcast toast actions
+const toastEvents = new EventTarget();
+const triggerExpand = () => {
+  toastEvents.dispatchEvent(new Event('expand_toast'));
+};
+
+// Proxy to intercept all toast calls and trigger expand
+const customToast = new Proxy(sonnerToast, {
+  get(target, prop) {
+    const value = target[prop as keyof typeof target];
+    if (typeof value === 'function' && prop !== 'dismiss') {
+      return new Proxy(value, {
+        apply(targetMethod, thisArg, argumentsList) {
+          triggerExpand();
+          return Reflect.apply(targetMethod, thisArg, argumentsList);
+        },
+      });
+    }
+    return value;
+  },
+  apply(target, thisArg, argumentsList) {
+    triggerExpand();
+    return Reflect.apply(target, thisArg, argumentsList);
+  },
+});
+
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = 'system' } = useTheme();
+  const [expand, setExpand] = React.useState(false);
+  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  React.useEffect(() => {
+    const handleExpand = () => {
+      setExpand(true);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        setExpand(false);
+      }, 1000);
+    };
+
+    toastEvents.addEventListener('expand_toast', handleExpand);
+    return () => {
+      toastEvents.removeEventListener('expand_toast', handleExpand);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   return (
     <Sonner
       theme={theme as any}
       className="toaster group"
       style={{ zIndex: 99999 }}
+      expand={expand}
       toastOptions={{
         classNames: {
           toast:
@@ -32,4 +81,4 @@ const Toaster = ({ ...props }: ToasterProps) => {
   );
 };
 
-export { Toaster, toast };
+export { Toaster, customToast as toast };

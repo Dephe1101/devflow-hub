@@ -6,7 +6,7 @@ pub mod commands;
 use std::fs;
 use std::path::PathBuf;
 
-const DEFAULT_WS_URL: &str = "wss://127.0.0.1:4000/agent";
+const DEFAULT_WS_URL: &str = "ws://127.0.0.1:4000/agent";
 
 fn get_config_path() -> Option<PathBuf> {
     dirs::config_dir().map(|mut path| {
@@ -40,7 +40,8 @@ fn save_ws_url(url: &str) -> Result<(), String> {
 }
 
 #[tauri::command]
-async fn pair_agent(code: String, ws_url: String, app_handle: tauri::AppHandle) -> Result<String, String> {
+async fn pair_agent(code: String, app_handle: tauri::AppHandle) -> Result<String, String> {
+    let ws_url = load_ws_url();
     use futures_util::{SinkExt, StreamExt};
     let (mut ws_stream, _) = tokio_tungstenite::connect_async(&ws_url)
         .await

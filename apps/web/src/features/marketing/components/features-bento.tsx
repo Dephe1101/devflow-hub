@@ -63,13 +63,13 @@ export function FeaturesBento(): React.ReactElement {
       {features.map((feature, index) => (
         <motion.div
           key={index}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, delay: feature.delay }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ type: 'spring', stiffness: 100, damping: 20, delay: feature.delay }}
           className={`
             relative overflow-hidden rounded-3xl border border-border/50 bg-card p-8 shadow-sm 
-            transition-all hover:shadow-md hover:border-primary/30 group
+            transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5 group
             ${feature.colSpan}
           `}
         >

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 import { LayoutDashboard, Loader2, LogOut, Menu, Settings, User, X } from 'lucide-react';
 
+import { APP_ROUTES } from '@repo/constants';
 import {
   Button,
   DropdownMenu,
@@ -80,9 +81,11 @@ export default function DashboardLayout({
       >
         <div className="h-full flex flex-col">
           <div className="h-16 flex items-center px-6 border-b border-border justify-between">
-            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500">
-              DevFlow Hub
-            </span>
+            <Link href="/" className="transition-opacity hover:opacity-80">
+              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500">
+                WorkFlow Hub
+              </span>
+            </Link>
             <Button
               variant="ghost"
               size="icon"
@@ -107,44 +110,51 @@ export default function DashboardLayout({
           </div>
 
           <div className="p-4 border-t border-border">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="w-full justify-start h-auto p-2">
-                  <div className="flex items-center gap-3 w-full">
-                    <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold uppercase shrink-0">
-                      {user ? user.name[0] : 'U'}
+            <div className="flex items-center gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex-1 justify-start h-auto p-2 min-w-0">
+                    <div className="flex items-center gap-3 w-full min-w-0">
+                      <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold uppercase shrink-0">
+                        {user ? user.name[0] : 'U'}
+                      </div>
+                      <div className="flex flex-col items-start truncate min-w-0">
+                        <span className="font-medium truncate w-full">{user ? user.name : ''}</span>
+                        <span className="text-xs text-muted-foreground truncate w-full">
+                          {user ? user.email : ''}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex flex-col items-start truncate">
-                      <span className="font-medium">{user ? user.name : ''}</span>
-                      <span className="text-xs text-muted-foreground truncate w-full">
-                        {user ? user.email : ''}
-                      </span>
-                    </div>
-                  </div>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuLabel>Tài Khoản</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  Hồ sơ
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  Cài đặt
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={() => void logout()}
-                  className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer"
-                >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Đăng xuất
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <div className="mt-4 flex justify-end">
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>Tài Khoản</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <User className="mr-2 h-4 w-4" />
+                    Hồ sơ
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => {
+                      router.push(APP_ROUTES.SETTINGS_AGENT);
+                    }}
+                    className="cursor-pointer"
+                  >
+                    <Settings className="mr-2 h-4 w-4" />
+                    Cài đặt
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => {
+                      void logout();
+                    }}
+                    className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer"
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Đăng xuất
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <ThemeToggle />
             </div>
           </div>
@@ -166,7 +176,7 @@ export default function DashboardLayout({
               <Menu className="h-5 w-5" />
             </Button>
             <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500">
-              DevFlow Hub
+              WorkFlow Hub
             </span>
             <div className="w-9" /> {/* Spacer */}
           </div>

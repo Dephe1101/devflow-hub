@@ -5,6 +5,7 @@ import { use } from 'react';
 import Link from 'next/link';
 
 import { ArrowLeft } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { FadeIn } from '@/components/animations/fade-in';
 import { PopupBlockerWarning } from '@/features/workspace/components/popup-blocker-warning';
@@ -54,7 +55,20 @@ export default function WorkspaceDetailPage(props: {
           openAddResource(workspaceId);
         }}
         onLaunch={() => {
-          void launchWorkspace(originalResources ?? []);
+          toast.loading(`Đang mở Workspace...`);
+          launchWorkspace(originalResources ?? [])
+            .then((res) => {
+              toast.dismiss();
+              if (res.success) {
+                toast.success(`Mở Workspace thành công`);
+              } else {
+                toast.error(`Mở Workspace có lỗi hoặc bị Pop-up blocker chặn`);
+              }
+            })
+            .catch(() => {
+              toast.dismiss();
+              toast.error('Lỗi khi mở Workspace');
+            });
         }}
       />
 

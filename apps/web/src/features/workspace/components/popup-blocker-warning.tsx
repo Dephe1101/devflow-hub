@@ -30,7 +30,7 @@ export function PopupBlockerWarning({
                 </CardTitle>
                 <CardDescription className="text-yellow-700 dark:text-yellow-400/80 mt-1">
                   Trình duyệt của bạn đã chặn {blockedUrls.length} tab mở tự động. Vui lòng cho phép
-                  DevFlow Hub mở popups trên trình duyệt này.
+                  Xin cấp quyền popup trên trình duyệt này cho WorkFlow Hub.
                 </CardDescription>
               </div>
             </div>

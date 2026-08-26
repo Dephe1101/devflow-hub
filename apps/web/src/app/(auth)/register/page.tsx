@@ -72,7 +72,7 @@ export default function RegisterPage(): React.ReactNode {
           </div>
           <CardTitle className="text-3xl font-bold tracking-tight">Tạo tài khoản</CardTitle>
           <CardDescription className="text-muted-foreground text-sm">
-            Tham gia DevFlow Hub và quản lý workspace của bạn
+            Tham gia WorkFlow Hub và quản lý workspace của bạn
           </CardDescription>
         </CardHeader>
 

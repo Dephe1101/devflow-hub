@@ -50,7 +50,7 @@ export default function AgentSettingsPage(): React.ReactElement {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Desktop Agent</h1>
         <p className="text-muted-foreground mt-2">
-          Kết nối Desktop Agent để cho phép DevFlow Hub điều khiển và mở các dự án local trực tiếp
+          Kết nối Desktop Agent để cho phép WorkFlow Hub điều khiển và mở các dự án local trực tiếp
           trên máy tính của bạn.
         </p>
       </div>
@@ -122,10 +122,8 @@ export default function AgentSettingsPage(): React.ReactElement {
                     <p className="font-medium text-foreground">{device.name}</p>
                     <p className="text-xs text-muted-foreground">
                       ID: {device.deviceId.substring(0, 8)}... • Hoạt động:{' '}
-                      {/* eslint-disable-next-line @typescript-eslint/no-unsafe-call */}
                       {formatDistanceToNow(new Date(device.lastSeen), {
                         addSuffix: true,
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                         locale: vi,
                       })}
                     </p>

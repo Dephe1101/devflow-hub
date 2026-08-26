@@ -84,9 +84,9 @@ export function SessionCapture(): React.ReactElement {
   if (!isCaptured) {
     return (
       <div className="flex flex-col items-center py-6 text-center">
-        <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-3">
+        <div className="w-12 h-12 rounded-full bg-purple-500/15 flex items-center justify-center mb-3">
           <svg
-            className="w-6 h-6 text-purple-500"
+            className="w-6 h-6 text-purple-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -99,18 +99,18 @@ export function SessionCapture(): React.ReactElement {
             />
           </svg>
         </div>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+        <p className="text-xs text-gray-400 mb-4">
           Thu thập tất cả tabs đang mở và lưu thành workspace mới
         </p>
         <button
           onClick={handleCapture}
           disabled={feedback.type === 'loading'}
-          className="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 disabled:opacity-50 transition-colors"
+          className="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-500 disabled:opacity-50 transition-colors shadow-sm"
         >
           {feedback.type === 'loading' ? 'Đang thu thập...' : 'Thu thập toàn bộ Tabs'}
         </button>
         {feedback.type === 'error' && (
-          <p className="mt-2 text-xs text-red-500">{feedback.message}</p>
+          <p className="mt-2 text-xs text-red-400 font-medium">{feedback.message}</p>
         )}
       </div>
     );
@@ -126,15 +126,15 @@ export function SessionCapture(): React.ReactElement {
         onChange={(e) => {
           setWorkspaceName(e.target.value);
         }}
-        className="w-full px-3 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+        className="w-full px-3 py-2 text-sm bg-gray-800 text-gray-100 border border-gray-600 rounded-lg placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all"
       />
 
       {/* Tab List */}
-      <div className="max-h-48 overflow-y-auto space-y-1 border border-gray-200 dark:border-gray-700 rounded-lg p-2">
+      <div className="max-h-48 overflow-y-auto space-y-1 border border-gray-700/60 rounded-lg p-2">
         {tabs.map((tab, index) => (
           <label
             key={tab.url}
-            className="flex items-center gap-2 p-1.5 hover:bg-gray-50 dark:hover:bg-gray-800 rounded cursor-pointer"
+            className="flex items-center gap-2 p-1.5 hover:bg-gray-800 rounded cursor-pointer transition-colors"
           >
             <input
               type="checkbox"
@@ -142,13 +142,11 @@ export function SessionCapture(): React.ReactElement {
               onChange={() => {
                 handleToggleTab(index);
               }}
-              className="w-3.5 h-3.5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+              className="w-3.5 h-3.5 rounded border-gray-600 text-purple-500 focus:ring-purple-500 bg-gray-700"
             />
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium truncate text-gray-900 dark:text-white">
-                {tab.title}
-              </p>
-              <p className="text-[10px] text-gray-400 truncate">{tab.url}</p>
+              <p className="text-xs font-medium truncate text-gray-200">{tab.title}</p>
+              <p className="text-[10px] text-gray-500 truncate mt-0.5">{tab.url}</p>
             </div>
           </label>
         ))}
@@ -156,7 +154,7 @@ export function SessionCapture(): React.ReactElement {
 
       {/* Summary + Save */}
       <div className="flex items-center justify-between">
-        <span className="text-xs text-gray-500">
+        <span className="text-xs font-medium text-gray-400">
           {selectedCount}/{tabs.length} tabs
         </span>
         <div className="flex gap-2">
@@ -165,14 +163,14 @@ export function SessionCapture(): React.ReactElement {
               setIsCaptured(false);
               setTabs([]);
             }}
-            className="px-3 py-1.5 text-xs text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            className="px-3 py-1.5 text-xs font-medium text-gray-400 hover:bg-gray-800 hover:text-gray-200 rounded-lg transition-colors"
           >
             Hủy
           </button>
           <button
             onClick={handleSave}
             disabled={!workspaceName.trim() || selectedCount === 0 || feedback.type === 'loading'}
-            className="px-3 py-1.5 text-xs font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 disabled:opacity-50 transition-colors"
+            className="px-3 py-1.5 text-xs font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-500 focus:ring-4 focus:ring-purple-500/30 disabled:opacity-50 transition-all shadow-sm"
           >
             {feedback.type === 'loading' ? 'Đang lưu...' : 'Lưu Workspace'}
           </button>
@@ -181,12 +179,12 @@ export function SessionCapture(): React.ReactElement {
 
       {/* Feedback */}
       {feedback.type === 'success' && (
-        <div className="p-2 text-xs text-green-700 bg-green-50 dark:text-green-400 dark:bg-green-900/20 rounded-lg text-center">
+        <div className="p-2 text-xs text-green-400 bg-green-900/30 border border-green-800/40 rounded-lg text-center font-medium">
           ✅ {feedback.message}
         </div>
       )}
       {feedback.type === 'error' && (
-        <div className="p-2 text-xs text-red-700 bg-red-50 dark:text-red-400 dark:bg-red-900/20 rounded-lg text-center">
+        <div className="p-2 text-xs text-red-400 bg-red-900/30 border border-red-800/40 rounded-lg text-center font-medium">
           ❌ {feedback.message}
         </div>
       )}

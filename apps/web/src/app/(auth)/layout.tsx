@@ -1,3 +1,9 @@
+import Link from 'next/link';
+
+import { ArrowLeft } from 'lucide-react';
+
+import { Button } from '@repo/ui';
+
 export default function AuthLayout({
   children,
 }: {
@@ -5,6 +11,20 @@ export default function AuthLayout({
 }): React.ReactElement {
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      {/* Back to Home Button */}
+      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-50">
+        <Link href="/">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="gap-2 text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Về trang chủ
+          </Button>
+        </Link>
+      </div>
+
       {/* Decorative background elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute -top-[25%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[120px]" />

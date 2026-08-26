@@ -71,7 +71,7 @@ export default function LoginPage(): React.ReactNode {
           </div>
           <CardTitle className="text-3xl font-bold tracking-tight">Chào mừng trở lại</CardTitle>
           <CardDescription className="text-muted-foreground text-sm">
-            Nhập thông tin đăng nhập để truy cập DevFlow Hub
+            Nhập thông tin đăng nhập để truy cập WorkFlow Hub
           </CardDescription>
         </CardHeader>
 

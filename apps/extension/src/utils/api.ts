@@ -39,7 +39,7 @@ export async function removeAuthToken(): Promise<void> {
 }
 
 /**
- * Authenticated fetch wrapper for DevFlow Hub API.
+ * Authenticated fetch wrapper for WorkFlow Hub API.
  * Automatically injects Bearer token from chrome.storage.local.
  */
 export async function apiFetch<T = unknown>(

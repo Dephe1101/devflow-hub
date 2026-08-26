@@ -9,8 +9,10 @@ import { Button } from '@repo/ui';
 import { FadeIn } from '@/components/animations/fade-in';
 import { SlideUp } from '@/components/animations/slide-up';
 import { AppMockup, DistractionVisual, FeaturesBento } from '@/features/marketing';
+import { useAuthStore } from '@/stores/auth.store';
 
 export default function MarketingPage(): React.ReactElement {
+  const { isAuthenticated } = useAuthStore();
   return (
     <div className="flex flex-col items-center w-full min-h-screen relative overflow-hidden bg-background">
       {/* Abstract Background Glows */}
@@ -19,7 +21,7 @@ export default function MarketingPage(): React.ReactElement {
       <div className="absolute top-[20%] right-[-10%] w-[30%] h-[50%] rounded-full bg-primary/20 dark:bg-primary/10 blur-[150px] -z-10" />
 
       {/* Hero Section */}
-      <section className="relative w-full pt-32 pb-20 flex flex-col items-center justify-center min-h-[90vh]">
+      <section className="relative w-full pt-16 pb-20 flex flex-col items-center justify-center min-h-[90vh]">
         <div className="container px-4 flex flex-col items-center text-center">
           <SlideUp duration={0.6} delay={0.1}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-8 backdrop-blur-md shadow-sm">
@@ -52,12 +54,13 @@ export default function MarketingPage(): React.ReactElement {
             delay={0.4}
             className="flex flex-col sm:flex-row gap-4 w-full justify-center"
           >
-            <Link href="/dashboard">
+            <Link href={isAuthenticated ? '/dashboard' : '/register'}>
               <Button
                 size="lg"
-                className="w-full sm:w-auto text-base h-12 px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:scale-105"
+                className="group w-full sm:w-auto text-base h-12 px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:scale-105"
               >
-                Bắt đầu dùng thử miễn phí <ArrowRight className="ml-2 w-5 h-5" />
+                {isAuthenticated ? 'Mở Ứng dụng' : 'Bắt đầu dùng thử miễn phí'}{' '}
+                <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
           </SlideUp>
@@ -94,7 +97,7 @@ export default function MarketingPage(): React.ReactElement {
 
                 <div className="inline-flex items-center gap-3 text-sm font-semibold text-foreground bg-background dark:bg-white/5 px-5 py-3 rounded-full border border-border shadow-sm">
                   <Layers className="w-5 h-5 text-orange-500" />
-                  WorkFlow Hub loại bỏ hoàn toàn sự ma sát này.
+                  WorkFlow Hub loại bỏ hoàn toàn sự lãng phí thời gian này.
                 </div>
               </div>
             </FadeIn>
@@ -137,12 +140,12 @@ export default function MarketingPage(): React.ReactElement {
             <p className="text-xl text-muted-foreground mb-10">
               Gia nhập cùng hàng ngàn người dùng đã lấy lại được sự tập trung và hiệu suất.
             </p>
-            <Link href="/dashboard">
+            <Link href={isAuthenticated ? '/dashboard' : '/register'}>
               <Button
                 size="lg"
                 className="h-16 px-12 text-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl shadow-primary/20 transition-transform hover:scale-105"
               >
-                Mở WorkFlow Hub Ngay
+                {isAuthenticated ? 'Mở WorkFlow Hub Ngay' : 'Bắt đầu dùng thử ngay'}
               </Button>
             </Link>
           </FadeIn>

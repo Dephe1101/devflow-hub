@@ -247,7 +247,7 @@ function HtmlOverlays(): React.ReactElement {
             Không có gì dư thừa.
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-            DevFlow Hub tự động gom nhóm tất cả tài nguyên (URL, App, Terminal) vào các Workspaces.
+            WorkFlow Hub tự động gom nhóm tất cả tài nguyên (URL, App, Terminal) vào các Workspaces.
             Mở toàn bộ chỉ bằng một phím tắt duy nhất.
           </p>
           <div className="grid grid-cols-2 gap-4">
@@ -295,7 +295,7 @@ function HtmlOverlays(): React.ReactElement {
                 size="lg"
                 className="w-full sm:w-auto text-xl h-16 px-12 bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_40px_rgba(var(--primary-rgb),0.5)] transition-all hover:scale-110"
               >
-                Trải nghiệm DevFlow Hub
+                Trải nghiệm WorkFlow Hub
               </Button>
             </Link>
           </div>

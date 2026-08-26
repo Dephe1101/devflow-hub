@@ -157,7 +157,7 @@ function FloatingResources({
             <meshPhysicalMaterial color="#1e293b" roughness={0.3} metalness={0.7} clearcoat={0.5} />
           </RoundedBox>
           <Html transform distanceFactor={5} position={[0, 0, 0.11]} center>
-            <BrowserWindow url="platform.devflow.io/dashboard" />
+            <BrowserWindow url="platform.workflow.io/dashboard" />
           </Html>
         </Float>
       </group>
