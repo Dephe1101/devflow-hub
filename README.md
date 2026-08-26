@@ -214,21 +214,6 @@ npx turbo run test:e2e     # Playwright E2E
 | **Phase 3** — Intelligence (~10w)  | Biến tool thành "second brain" | Context Notes, Session Save/Restore, Usage Analytics, Link Health         | Kế hoạch chi tiết sẵn sàng                        |
 | **Phase 4** — Scale (~13w)         | Multi-user & automation        | Multi-device Sync, Team Sharing & Templates, Automation & Hooks           | Kế hoạch khung có sẵn                             |
 
-Chi tiết từng phase xem [Docs/**Phase*_Plan.md](../Docs/).
-
----
-
-## Tài liệu
-
-| Tài liệu                                                        | Mô tả                                                                                                          |
-| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| [Master Plan](../Docs/DevFlow_Hub_Master_Plan.md)               | Product vision, competitive landscape, personas, 5 modules, 7 BP đặc tả, roadmap 4 phases, rủi ro & quyết định |
-| [Tech Stack](../Docs/DevFlow_Hub_TechStack_Plan.md)             | Monorepo, frontend/backend/agent/extension stack, database schema, infra & testing strategy, 12 tech decisions |
-| [Rules & Conventions](../Docs/DevFlow_Hub_Rules_Conventions.md) | Quy ước code, commit, folder, naming, quy trình review                                                         |
-| [Phase 2 Detailed Plan](../Docs/DevFlow_Hub_Phase2_Plan.md)     | Agent, Command Palette, Extension — kiến trúc + business process extensions + QA gates                         |
-| [Phase 3 Detailed Plan](../Docs/DevFlow_Hub_Phase3_Plan.md)     | Context Notes, Session Save, Analytics, Link Health — tech ↔ BP mapping                                        |
-| [Infrastructure Guide](./INFRASTRUCTURE_GUIDE.md)               | Deploy, env, CI/CD                                                                                             |
-
 ---
 
 ## Bảo mật & quyền riêng tư
