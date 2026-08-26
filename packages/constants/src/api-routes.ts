@@ -16,4 +16,8 @@ export const API_ROUTES = {
     REORDER: 'workspaces/:workspaceId/resources/reorder',
     DETAIL: 'workspaces/:workspaceId/resources/:resourceId',
   },
+  NOTES: {
+    BASE: 'workspaces/:workspaceId/notes',
+    DETAIL: 'workspaces/:workspaceId/notes/:noteId',
+  },
 } as const;

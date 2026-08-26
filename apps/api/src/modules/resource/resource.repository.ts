@@ -89,6 +89,16 @@ export class ResourceRepository {
     });
   }
 
+  async checkWorkspaceResourceExists(
+    workspaceId: string,
+    resourceId: string,
+  ): Promise<boolean> {
+    const count = await this.prisma.workspaceResource.count({
+      where: { workspaceId, resourceId },
+    });
+    return count > 0;
+  }
+
   async deleteResource(id: string): Promise<void> {
     await this.prisma.resource.delete({
       where: { id },

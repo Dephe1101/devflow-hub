@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unknown-property */
+/* eslint-disable react-hooks/purity */
 'use client';
 
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 
 import Link from 'next/link';
 
@@ -175,7 +176,16 @@ function CommandCore(): React.ReactElement {
 }
 
 function SceneContext(): React.ReactElement {
-  const colors = ['#10b981', '#3b82f6', '#8b5cf6', '#f43f5e', '#06b6d4', '#eab308'];
+  const nodes = useMemo(() => {
+    const colors = ['#10b981', '#3b82f6', '#8b5cf6', '#f43f5e', '#06b6d4', '#eab308'];
+    return Array.from({ length: 12 }).map((_, i) => ({
+      key: i,
+      index: i,
+      total: 12,
+      color: colors[i % colors.length] ?? '#10b981',
+      size: Math.random() * 0.2 + 0.3,
+    }));
+  }, []);
 
   return (
     <>
@@ -185,13 +195,13 @@ function SceneContext(): React.ReactElement {
 
       <CommandCore />
 
-      {Array.from({ length: 12 }).map((_, i) => (
+      {nodes.map((node) => (
         <TechNode
-          key={i}
-          index={i}
-          total={12}
-          color={colors[i % colors.length] ?? '#10b981'}
-          size={Math.random() * 0.2 + 0.3}
+          key={node.key}
+          index={node.index}
+          total={node.total}
+          color={node.color}
+          size={node.size}
         />
       ))}
 

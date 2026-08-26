@@ -93,7 +93,6 @@ export class ResourceService {
       value: data.value,
       displayName: data.displayName ?? null,
       faviconUrl: this.getFaviconUrl(data.type, data.value),
-      notes: data.notes ?? null,
     });
 
     const pivots = await this.resourceRepo.findWorkspaceResources(workspaceId);
@@ -142,7 +141,6 @@ export class ResourceService {
       ...(data.type && { type: data.type }),
       ...(data.value && { value: data.value }),
       ...(data.displayName !== undefined && { displayName: data.displayName }),
-      ...(data.notes !== undefined && { notes: data.notes }),
       ...(faviconUrl && { faviconUrl }),
     });
 

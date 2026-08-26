@@ -11,6 +11,7 @@ import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle } fro
 
 import { useAgentDevices, useRevokeDevice } from '@/features/agent/hooks/use-agent-devices';
 import { usePairing } from '@/features/agent/hooks/use-pairing';
+import { extractErrorMessage } from '@/lib/api-helpers';
 
 export default function AgentSettingsPage(): React.ReactElement {
   const [pairingCode, setPairingCode] = useState<string | null>(null);
@@ -40,7 +41,7 @@ export default function AgentSettingsPage(): React.ReactElement {
         }, 1000);
       },
       onError: (error) => {
-        toast.error(error.message || 'Tạo mã kết nối thất bại');
+        toast.error(extractErrorMessage(error, 'Tạo mã kết nối thất bại'));
       },
     });
   };

@@ -17,7 +17,6 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Textarea,
   toast,
 } from '@repo/ui';
 import type { CreateResourceInput } from '@repo/validation';
@@ -47,10 +46,10 @@ export function AddResourceModal(): React.ReactElement | null {
       type: 'URL',
       value: '',
       displayName: '',
-      notes: '',
     },
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const selectedType = watch('type');
 
   const mutation = useMutation({
@@ -66,7 +65,6 @@ export function AddResourceModal(): React.ReactElement | null {
       const payload = {
         ...data,
         displayName: data.displayName !== '' ? data.displayName : undefined,
-        notes: data.notes !== '' ? data.notes : undefined,
       };
       const res = await api.post(`/${route}`, payload);
       return res.data as unknown;
@@ -207,19 +205,6 @@ export function AddResourceModal(): React.ReactElement | null {
               />
               {errors.displayName && (
                 <p className="text-sm text-destructive mt-1">{errors.displayName.message}</p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <Label>Ghi chú (Tùy chọn)</Label>
-              <Textarea
-                rows={2}
-                {...register('notes')}
-                disabled={mutation.isPending}
-                className="flex w-full bg-background/50 border-input/60 transition-all duration-200 hover:border-primary/50 focus:ring-2 focus:ring-primary/20 resize-none shadow-sm backdrop-blur-sm"
-              />
-              {errors.notes && (
-                <p className="text-sm text-destructive mt-1">{errors.notes.message}</p>
               )}
             </div>
 

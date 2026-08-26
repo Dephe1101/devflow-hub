@@ -7,7 +7,6 @@ export class ResourceResponseDto {
   value!: string;
   displayName!: string | null;
   faviconUrl!: string | null;
-  notes!: string | null;
   createdAt!: string;
 
   static fromEntity(entity: Resource): ResourceResponseDto {
@@ -17,7 +16,6 @@ export class ResourceResponseDto {
     dto.value = entity.value;
     dto.displayName = entity.displayName;
     dto.faviconUrl = entity.faviconUrl;
-    dto.notes = entity.notes;
     dto.createdAt = entity.createdAt.toISOString();
     return dto;
   }

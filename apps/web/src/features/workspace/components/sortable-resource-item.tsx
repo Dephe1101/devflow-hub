@@ -16,6 +16,8 @@ import { RESOURCE_TYPE } from '@repo/constants';
 import type { WorkspaceResource } from '@repo/types';
 import { Button } from '@repo/ui';
 
+import { ResourceNotePopover } from '@/features/notes/components/resource-note-popover';
+
 export function SortableResourceItem({
   item,
   onEdit,
@@ -105,6 +107,7 @@ export function SortableResourceItem({
         <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{item.resource.value}</p>
       </div>
       <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
+        <ResourceNotePopover workspaceId={item.workspaceId} resourceId={item.resourceId} />
         <Button
           variant="ghost"
           size="icon"

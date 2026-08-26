@@ -12,4 +12,15 @@ export const QUERY_KEYS = {
     lists: () => [...QUERY_KEYS.workspaceResources.all, 'list'] as const,
     list: (workspaceId: string) => [...QUERY_KEYS.workspaceResources.lists(), workspaceId] as const,
   },
+  notes: {
+    all: ['notes'] as const,
+    lists: () => [...QUERY_KEYS.notes.all, 'list'] as const,
+    list: (workspaceId: string, filters?: Record<string, unknown>) =>
+      filters
+        ? ([...QUERY_KEYS.notes.lists(), workspaceId, filters] as const)
+        : ([...QUERY_KEYS.notes.lists(), workspaceId] as const),
+    details: () => [...QUERY_KEYS.notes.all, 'detail'] as const,
+    detail: (workspaceId: string, id: string) =>
+      [...QUERY_KEYS.notes.details(), workspaceId, id] as const,
+  },
 } as const;

@@ -5,3 +5,4 @@ export * from './extension.js';
 export * from './keys.js';
 export * from './numbers.js';
 export * from './ws-events.js';
+export * from './validation.js';

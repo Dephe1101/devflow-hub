@@ -28,6 +28,7 @@ import { useGlobalResources } from '@/features/workspace/hooks/use-global-resour
 import { useWorkspaceLaunch } from '@/features/workspace/hooks/use-workspace-launch';
 import { useWorkspaces } from '@/features/workspace/hooks/use-workspaces';
 import { api } from '@/lib/api';
+import { extractErrorMessage } from '@/lib/api-helpers';
 import { useAuthStore } from '@/stores/auth.store';
 
 import { useCommandPalette } from '../hooks/use-command-palette';
@@ -151,7 +152,7 @@ export function CommandPalette(): React.ReactElement | null {
               },
               onError: (err) => {
                 toast.dismiss();
-                toast.error('Agent báo lỗi: ' + err.message);
+                toast.error(extractErrorMessage(err, 'Lỗi kết nối Agent'));
               },
             },
           );
@@ -166,7 +167,7 @@ export function CommandPalette(): React.ReactElement | null {
               },
               onError: (err) => {
                 toast.dismiss();
-                toast.error('Agent báo lỗi: ' + err.message);
+                toast.error(extractErrorMessage(err, 'Lỗi kết nối Agent'));
               },
             },
           );

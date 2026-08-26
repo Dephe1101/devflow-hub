@@ -58,6 +58,7 @@ export function WorkspaceResourceList({
   const deleteMutation = useDeleteResource(workspaceId);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setResources([...originalResources].sort((a, b) => a.sortOrder - b.sortOrder));
   }, [originalResources]);
 

@@ -11,6 +11,7 @@ import { ResourceModule } from './modules/resource/resource.module';
 import { UsersModule } from './modules/users/users.module';
 import { WorkspaceModule } from './modules/workspace/workspace.module';
 import { AgentModule } from './modules/agent/agent.module';
+import { NotesModule } from './modules/notes/notes.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { AgentModule } from './modules/agent/agent.module';
     WorkspaceModule,
     ResourceModule,
     AgentModule,
+    NotesModule,
   ],
   controllers: [],
   providers: [],

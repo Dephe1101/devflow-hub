@@ -22,3 +22,18 @@ export const HEALTH_STATUS = {
 } as const;
 
 export type HealthStatus = (typeof HEALTH_STATUS)[keyof typeof HEALTH_STATUS];
+
+export const NOTE_TYPE = {
+  NOTE: 'NOTE',
+  COMMAND: 'COMMAND',
+  SNIPPET: 'SNIPPET',
+} as const;
+
+export type NoteType = (typeof NOTE_TYPE)[keyof typeof NOTE_TYPE];
+
+export const AGENT_ACTION = {
+  OPEN_FOLDER: 'open_folder',
+  LAUNCH_APP: 'launch_app',
+} as const;
+
+export type AgentAction = (typeof AGENT_ACTION)[keyof typeof AGENT_ACTION];

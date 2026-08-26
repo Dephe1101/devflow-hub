@@ -9,4 +9,7 @@ export * from './components/ui/dialog';
 export * from './components/ui/skeleton';
 export * from './components/ui/sonner';
 export * from './components/ui/textarea';
+export * from './components/ui/popover';
+export * from './components/ui/scroll-area';
+export * from './components/ui/tabs';
 export * from './lib/utils';

@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
-export const resourceTypeEnum = z.enum(['URL', 'LOCAL_PATH', 'APP_URI', 'COMMAND']);
+import { RESOURCE_TYPE } from '@repo/constants';
+
+export const resourceTypeEnum = z.nativeEnum(RESOURCE_TYPE);
 
 export const createResourceSchema = z.object({
   type: resourceTypeEnum,
@@ -11,7 +13,6 @@ export const createResourceSchema = z.object({
       message: 'URL không hợp lệ (không cho phép javascript:)',
     }),
   displayName: z.string().max(100).optional(),
-  notes: z.string().optional(),
   tags: z.array(z.string()).optional(),
 });
 

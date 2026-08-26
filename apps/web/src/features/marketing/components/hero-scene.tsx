@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unknown-property */
+/* eslint-disable react-hooks/purity */
 'use client';
 
 import { useMemo, useRef } from 'react';

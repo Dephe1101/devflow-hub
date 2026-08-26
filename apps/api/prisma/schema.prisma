@@ -18,11 +18,14 @@ model User {
   googleId     String?     @unique
   githubId     String?     @unique
   avatarUrl    String?
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
   workspaces   Workspace[]
   tags         Tag[]
   agentDevices AgentDevice[]
+  launchLogs   LaunchLog[]
+
+  @@map("user")
 }
 
 model AgentDevice {
@@ -35,6 +38,7 @@ model AgentDevice {
   lastSeen  DateTime @default(now())
   
   @@index([userId])
+  @@map("agent_device")
 }
 
 model Workspace {
@@ -53,8 +57,11 @@ model Workspace {
   updatedAt      DateTime            @updatedAt
   resources      WorkspaceResource[]
   tags           WorkspaceTag[]
+  notes          Note[]
+  launchLogs     LaunchLog[]
 
   @@index([userId, isPinned, sortOrder], name: "idx_workspace_user_pinned")
+  @@map("workspace")
 }
 
 model Resource {
@@ -64,13 +71,16 @@ model Resource {
   value           String
   displayName     String?             @db.VarChar(100)
   faviconUrl      String?
-  notes           String?
+  healthStatus    String?             @default("UNKNOWN") @db.VarChar(20)
+  lastHealthCheck DateTime?
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
   workspaces      WorkspaceResource[]
   tags            ResourceTag[]
+  notes           Note[]
 
   @@index([createdByUserId, type], name: "idx_resource_user_type")
+  @@map("resource")
 }
 
 model WorkspaceResource {
@@ -85,6 +95,7 @@ model WorkspaceResource {
 
   @@unique([workspaceId, resourceId])
   @@index([workspaceId, sortOrder], name: "idx_workspace_resource_order")
+  @@map("workspace_resource")
 }
 
 model Tag {
@@ -97,6 +108,7 @@ model Tag {
   workspaces  WorkspaceTag[]
 
   @@unique([userId, name])
+  @@map("tag")
 }
 
 model ResourceTag {
@@ -107,6 +119,7 @@ model ResourceTag {
   tag        Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@unique([resourceId, tagId])
+  @@map("resource_tag")
 }
 
 model WorkspaceTag {
@@ -117,4 +130,45 @@ model WorkspaceTag {
   tag         Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@unique([workspaceId, tagId])
+  @@map("workspace_tag")
+}
+
+model Note {
+  id          String    @id @default(uuid()) @db.Uuid
+  workspaceId String    @db.Uuid
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  resourceId  String?   @db.Uuid
+  resource    Resource? @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  title       String    @db.VarChar(200)
+  content     String?   @db.Text
+  type        String    @db.VarChar(20) // "NOTE" | "COMMAND" | "SNIPPET"
+  category    String?   @db.VarChar(50) // "Build" | "Deploy" | "Database"...
+  sortOrder   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([workspaceId, type], name: "idx_note_workspace_type")
+  @@index([resourceId], name: "idx_note_resource")
+  @@map("note")
+}
+
+model LaunchLog {
+  id               String   @id @default(uuid()) @db.Uuid
+  workspaceId      String   @db.Uuid
+  workspace        Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  userId           String   @db.Uuid
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deviceId         String?  @db.Uuid
+  results          Json?
+  webUrlsOpened    Int      @default(0)
+  localPathsOpened Int      @default(0)
+  failedCount      Int      @default(0)
+  status           String   @db.VarChar(20)
+  launchedAt       DateTime @default(now())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([workspaceId, launchedAt], name: "idx_launch_log_workspace")
+  @@index([userId, launchedAt], name: "idx_launch_log_user")
+  @@map("launch_log")
 }

@@ -7,7 +7,11 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui';
+
 import { FadeIn } from '@/components/animations/fade-in';
+import { CommandCheatsheet } from '@/features/notes/components/command-cheatsheet';
+import { WorkspaceNotesEditor } from '@/features/notes/components/workspace-notes-editor';
 import { PopupBlockerWarning } from '@/features/workspace/components/popup-blocker-warning';
 import { WorkspaceHeader } from '@/features/workspace/components/workspace-header';
 import { WorkspaceResourceList } from '@/features/workspace/components/workspace-resource-list';
@@ -74,11 +78,29 @@ export default function WorkspaceDetailPage(props: {
 
       <PopupBlockerWarning blockedUrls={blockedUrls} onClear={clearBlockedUrls} />
 
-      <WorkspaceResourceList
-        workspaceId={workspaceId}
-        originalResources={originalResources ?? []}
-        isLoading={isLoading}
-      />
+      <Tabs defaultValue="resources" className="w-full">
+        <TabsList className="mb-4">
+          <TabsTrigger value="resources">Tài nguyên</TabsTrigger>
+          <TabsTrigger value="notes">Ghi chú & Lệnh</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="resources" className="mt-0">
+          <WorkspaceResourceList
+            workspaceId={workspaceId}
+            originalResources={originalResources ?? []}
+            isLoading={isLoading}
+          />
+        </TabsContent>
+
+        <TabsContent value="notes" className="mt-0 h-[600px] flex gap-4">
+          <div className="w-2/3 h-full">
+            <WorkspaceNotesEditor workspaceId={workspaceId} />
+          </div>
+          <div className="w-1/3 h-full">
+            <CommandCheatsheet workspaceId={workspaceId} />
+          </div>
+        </TabsContent>
+      </Tabs>
     </FadeIn>
   );
 }

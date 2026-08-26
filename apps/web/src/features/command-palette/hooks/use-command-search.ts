@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import Fuse from 'fuse.js';
 import type { IFuseOptions } from 'fuse.js';
@@ -53,19 +53,8 @@ export function useCommandSearch(searchableItems: SearchableItem[]): {
   const [query, setQuery] = useState('');
   const debouncedQuery = useDebounce(query, 150); // OPT-6: Debounce search
 
-  // BUG-7 fix: stable Fuse instance - recreate only when items count or content changes significantly
-  const fuseRef = useRef<Fuse<SearchableItem> | null>(null);
-  const prevItemsRef = useRef<SearchableItem[] | null>(null);
-
   const fuse = useMemo(() => {
-    // Only rebuild if items changed by reference
-    if (prevItemsRef.current === searchableItems && fuseRef.current) {
-      return fuseRef.current;
-    }
-    prevItemsRef.current = searchableItems;
-    const instance = new Fuse(searchableItems, FUSE_OPTIONS);
-    fuseRef.current = instance;
-    return instance;
+    return new Fuse(searchableItems, FUSE_OPTIONS);
   }, [searchableItems]);
 
   const results = useMemo(() => {

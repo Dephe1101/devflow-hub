@@ -15,7 +15,6 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Textarea,
   toast,
 } from '@repo/ui';
 import type { UpdateResourceInput } from '@repo/validation';
@@ -43,7 +42,6 @@ export function EditResourceModal(): React.ReactElement | null {
       type: 'URL',
       value: '',
       displayName: '',
-      notes: '',
     },
   });
 
@@ -53,7 +51,6 @@ export function EditResourceModal(): React.ReactElement | null {
         type: selectedResourceForEdit.resource.type as 'URL' | 'LOCAL_PATH' | 'APP_URI' | 'COMMAND',
         value: selectedResourceForEdit.resource.value,
         displayName: selectedResourceForEdit.resource.displayName ?? '',
-        notes: selectedResourceForEdit.resource.notes ?? '',
       });
     }
   }, [selectedResourceForEdit, reset]);
@@ -72,7 +69,6 @@ export function EditResourceModal(): React.ReactElement | null {
     const payload = {
       ...data,
       displayName: data.displayName !== '' ? data.displayName : undefined,
-      notes: data.notes !== '' ? data.notes : undefined,
     };
 
     updateMutation.mutate(
@@ -196,19 +192,6 @@ export function EditResourceModal(): React.ReactElement | null {
               <Input type="text" {...register('displayName')} disabled={updateMutation.isPending} />
               {errors.displayName && (
                 <p className="text-sm text-destructive mt-1">{errors.displayName.message}</p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <Label>Ghi chú (Tùy chọn)</Label>
-              <Textarea
-                rows={2}
-                {...register('notes')}
-                disabled={updateMutation.isPending}
-                className="flex w-full bg-background/50 border-input/60 transition-all duration-200 hover:border-primary/50 focus:ring-2 focus:ring-primary/20 resize-none shadow-sm backdrop-blur-sm"
-              />
-              {errors.notes && (
-                <p className="text-sm text-destructive mt-1">{errors.notes.message}</p>
               )}
             </div>
 
