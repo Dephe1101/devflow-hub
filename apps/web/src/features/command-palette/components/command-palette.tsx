@@ -184,7 +184,7 @@ export function CommandPalette(): React.ReactElement | null {
     }
 
     setWorkspaceToLaunch(null);
-    toast.loading(`Đang mở Workspace: ${workspaceToLaunch.name}...`);
+    toast.loading(`Đang mở Không gian làm việc: ${workspaceToLaunch.name}...`);
 
     api
       .get<unknown, ApiResponse<WorkspaceResource[]>>(
@@ -197,14 +197,14 @@ export function CommandPalette(): React.ReactElement | null {
       .then((res) => {
         toast.dismiss();
         if (res.success) {
-          toast.success(`Mở Workspace thành công`);
+          toast.success(`Mở Không gian làm việc thành công`);
         } else {
-          toast.error(`Mở Workspace có lỗi hoặc bị Pop-up blocker chặn`);
+          toast.error(`Mở Không gian làm việc có lỗi hoặc bị Pop-up blocker chặn`);
         }
       })
       .catch(() => {
         toast.dismiss();
-        toast.error('Lỗi khi tải tài nguyên của Workspace');
+        toast.error('Lỗi khi tải tài nguyên của Không gian làm việc');
       });
   };
 
@@ -219,7 +219,7 @@ export function CommandPalette(): React.ReactElement | null {
             <CommandInput
               value={query}
               onValueChange={setQuery}
-              placeholder="Gõ để tìm kiếm Workspace, Thư mục, Lệnh (dark, logout)..."
+              placeholder="Gõ để tìm kiếm Không gian làm việc, Thư mục, Lệnh (dark, logout)..."
               autoFocus
             />
 
@@ -275,7 +275,7 @@ export function CommandPalette(): React.ReactElement | null {
           <DialogHeader>
             <DialogTitle>Xác nhận khởi động</DialogTitle>
             <DialogDescription>
-              Bạn có chắc chắn muốn khởi động Workspace:{' '}
+              Bạn có chắc chắn muốn khởi động Không gian làm việc:{' '}
               <span className="font-semibold text-foreground">{workspaceToLaunch?.name}</span>? Tất
               cả tài nguyên sẽ được mở lên.
             </DialogDescription>

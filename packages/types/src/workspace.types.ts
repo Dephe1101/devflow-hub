@@ -5,6 +5,7 @@ export interface Workspace {
   color: string | null;
   icon: string | null;
   resourceCount: number;
+  launchCount: number;
   sortOrder: number;
   isPinned: boolean;
   lastLaunchedAt: string | null;

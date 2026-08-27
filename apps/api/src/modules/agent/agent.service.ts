@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from '@repo/constants';
 import {
   Injectable,
   UnauthorizedException,
@@ -40,14 +41,12 @@ export class AgentService {
       await redisClient.expire(rateKey, PAIRING_RATE_WINDOW);
     }
     if (attempts > MAX_PAIRING_ATTEMPTS) {
-      throw new UnauthorizedException(
-        'Too many pairing attempts. Please try again later.',
-      );
+      throw new UnauthorizedException(ERROR_MESSAGES.AGENT.RATE_LIMIT_EXCEEDED);
     }
 
     const userId = await redisClient.get(`pairing:${code}`);
     if (!userId) {
-      throw new UnauthorizedException('Invalid or expired pairing code');
+      throw new UnauthorizedException(ERROR_MESSAGES.AGENT.INVALID_CODE);
     }
     // Delete after successful validation (one-time use)
     await redisClient.del(`pairing:${code}`);
@@ -72,7 +71,7 @@ export class AgentService {
     try {
       return this.jwtService.verify(token);
     } catch {
-      throw new UnauthorizedException('Invalid agent token');
+      throw new UnauthorizedException(ERROR_MESSAGES.AGENT.INVALID_TOKEN);
     }
   }
 
@@ -96,7 +95,9 @@ export class AgentService {
       where: { userId, deviceId },
     });
     if (result.count === 0) {
-      throw new NotFoundException('Device not found or not owned by you');
+      throw new NotFoundException(
+        ERROR_MESSAGES.AGENT.NOT_FOUND_OR_NO_PERMISSION,
+      );
     }
   }
 

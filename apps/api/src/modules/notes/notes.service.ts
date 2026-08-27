@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from '@repo/constants';
 import {
   ForbiddenException,
   Injectable,
@@ -27,7 +28,7 @@ export class NotesService {
       userId,
     );
     if (!workspace) {
-      throw new ForbiddenException('Bạn không có quyền truy cập workspace này');
+      throw new ForbiddenException(ERROR_MESSAGES.WORKSPACE.NO_ACCESS);
     }
     return workspace;
   }
@@ -42,7 +43,7 @@ export class NotesService {
     );
     if (!exists) {
       throw new ForbiddenException(
-        'Resource không thuộc về workspace này hoặc không tồn tại',
+        ERROR_MESSAGES.RESOURCE.NOT_BELONG_OR_NOT_FOUND,
       );
     }
   }
@@ -88,9 +89,7 @@ export class NotesService {
 
     if (data.resourceId) {
       if (data.content && data.content.length > 500) {
-        throw new BadRequestException(
-          'Resource note không được vượt quá 500 ký tự',
-        );
+        throw new BadRequestException(ERROR_MESSAGES.RESOURCE.NOTE_TOO_LONG);
       }
       await this.validateResourceOwnership(data.resourceId, workspaceId);
     }
@@ -118,7 +117,7 @@ export class NotesService {
 
     const note = await this.notesRepo.findById(noteId);
     if (note?.workspaceId !== workspaceId) {
-      throw new NotFoundException('Không tìm thấy note');
+      throw new NotFoundException(ERROR_MESSAGES.NOTE.NOT_FOUND);
     }
 
     const effectiveResourceId =
@@ -127,9 +126,7 @@ export class NotesService {
 
     if (effectiveResourceId) {
       if (effectiveContent && effectiveContent.length > 500) {
-        throw new BadRequestException(
-          'Resource note không được vượt quá 500 ký tự',
-        );
+        throw new BadRequestException(ERROR_MESSAGES.RESOURCE.NOTE_TOO_LONG);
       }
       if (
         typeof data.resourceId === 'string' &&
@@ -167,7 +164,7 @@ export class NotesService {
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
-        throw new NotFoundException('Không tìm thấy note');
+        throw new NotFoundException(ERROR_MESSAGES.NOTE.NOT_FOUND);
       }
       throw error;
     }
@@ -182,7 +179,7 @@ export class NotesService {
 
     const note = await this.notesRepo.findById(noteId);
     if (note?.workspaceId !== workspaceId) {
-      throw new NotFoundException('Không tìm thấy note');
+      throw new NotFoundException(ERROR_MESSAGES.NOTE.NOT_FOUND);
     }
 
     try {
@@ -192,7 +189,7 @@ export class NotesService {
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
-        throw new NotFoundException('Không tìm thấy note');
+        throw new NotFoundException(ERROR_MESSAGES.NOTE.NOT_FOUND);
       }
       throw error;
     }

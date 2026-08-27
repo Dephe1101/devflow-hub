@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from '@repo/constants';
 import { BadRequestException } from '@nestjs/common';
 import { ZodError } from 'zod';
 
@@ -19,11 +20,11 @@ export class ZodValidationPipe implements PipeTransform {
       if (error instanceof ZodError) {
         throw new BadRequestException({
           code: 'VALIDATION_ERROR',
-          message: 'Dữ liệu không hợp lệ',
+          message: ERROR_MESSAGES.VALIDATION.INVALID_DATA,
           details: error.errors,
         });
       }
-      throw new BadRequestException('Dữ liệu không hợp lệ');
+      throw new BadRequestException(ERROR_MESSAGES.VALIDATION.INVALID_DATA);
     }
   }
 }

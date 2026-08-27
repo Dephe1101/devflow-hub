@@ -12,7 +12,7 @@ import {
   ParseUUIDPipe,
 } from '@nestjs/common';
 import { ThrottlerGuard } from '@nestjs/throttler';
-import { API_ROUTES } from '@repo/constants';
+import { API_ROUTES, SUCCESS_MESSAGES } from '@repo/constants';
 import {
   CreateWorkspaceInput,
   UpdateWorkspaceInput,
@@ -58,6 +58,6 @@ export class WorkspaceController {
     @Param('id', ParseUUIDPipe) id: string,
   ) {
     await this.workspaceService.remove(req.user.id, id);
-    return { message: 'Xóa workspace thành công' };
+    return { message: SUCCESS_MESSAGES.WORKSPACE.DELETED };
   }
 }

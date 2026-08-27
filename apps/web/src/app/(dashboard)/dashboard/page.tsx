@@ -8,6 +8,7 @@ import { Button, Card, CardContent, Skeleton } from '@repo/ui';
 
 import { FadeIn } from '@/components/animations/fade-in';
 import { StaggerContainer, StaggerItem } from '@/components/animations/stagger-container';
+import { MostUsed, RecentlyAccessed } from '@/features/analytics';
 import { WorkspaceCard, useWorkspaces } from '@/features/workspace';
 import { useUIStore } from '@/stores/ui.store';
 
@@ -37,7 +38,7 @@ export default function DashboardPage(): React.ReactNode {
       <FadeIn>
         <Card className="border-destructive/50 bg-destructive/10">
           <CardContent className="pt-6 text-center text-destructive">
-            <p>Lỗi tải Workspaces. Vui lòng thử lại sau.</p>
+            <p>Lỗi tải Không gian làm việc. Vui lòng thử lại sau.</p>
           </CardContent>
         </Card>
       </FadeIn>
@@ -51,7 +52,7 @@ export default function DashboardPage(): React.ReactNode {
     <FadeIn className="space-y-8 pb-12">
       <div className="sm:flex sm:items-center sm:justify-between">
         <div className="space-y-1">
-          <h1 className="text-3xl font-bold tracking-tight">Workspaces của bạn</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Không gian làm việc của bạn</h1>
           <p className="text-muted-foreground">Quản lý ngữ cảnh dự án và tài nguyên của bạn.</p>
         </div>
         <div className="mt-4 sm:mt-0">
@@ -60,7 +61,7 @@ export default function DashboardPage(): React.ReactNode {
             className="shadow-lg hover:shadow-primary/25 transition-all"
           >
             <Plus className="mr-2 h-4 w-4" />
-            Workspace Mới
+            Không gian làm việc mới
           </Button>
         </div>
       </div>
@@ -72,19 +73,26 @@ export default function DashboardPage(): React.ReactNode {
               <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center mb-6">
                 <Folder className="h-10 w-10 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold tracking-tight mb-2">Chưa có Workspace nào</h3>
+              <h3 className="text-xl font-semibold tracking-tight mb-2">
+                Chưa có Không gian làm việc nào
+              </h3>
               <p className="text-muted-foreground max-w-sm mb-6">
-                Bắt đầu bằng cách tạo Workspace đầu tiên để tổ chức các tài nguyên của bạn.
+                Bắt đầu bằng cách tạo Không gian làm việc đầu tiên để tổ chức các tài nguyên của
+                bạn.
               </p>
               <Button onClick={openCreateWorkspace} size="lg">
                 <Plus className="mr-2 h-4 w-4" />
-                Tạo Workspace
+                Tạo Không gian làm việc
               </Button>
             </CardContent>
           </Card>
         </FadeIn>
       ) : (
         <div className="space-y-10">
+          {/* F3.4 Analytics Widgets */}
+          <RecentlyAccessed />
+          <MostUsed />
+
           {pinnedWorkspaces.length > 0 && (
             <section>
               <div className="flex items-center gap-2 mb-4">
@@ -114,7 +122,7 @@ export default function DashboardPage(): React.ReactNode {
                 <div className="flex items-center gap-2 mb-4">
                   <LayoutGrid className="h-4 w-4 text-muted-foreground" />
                   <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                    Tất cả Workspace
+                    Tất cả Không gian làm việc
                   </h2>
                 </div>
               )}

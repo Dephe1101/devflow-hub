@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { VALIDATION_MESSAGES } from '@repo/constants';
 import { RESOURCE_TYPE } from '@repo/constants';
 
 export const resourceTypeEnum = z.nativeEnum(RESOURCE_TYPE);
@@ -8,9 +9,9 @@ export const createResourceSchema = z.object({
   type: resourceTypeEnum,
   value: z
     .string()
-    .min(1, 'Giá trị không được để trống')
+    .min(1, VALIDATION_MESSAGES.RESOURCE.VALUE_REQUIRED)
     .refine((val) => val.trim().toLowerCase().indexOf('javascript:') !== 0, {
-      message: 'URL không hợp lệ (không cho phép javascript:)',
+      message: VALIDATION_MESSAGES.RESOURCE.INVALID_URL,
     }),
   displayName: z.string().max(100).optional(),
   tags: z.array(z.string()).optional(),

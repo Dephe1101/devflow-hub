@@ -1,5 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import {
+  ERROR_MESSAGES,
+  KEYS,
+  RESOURCE_CONFIG,
+  RESOURCE_TYPE,
+} from '@repo/constants';
+import {
   CreateResourceInput,
   ReorderResourceInput,
   UpdateResourceInput,
@@ -36,7 +42,7 @@ export class ResourceService {
       userId,
     );
     if (!workspace) {
-      throw new NotFoundException('Không tìm thấy workspace');
+      throw new NotFoundException(ERROR_MESSAGES.WORKSPACE.NOT_FOUND);
     }
 
     const pivots = await this.resourceRepo.findWorkspaceResources(workspaceId);
@@ -60,7 +66,7 @@ export class ResourceService {
           return null;
         }
 
-        return `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`;
+        return `${KEYS.EXTERNAL_APIS.GOOGLE_FAVICON}?domain=${hostname}&sz=${String(RESOURCE_CONFIG.FAVICON_SIZE)}`;
       } catch {
         // ignore
       }
@@ -78,7 +84,7 @@ export class ResourceService {
       userId,
     );
     if (!workspace) {
-      throw new NotFoundException('Không tìm thấy workspace');
+      throw new NotFoundException(ERROR_MESSAGES.WORKSPACE.NOT_FOUND);
     }
 
     let resource = await this.resourceRepo.findByUserAndValue(
@@ -125,14 +131,16 @@ export class ResourceService {
       userId,
     );
     if (!workspace) {
-      throw new NotFoundException('Không tìm thấy workspace');
+      throw new NotFoundException(ERROR_MESSAGES.WORKSPACE.NOT_FOUND);
     }
 
     // Bug 2 Fix: Check if resource actually belongs to the workspace
     const pivots = await this.resourceRepo.findWorkspaceResources(workspaceId);
     const existingPivot = pivots.find((p) => p.resourceId === resourceId);
     if (!existingPivot) {
-      throw new NotFoundException('Resource không thuộc về workspace này');
+      throw new NotFoundException(
+        ERROR_MESSAGES.RESOURCE.NOT_BELONG_TO_WORKSPACE,
+      );
     }
 
     const faviconUrl = this.getFaviconUrl(data.type ?? '', data.value);
@@ -157,7 +165,7 @@ export class ResourceService {
       userId,
     );
     if (!workspace) {
-      throw new NotFoundException('Không tìm thấy workspace');
+      throw new NotFoundException(ERROR_MESSAGES.WORKSPACE.NOT_FOUND);
     }
 
     await this.resourceRepo.deleteWorkspaceResource(workspaceId, resourceId);
@@ -179,7 +187,7 @@ export class ResourceService {
       userId,
     );
     if (!workspace) {
-      throw new NotFoundException('Không tìm thấy workspace');
+      throw new NotFoundException(ERROR_MESSAGES.WORKSPACE.NOT_FOUND);
     }
 
     const updates = data.resourceIds.map((id, index) => ({
@@ -196,7 +204,7 @@ export class ResourceService {
   async userOwnsResource(userId: string, value: string): Promise<boolean> {
     const resource = await this.resourceRepo.findByUserAndValue(
       userId,
-      'LOCAL_PATH',
+      RESOURCE_TYPE.LOCAL_PATH,
       value,
     );
     if (resource) {
@@ -204,7 +212,7 @@ export class ResourceService {
     }
     const appResource = await this.resourceRepo.findByUserAndValue(
       userId,
-      'APP_URI',
+      RESOURCE_TYPE.APP_URI,
       value,
     );
     return !!appResource;

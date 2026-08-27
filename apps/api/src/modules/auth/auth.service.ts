@@ -6,7 +6,7 @@ import {
   ConflictException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { KEYS, TIME_IN_SEC } from '@repo/constants';
+import { KEYS, TIME_IN_SEC, ERROR_MESSAGES } from '@repo/constants';
 import { LoginInput, RegisterInput } from '@repo/validation';
 import * as bcrypt from 'bcrypt';
 
@@ -24,7 +24,7 @@ export class AuthService {
   async register(data: RegisterInput) {
     const existingUser = await this.usersService.findByEmail(data.email);
     if (existingUser) {
-      throw new ConflictException('Email này đã được sử dụng');
+      throw new ConflictException(ERROR_MESSAGES.AUTH.EMAIL_IN_USE);
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 12);
@@ -34,13 +34,13 @@ export class AuthService {
       passwordHash: hashedPassword,
     });
 
-    return this.generateTokens(user.id, user.email);
+    return this.generateTokens(user.id, user.email, user.role);
   }
 
   async login(data: LoginInput) {
     const user = await this.usersService.findByEmail(data.email);
     if (!user?.passwordHash) {
-      throw new UnauthorizedException('Email hoặc mật khẩu không chính xác');
+      throw new UnauthorizedException(ERROR_MESSAGES.AUTH.INVALID_CREDENTIALS);
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -48,24 +48,30 @@ export class AuthService {
       user.passwordHash,
     );
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Email hoặc mật khẩu không chính xác');
+      throw new UnauthorizedException(ERROR_MESSAGES.AUTH.INVALID_CREDENTIALS);
     }
 
-    return this.generateTokens(user.id, user.email);
+    return this.generateTokens(user.id, user.email, user.role);
   }
 
   async refresh(refreshTokenId: string, userId: string, email: string) {
+    // We need the role here too, let's fetch the user
+    const user = await this.usersService.findById(userId);
+    if (!user) {
+      throw new UnauthorizedException(ERROR_MESSAGES.AUTH.USER_NOT_FOUND);
+    }
+
     // Check if refresh token is blacklisted in Redis
     const isBlacklisted = await this.redisService
       .getClient()
       .get(`${KEYS.REDIS.BLACKLIST_PREFIX}:${refreshTokenId}`);
     if (isBlacklisted) {
       throw new UnauthorizedException(
-        'Token làm mới đã bị thu hồi hoặc hết hiệu lực',
+        ERROR_MESSAGES.AUTH.REFRESH_TOKEN_REVOKED,
       );
     }
 
-    return this.generateTokens(userId, email);
+    return this.generateTokens(userId, email, user.role);
   }
 
   async logout(refreshTokenId: string) {
@@ -79,14 +85,14 @@ export class AuthService {
       );
   }
 
-  private generateTokens(userId: string, email: string) {
-    const payload = { sub: userId, email };
+  private generateTokens(userId: string, email: string, role: string) {
+    const payload = { sub: userId, email, role };
     const accessToken = this.jwtService.sign(payload);
 
     // Generate a unique ID for the refresh token to track it in Redis
     const refreshTokenId = randomUUID();
     const refreshToken = this.jwtService.sign(
-      { sub: userId, email, jti: refreshTokenId },
+      { sub: userId, email, role, jti: refreshTokenId },
       { expiresIn: '7d' },
     );
 

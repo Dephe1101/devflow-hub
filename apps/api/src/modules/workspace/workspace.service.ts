@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from '@repo/constants';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateWorkspaceInput, UpdateWorkspaceInput } from '@repo/validation';
 
@@ -40,7 +41,7 @@ export class WorkspaceService {
     );
 
     if (!workspace) {
-      throw new NotFoundException('Không tìm thấy workspace');
+      throw new NotFoundException(ERROR_MESSAGES.WORKSPACE.NOT_FOUND);
     }
 
     const updated = await this.workspaceRepo.update(workspaceId, {
@@ -61,7 +62,7 @@ export class WorkspaceService {
     );
 
     if (!workspace) {
-      throw new NotFoundException('Không tìm thấy workspace');
+      throw new NotFoundException(ERROR_MESSAGES.WORKSPACE.NOT_FOUND);
     }
 
     await this.workspaceRepo.delete(workspaceId);

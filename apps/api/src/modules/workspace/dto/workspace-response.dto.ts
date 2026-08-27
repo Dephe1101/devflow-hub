@@ -7,6 +7,7 @@ export class WorkspaceResponseDto {
   color!: string | null;
   icon!: string | null;
   resourceCount!: number;
+  launchCount!: number;
   sortOrder!: number;
   isPinned!: boolean;
   lastLaunchedAt!: string | null;
@@ -22,6 +23,7 @@ export class WorkspaceResponseDto {
     dto.color = entity.color;
     dto.icon = entity.icon;
     dto.resourceCount = entity._count?.resources ?? 0;
+    dto.launchCount = entity.launchCount;
     dto.sortOrder = entity.sortOrder;
     dto.isPinned = entity.isPinned;
     dto.lastLaunchedAt = entity.lastLaunchedAt?.toISOString() ?? null;

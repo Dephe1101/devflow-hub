@@ -12,6 +12,9 @@ import { UsersModule } from './modules/users/users.module';
 import { WorkspaceModule } from './modules/workspace/workspace.module';
 import { AgentModule } from './modules/agent/agent.module';
 import { NotesModule } from './modules/notes/notes.module';
+import { AdminModule } from './modules/admin/admin.module';
+import { AnalyticsModule } from './modules/analytics/analytics.module';
+import { BullModule } from '@nestjs/bullmq';
 
 @Module({
   imports: [
@@ -33,6 +36,17 @@ import { NotesModule } from './modules/notes/notes.module';
     ResourceModule,
     AgentModule,
     NotesModule,
+    AdminModule,
+    AnalyticsModule,
+    BullModule.forRootAsync({
+      useFactory: () => {
+        return {
+          connection: {
+            url: String(process.env.REDIS_URL),
+          },
+        };
+      },
+    }),
   ],
   controllers: [],
   providers: [],

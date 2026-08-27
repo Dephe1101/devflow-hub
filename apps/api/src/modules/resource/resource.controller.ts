@@ -12,7 +12,7 @@ import {
   ParseUUIDPipe,
 } from '@nestjs/common';
 import { ThrottlerGuard } from '@nestjs/throttler';
-import { API_ROUTES } from '@repo/constants';
+import { API_ROUTES, SUCCESS_MESSAGES } from '@repo/constants';
 import {
   CreateResourceInput,
   ReorderResourceInput,
@@ -68,7 +68,7 @@ export class ResourceController {
     @Body() body: ReorderResourceInput,
   ) {
     await this.resourceService.reorder(req.user.id, workspaceId, body);
-    return { message: 'Sắp xếp tài nguyên thành công' };
+    return { message: SUCCESS_MESSAGES.RESOURCE.REORDERED };
   }
 
   @Patch(API_ROUTES.RESOURCES.DETAIL)
@@ -98,6 +98,6 @@ export class ResourceController {
       workspaceId,
       resourceId,
     );
-    return { message: 'Xóa tài nguyên thành công' };
+    return { message: SUCCESS_MESSAGES.RESOURCE.DELETED };
   }
 }

@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from '@repo/constants';
 import {
   CanActivate,
   ExecutionContext,
@@ -49,23 +50,21 @@ export class WsJwtGuard implements CanActivate {
 
       if (!token) {
         this.logger.warn('WebSocket connection attempted without token');
-        throw new WsException('Missing authentication token');
+        throw new WsException(ERROR_MESSAGES.AUTH.MISSING_TOKEN);
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const decoded = this.jwtService.verify(token);
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (decoded.role !== 'agent') {
-        throw new WsException(
-          'Unauthorized: Only agents can connect to this gateway',
-        );
+        throw new WsException(ERROR_MESSAGES.AGENT.WS_ONLY);
       }
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       client.user = decoded;
       client.token = token; // Store raw token for per-command verification
       return true;
     } catch {
-      throw new WsException('Unauthorized');
+      throw new WsException(ERROR_MESSAGES.AUTH.UNAUTHORIZED);
     }
   }
 }

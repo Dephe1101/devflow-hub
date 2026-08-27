@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from '@repo/constants';
 import {
   Controller,
   Post,
@@ -60,7 +61,9 @@ export class AgentController {
         targetValue,
       );
       if (!hasAccess) {
-        throw new ForbiddenException('Resource not found in your workspaces');
+        throw new ForbiddenException(
+          ERROR_MESSAGES.RESOURCE.NOT_FOUND_IN_USER_WORKSPACES,
+        );
       }
     }
 
@@ -71,7 +74,7 @@ export class AgentController {
     );
     if (!success) {
       throw new HttpException(
-        'Desktop Agent is not connected',
+        ERROR_MESSAGES.AGENT.NOT_CONNECTED,
         HttpStatus.SERVICE_UNAVAILABLE,
       );
     }

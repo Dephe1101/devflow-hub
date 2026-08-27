@@ -37,3 +37,26 @@ export const AGENT_ACTION = {
 } as const;
 
 export type AgentAction = (typeof AGENT_ACTION)[keyof typeof AGENT_ACTION];
+
+export const ROLES = {
+  ADMIN: 'ADMIN',
+  USER: 'USER',
+} as const;
+
+export type Role = (typeof ROLES)[keyof typeof ROLES];
+
+export const QUEUE_NAMES = {
+  ANALYTICS: 'analytics',
+} as const;
+
+export const JOB_NAMES = {
+  AGGREGATE_MOST_USED: 'aggregate-most-used',
+} as const;
+
+export const LAUNCH_STATUS = {
+  SUCCESS: 'SUCCESS',
+  PARTIAL: 'PARTIAL',
+  FAILED: 'FAILED',
+} as const;
+
+export type LaunchStatus = (typeof LAUNCH_STATUS)[keyof typeof LAUNCH_STATUS];

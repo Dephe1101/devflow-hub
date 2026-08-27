@@ -11,7 +11,13 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ThrottlerGuard } from '@nestjs/throttler';
-import { API_ROUTES, KEYS, TIME_IN_SEC } from '@repo/constants';
+import {
+  API_ROUTES,
+  KEYS,
+  TIME_IN_SEC,
+  ERROR_MESSAGES,
+  SUCCESS_MESSAGES,
+} from '@repo/constants';
 import {
   RegisterInput,
   LoginInput,
@@ -81,7 +87,7 @@ export class AuthController {
     const refreshToken = req.cookies[KEYS.COOKIE.REFRESH_TOKEN];
     if (!refreshToken) {
       throw new UnauthorizedException(
-        'Không tìm thấy token làm mới (Refresh Token)',
+        ERROR_MESSAGES.AUTH.REFRESH_TOKEN_NOT_FOUND,
       );
     }
 
@@ -105,7 +111,7 @@ export class AuthController {
       return { accessToken };
     } catch {
       throw new UnauthorizedException(
-        'Token làm mới không hợp lệ hoặc đã hết hạn',
+        ERROR_MESSAGES.AUTH.REFRESH_TOKEN_INVALID,
       );
     }
   }
@@ -128,7 +134,7 @@ export class AuthController {
     }
 
     res.clearCookie(KEYS.COOKIE.REFRESH_TOKEN, { path: '/' });
-    return { message: 'Đăng xuất thành công' };
+    return { message: SUCCESS_MESSAGES.AUTH.LOGOUT };
   }
 
   @Get(API_ROUTES.AUTH.ME)

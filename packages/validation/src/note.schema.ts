@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { VALIDATION_MESSAGES } from '@repo/constants';
 import { NOTE_TYPE } from '@repo/constants';
 
 import { paginationSchema } from './pagination.schema';
@@ -16,7 +17,7 @@ export const CreateNoteSchema = z.object({
 });
 
 export const CreateCommandSchema = CreateNoteSchema.extend({
-  content: z.string().min(1, 'Nội dung lệnh là bắt buộc').max(50000),
+  content: z.string().min(1, VALIDATION_MESSAGES.NOTE.CONTENT_REQUIRED).max(50000),
 });
 
 export const UpdateNoteSchema = CreateNoteSchema.partial();

@@ -37,4 +37,17 @@ export const VALIDATION_MESSAGES = {
     INVALID_ACTION: 'Hành động phải là open_folder hoặc launch_app',
     MISSING_TARGET: 'Yêu cầu Path cho open_folder, hoặc appName cho launch_app',
   },
+  AUTH: {
+    EMAIL_INVALID: 'Email không hợp lệ',
+    NAME_MIN: 'Tên phải có ít nhất 2 ký tự',
+    NAME_MAX: 'Tên không được vượt quá 50 ký tự',
+    PASSWORD_MIN: 'Mật khẩu phải có ít nhất 6 ký tự',
+    PASSWORD_REQUIRED: 'Vui lòng nhập mật khẩu',
+  },
+  NOTE: {
+    CONTENT_REQUIRED: 'Nội dung lệnh là bắt buộc',
+  },
+  ANALYTICS: {
+    INVALID_WORKSPACE_ID: 'ID Workspace không hợp lệ',
+  },
 } as const;

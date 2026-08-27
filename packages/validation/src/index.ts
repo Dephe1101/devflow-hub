@@ -4,3 +4,4 @@ export * from './resource.schema.js';
 export * from './agent.schema.js';
 export * from './note.schema.js';
 export * from './pagination.schema.js';
+export * from './analytics.schema.js';

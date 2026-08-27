@@ -37,7 +37,7 @@ const customToast = new Proxy(sonnerToast, {
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = 'system' } = useTheme();
   const [expand, setExpand] = React.useState(false);
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   React.useEffect(() => {
     const handleExpand = () => {

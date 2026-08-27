@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 
 import { toast } from 'sonner';
 
-import { RESOURCE_TYPE } from '@repo/constants';
+import { LAUNCH_STATUS, RESOURCE_TYPE, WORKSPACE_CONFIG } from '@repo/constants';
 import type { WorkspaceResource } from '@repo/types';
 
 import { useAgentLaunch } from '@/features/agent/hooks/use-agent-launch';
+import { useCreateLaunchLog } from '@/features/analytics/hooks/use-analytics';
 
 interface LaunchResult {
   success: boolean;
@@ -27,6 +28,7 @@ export function useWorkspaceLaunch(): UseWorkspaceLaunchReturn {
   const [lockCountdown, setLockCountdown] = useState(0);
   const [blockedUrls, setBlockedUrls] = useState<string[]>([]);
   const { mutateAsync: launchAgent } = useAgentLaunch();
+  const { mutateAsync: createLaunchLog } = useCreateLaunchLog();
 
   const lockTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -59,8 +61,8 @@ export function useWorkspaceLaunch(): UseWorkspaceLaunchReturn {
     const failedUrls: string[] = [];
 
     // F2.5: Throttling Mechanism for Web
-    const BATCH_SIZE = 5;
-    const DELAY_MS = 1000;
+    const BATCH_SIZE = WORKSPACE_CONFIG.LAUNCH_BATCH_SIZE;
+    const DELAY_MS = WORKSPACE_CONFIG.LAUNCH_DELAY_MS;
 
     for (let i = 0; i < webResources.length; i += BATCH_SIZE) {
       const batch = webResources.slice(i, i + BATCH_SIZE);
@@ -80,6 +82,9 @@ export function useWorkspaceLaunch(): UseWorkspaceLaunchReturn {
     }
 
     // Launch Local Resources via WSS — BUG-8 fix: parallel instead of sequential
+    let localFailedCount = 0;
+    let localSuccessCount = 0;
+
     if (localResources.length > 0) {
       const results = await Promise.allSettled(
         localResources.map((r) => {
@@ -90,14 +95,14 @@ export function useWorkspaceLaunch(): UseWorkspaceLaunchReturn {
         }),
       );
 
-      const failedCount = results.filter((r) => r.status === 'rejected').length;
-      const successCount = localResources.length - failedCount;
+      localFailedCount = results.filter((r) => r.status === 'rejected').length;
+      localSuccessCount = localResources.length - localFailedCount;
 
-      if (successCount > 0) {
-        toast.success(`Đã gửi lệnh mở ${successCount.toString()} tài nguyên local.`);
+      if (localSuccessCount > 0) {
+        toast.success(`Đã gửi lệnh mở ${localSuccessCount.toString()} tài nguyên local.`);
       }
-      if (failedCount > 0) {
-        toast.error(`Lỗi khi mở ${failedCount.toString()} tài nguyên local.`);
+      if (localFailedCount > 0) {
+        toast.error(`Lỗi khi mở ${localFailedCount.toString()} tài nguyên local.`);
       }
     }
 
@@ -107,9 +112,30 @@ export function useWorkspaceLaunch(): UseWorkspaceLaunchReturn {
 
     setIsLaunching(false);
 
-    // F2.8: Anti-spam Lock (5s)
+    // Fire-and-forget Analytics Log
+    const workspaceId = resources.length > 0 ? (resources[0]?.workspaceId ?? null) : null;
+    const totalFailed = failedUrls.length + localFailedCount;
+    const isSuccess = failedUrls.length === 0 && localFailedCount === 0;
+
+    if (workspaceId) {
+      createLaunchLog({
+        workspaceId,
+        webUrlsOpened: webResources.length - failedUrls.length,
+        localPathsOpened: localSuccessCount,
+        failedCount: totalFailed,
+        status: isSuccess
+          ? LAUNCH_STATUS.SUCCESS
+          : totalFailed < webResources.length + localResources.length
+            ? LAUNCH_STATUS.PARTIAL
+            : LAUNCH_STATUS.FAILED,
+      }).catch((err: unknown) => {
+        console.error('Failed to log analytics:', err);
+      });
+    }
+
+    // F2.8: Anti-spam Lock
     setIsLocked(true);
-    setLockCountdown(5);
+    setLockCountdown(WORKSPACE_CONFIG.LAUNCH_LOCK_SEC);
 
     if (lockTimerRef.current) {
       clearInterval(lockTimerRef.current);
@@ -129,7 +155,7 @@ export function useWorkspaceLaunch(): UseWorkspaceLaunchReturn {
     }, 1000);
 
     return {
-      success: failedUrls.length === 0,
+      success: isSuccess,
       blockedUrls: failedUrls,
     };
   };

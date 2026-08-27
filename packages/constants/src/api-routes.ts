@@ -20,4 +20,14 @@ export const API_ROUTES = {
     BASE: 'workspaces/:workspaceId/notes',
     DETAIL: 'workspaces/:workspaceId/notes/:noteId',
   },
+  ANALYTICS: {
+    BASE: 'analytics',
+    LAUNCH_LOG: 'launch-log',
+    RECENT: 'recent',
+    MOST_USED: 'most-used',
+  },
+  ADMIN: {
+    BASE: 'admin',
+    QUEUES_STATS: 'queues/stats',
+  },
 } as const;

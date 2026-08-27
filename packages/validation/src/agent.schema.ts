@@ -1,12 +1,12 @@
 import { z } from 'zod';
 
-import { AGENT_ACTION } from '@repo/constants';
+import { AGENT_ACTION, VALIDATION_MESSAGES } from '@repo/constants';
 
 export const agentLaunchSchema = z
   .object({
     action: z.nativeEnum(AGENT_ACTION, {
-      required_error: 'Yêu cầu phải có Hành động (Action)',
-      invalid_type_error: 'Hành động phải là open_folder hoặc launch_app',
+      required_error: VALIDATION_MESSAGES.AGENT.ACTION_REQUIRED,
+      invalid_type_error: VALIDATION_MESSAGES.AGENT.INVALID_ACTION,
     }),
     path: z.string().optional(),
     appName: z.string().optional(),
@@ -19,7 +19,7 @@ export const agentLaunchSchema = z
       return true;
     },
     {
-      message: 'Yêu cầu Path cho open_folder, hoặc appName cho launch_app',
+      message: VALIDATION_MESSAGES.AGENT.MISSING_TARGET,
       path: ['action'],
     },
   );
